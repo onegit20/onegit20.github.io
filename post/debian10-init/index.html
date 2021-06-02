@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Debian 10初始化脚本">
 <meta itemprop="description" content="参考链接: https://www.debian.org/mirror/list https://www.ntppool.org/en/zone/us https://en.wikipedia.org/wiki/Regular_expression 初始化脚本 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57"><meta itemprop="datePublished" content="2021-04-02T11:52:30&#43;08:00" />
 <meta itemprop="dateModified" content="2021-04-02T11:52:30&#43;08:00" />
-<meta itemprop="wordCount" content="629">
+<meta itemprop="wordCount" content="637">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Debian 10初始化脚本"/>
 <meta name="twitter:description" content="参考链接: https://www.debian.org/mirror/list https://www.ntppool.org/en/zone/us https://en.wikipedia.org/wiki/Regular_expression 初始化脚本 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57"/>
@@ -315,6 +315,8 @@
 </span><span class="lnt">160
 </span><span class="lnt">161
 </span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
@@ -323,7 +325,7 @@
 
 
 <span class="nv">full_domain</span><span class="o">=</span>blog.yanyong.cc
-<span class="nv">new_user</span><span class="o">=</span>test01
+<span class="nv">new_user</span><span class="o">=</span>yong
 <span class="nv">ssh_port</span><span class="o">=</span><span class="m">2444</span>
 <span class="nv">debian_mirror</span><span class="o">=</span>http://ftp.us.debian.org/debian/
 <span class="nv">debian_security</span><span class="o">=</span>http://security.debian.org/debian-security
@@ -356,7 +358,7 @@ updateOS<span class="o">(){</span>
 </span><span class="s">deb-src $_source buster-updates main
 </span><span class="s">EOF</span>
     apt-get update <span class="o">&amp;&amp;</span> apt-get -y upgrade
-    apt-get -y install man sudo vim
+    apt-get -y install man sudo vim net-tools
 <span class="o">}</span>
 
 set_hostname<span class="o">(){</span>
@@ -410,7 +412,7 @@ create_user<span class="o">(){</span>
     <span class="k">fi</span>
 <span class="o">}</span>
 
-set_sshd<span class="o">(){</span>
+set_ssh<span class="o">(){</span>
     <span class="k">if</span> <span class="o">[[</span> ! -f /etc/ssh/sshd_config.bak <span class="o">]]</span><span class="p">;</span> <span class="k">then</span> cp /etc/ssh/sshd_config<span class="o">{</span>,.bak<span class="o">}</span><span class="p">;</span> <span class="k">fi</span>
 
     <span class="k">if</span> grep -Eq <span class="s1">&#39;^PermitRootLogin (yes|no)$&#39;</span> /etc/ssh/sshd_config<span class="p">;</span> <span class="k">then</span>
@@ -450,8 +452,8 @@ set_iptables<span class="o">(){</span>
 
 print_info<span class="o">(){</span>
   <span class="k">if</span> <span class="nv">$iscreate</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nb">echo</span> <span class="s1">&#39;&gt;&gt;&gt;&gt; /root/init.sh.log&#39;</span>
-    tee -a /root/init.sh.log <span class="s">&lt;&lt;- EOF
+    <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt;&gt;&gt; /root/</span><span class="si">${</span><span class="nv">0</span><span class="si">}</span><span class="s2">.log&#34;</span>
+    cat &gt;&gt; /root/<span class="si">${</span><span class="nv">0</span><span class="si">}</span>.log <span class="s">&lt;&lt;- EOF
 </span><span class="s">**********************************************************************
 </span><span class="s">User name: $_user
 </span><span class="s">User password: $_password
@@ -462,7 +464,9 @@ print_info<span class="o">(){</span>
 </span><span class="s">**********************************************************************
 </span><span class="s">
 </span><span class="s">EOF</span>
-    chmod <span class="m">400</span> /root/init.sh.log
+    chmod <span class="m">400</span> /root/<span class="si">${</span><span class="nv">0</span><span class="si">}</span>.log
+    <span class="nv">str</span><span class="o">=</span><span class="sb">`</span>cat /root/<span class="si">${</span><span class="nv">0</span><span class="si">}</span>.log<span class="sb">`</span>
+    <span class="nb">echo</span> -e <span class="s2">&#34;\033[31m</span><span class="si">${</span><span class="nv">str</span><span class="si">}</span><span class="s2">\033[0m&#34;</span>
   <span class="k">fi</span>
 <span class="o">}</span>
 
@@ -473,7 +477,7 @@ main<span class="o">(){</span>
     set_profile
     set_timezone
     create_user
-    set_sshd
+    set_ssh
     set_iptables
     print_info
 <span class="o">}</span>
@@ -503,7 +507,11 @@ main
       
       <nav class="post-nav">
         
-        
+        <a class="next" href="/post/myfirstpost/">
+            <span class="next-text nav-default">MyFirstPost</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
       </nav>
     </footer>
   </article>
