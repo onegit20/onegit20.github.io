@@ -1,37 +1,28 @@
-<?xml-stylesheet type="text/xsl" href="https://yanyong.cc/sitemap.xsl"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yanyong.cc/post/debian10-init/</loc>
     <lastmod>2021-04-02T11:52:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://yanyong.cc/post/</loc>
     <lastmod>2021-04-02T11:52:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://yanyong.cc/</loc>
     <lastmod>2021-04-02T11:52:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://yanyong.cc/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://yanyong.cc/tags/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
-  
 </urlset>
