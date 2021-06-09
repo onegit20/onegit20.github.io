@@ -1,4 +1,18 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Debian 10初始化脚本 - yy小站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="脚本效果 脚本效果22 执行脚本方法 curl -sSL https://raw.yanyong.cc/sh/debian10-init.sh | sudo bash 初始化脚本 [raw] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42"><meta name=generator content="Hugo 0.83.1 with theme even"><link rel=canonical href=https://yanyong.cc/post/debian10-init/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.a659bb31b17a54f7792e1bc783fc75b31118e6a175b42337b03fae0b1a3ef2b5.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Debian 10初始化脚本"><meta property="og:description" content="脚本效果 脚本效果22 执行脚本方法 curl -sSL https://raw.yanyong.cc/sh/debian10-init.sh | sudo bash 初始化脚本 [raw] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42"><meta property="og:type" content="article"><meta property="og:url" content="https://yanyong.cc/post/debian10-init/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-04-02T11:52:30+08:00"><meta property="article:modified_time" content="2021-04-02T11:52:30+08:00"><meta itemprop=name content="Debian 10初始化脚本"><meta itemprop=description content="脚本效果 脚本效果22 执行脚本方法 curl -sSL https://raw.yanyong.cc/sh/debian10-init.sh | sudo bash 初始化脚本 [raw] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42"><meta itemprop=datePublished content="2021-04-02T11:52:30+08:00"><meta itemprop=dateModified content="2021-04-02T11:52:30+08:00"><meta itemprop=wordCount content="660"><meta itemprop=keywords content="Shell,Script,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Debian 10初始化脚本"><meta name=twitter:description content="脚本效果 脚本效果22 执行脚本方法 curl -sSL https://raw.yanyong.cc/sh/debian10-init.sh | sudo bash 初始化脚本 [raw] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>yy小站</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>yy小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Debian 10初始化脚本</h1><div class=post-meta><span class=post-time>2021-04-02</span><div class=post-category><a href=/categories/debian/>Debian</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#脚本效果>脚本效果</a></li><li><a href=#脚本效果22>脚本效果22</a></li><li><a href=#执行脚本方法>执行脚本方法</a></li><li><a href=#初始化脚本>初始化脚本</a></li><li><a href=#参考链接>参考链接:</a></li></ul></nav></div></div><div class=post-content><h1 id=脚本效果>脚本效果</h1><h1 id=脚本效果22>脚本效果22</h1><h1 id=执行脚本方法>执行脚本方法</h1><p>curl -sSL <a href=https://raw.yanyong.cc/sh/debian10-init.sh>https://raw.yanyong.cc/sh/debian10-init.sh</a> | sudo bash</p><h1 id=初始化脚本>初始化脚本</h1><p><a href=https://raw.yanyong.cc/sh/debian10-init.sh>[raw]</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Debian 10初始化脚本 - yy小站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="背景 每次新装服务器，配置基础环境，总是各种翻看笔记，各种复制粘贴，实在太烦琐了，于是就有了这个通用的一键初始化脚本。 脚本使用方法 默认情况 1 2"><meta name=generator content="Hugo 0.83.1 with theme even"><link rel=canonical href=https://yanyong.cc/post/debian10-init/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.a659bb31b17a54f7792e1bc783fc75b31118e6a175b42337b03fae0b1a3ef2b5.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Debian 10初始化脚本"><meta property="og:description" content="背景 每次新装服务器，配置基础环境，总是各种翻看笔记，各种复制粘贴，实在太烦琐了，于是就有了这个通用的一键初始化脚本。 脚本使用方法 默认情况 1 2"><meta property="og:type" content="article"><meta property="og:url" content="https://yanyong.cc/post/debian10-init/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-04-02T11:52:30+08:00"><meta property="article:modified_time" content="2021-04-02T11:52:30+08:00"><meta itemprop=name content="Debian 10初始化脚本"><meta itemprop=description content="背景 每次新装服务器，配置基础环境，总是各种翻看笔记，各种复制粘贴，实在太烦琐了，于是就有了这个通用的一键初始化脚本。 脚本使用方法 默认情况 1 2"><meta itemprop=datePublished content="2021-04-02T11:52:30+08:00"><meta itemprop=dateModified content="2021-04-02T11:52:30+08:00"><meta itemprop=wordCount content="1711"><meta itemprop=keywords content="Shell,Script,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Debian 10初始化脚本"><meta name=twitter:description content="背景 每次新装服务器，配置基础环境，总是各种翻看笔记，各种复制粘贴，实在太烦琐了，于是就有了这个通用的一键初始化脚本。 脚本使用方法 默认情况 1 2"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>yy小站</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>yy小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Debian 10初始化脚本</h1><div class=post-meta><span class=post-time>2021-04-02</span><div class=post-category><a href=/categories/debian/>Debian</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#背景>背景</a></li><li><a href=#脚本使用方法>脚本使用方法</a><ul><li><ul><li><a href=#默认情况>默认情况</a></li><li><a href=#示例1>示例1</a></li><li><a href=#特别说明>特别说明</a></li></ul></li></ul></li><li><a href=#脚本内容>脚本内容</a></li><li><a href=#参考链接>参考链接</a></li></ul></nav></div></div><div class=post-content><h1 id=背景>背景</h1><p>每次新装服务器，配置基础环境，总是各种翻看笔记，各种复制粘贴，实在太烦琐了，于是就有了这个通用的一键初始化脚本。</p><h1 id=脚本使用方法>脚本使用方法</h1><h3 id=默认情况>默认情况</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>curl -fsSL https://raw.yanyong.cc/sh/debian10-init.sh | bash -s -- \
+    --user=example  \
+    --port=22 \
+    --fqdn=www.example.com \
+    --source=cn \
+    --tz=Asia/Shanghai
+</code></pre></td></tr></table></div></div><h3 id=示例1>示例1</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>curl -fsSL https://raw.yanyong.cc/sh/debian10-init.sh | bash -s -- fqdn=blog.yanyong.cc user=yanyong port=23422
+</code></pre></td></tr></table></div></div><h3 id=特别说明>特别说明</h3><ol><li>创建一个新用户（如果不指定，默认为<code>example</code>），并设置随机生成的16位密码，密码为<code>数字和大小写字母</code>的组合。如果指定用户已存在则不创建。生成密钥对，保存在刚创建的用户家目录的<code>.ssh</code>目录下，并设置密钥的密码为随机生成的<code>数字和小写字母</code>组合的8位字符串。</li><li>设置完全限定域名<a href=https://en.wikipedia.org/wiki/Fully_qualified_domain_name>FQDN</a>（如果不指定，默认为<code>www.example.com</code>），主机名hostname无需指定，取FQDN的最左边记录值 为主机名（如FQDN默认为www.example.com，则hostname为<code>www</code>）。</li><li>设置ssh端口（如果不指定，默认为<code>22</code>），并添加iptables规则，如果不想修改ssh端口，需要<code>--port=PORT</code>指定当前ssh端口，如果不指定端口会被修改为<code>22</code>。禁用了root远程登录，禁用了密码登录，启用密钥登录。此脚本默认开启了<code>80</code>和<code>443</code>端口。</li><li>默认源为中科大源<code>http://mirrors.ustc.edu.cn/debian/</code>。</li><li>默认时区为<code>Asia/Shanghai</code>。</li><li>查看帮助<code>curl -fsSL https://raw.yanyong.cc/sh/debian10-init.sh | sudo bash -s -- --help</code></li></ol><h1 id=脚本内容>脚本内容</h1><p><a href=https://raw.yanyong.cc/sh/debian10-init.sh>[raw]</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
 </span><span class=lnt>  2
 </span><span class=lnt>  3
 </span><span class=lnt>  4
@@ -162,36 +176,204 @@
 </span><span class=lnt>162
 </span><span class=lnt>163
 </span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span><span class=lnt>230
+</span><span class=lnt>231
+</span><span class=lnt>232
+</span><span class=lnt>233
+</span><span class=lnt>234
+</span><span class=lnt>235
+</span><span class=lnt>236
+</span><span class=lnt>237
+</span><span class=lnt>238
+</span><span class=lnt>239
+</span><span class=lnt>240
+</span><span class=lnt>241
+</span><span class=lnt>242
+</span><span class=lnt>243
+</span><span class=lnt>244
+</span><span class=lnt>245
+</span><span class=lnt>246
+</span><span class=lnt>247
+</span><span class=lnt>248
+</span><span class=lnt>249
+</span><span class=lnt>250
+</span><span class=lnt>251
+</span><span class=lnt>252
+</span><span class=lnt>253
+</span><span class=lnt>254
+</span><span class=lnt>255
+</span><span class=lnt>256
+</span><span class=lnt>257
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/usr/bin/env bash
-</span><span class=cp></span><span class=nb>set</span> -e
+</span><span class=cp></span><span class=c1># Author: info@yanyong.cc</span>
+<span class=nb>set</span> -e
 <span class=nv>PATH</span><span class=o>=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+<span class=nv>SCRIPTNAME</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>0</span><span class=p>##*/</span><span class=si>}</span><span class=s2>&#34;</span>
+<span class=nv>ARGS</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$*</span><span class=s2>&#34;</span>
 
 
-<span class=nv>full_domain</span><span class=o>=</span>blog.yanyong.cc
-<span class=nv>new_user</span><span class=o>=</span>yong
-<span class=nv>ssh_port</span><span class=o>=</span><span class=m>2444</span>
-<span class=nv>debian_mirror</span><span class=o>=</span>http://ftp.us.debian.org/debian/
-<span class=nv>debian_security</span><span class=o>=</span>http://security.debian.org/debian-security
-<span class=nv>ntp_servers</span><span class=o>=</span><span class=s1>&#39;0.us.pool.ntp.org 1.us.pool.ntp.org 2.us.pool.ntp.org 3.us.pool.ntp.org&#39;</span>
-<span class=nv>password16</span><span class=o>=</span><span class=sb>`</span>tr -dc <span class=s1>&#39;[:alnum:]&#39;</span> &lt; /dev/urandom <span class=p>|</span> head -c 16<span class=sb>`</span>
-<span class=nv>password8</span><span class=o>=</span><span class=sb>`</span>tr -dc <span class=s1>&#39;[:digit:][:lower:]&#39;</span> &lt; /dev/urandom <span class=p>|</span> head -c 8<span class=sb>`</span>
+usage<span class=o>(){</span>
+    <span class=nb>echo</span> <span class=s2>&#34;Usage: /PATH/SCRIPTNAME [[--]fqdn=FQDN] [[--]port=PORT] [[--]user=USERNAME] [[--]passwd=PASSWORD] [[--]keyPasswd=PASSWORD] [[--]source={cn|CN|hk|HK|us|US|ali|ALI}] [[--]tz=Asia/Shanghai] [[--]help]&#34;</span>
+<span class=o>}</span>
 
+setCN<span class=o>(){</span>
+    <span class=nv>mirror</span><span class=o>=</span>http://mirrors.ustc.edu.cn/debian/
+    <span class=nv>security</span><span class=o>=</span>http://mirrors.ustc.edu.cn/debian-security
+    <span class=nv>ntp</span><span class=o>=</span><span class=s1>&#39;0.cn.pool.ntp.org 1.cn.pool.ntp.org 2.cn.pool.ntp.org 3.cn.pool.ntp.org&#39;</span>
+<span class=o>}</span>
+setHK<span class=o>(){</span>
+    <span class=nv>mirror</span><span class=o>=</span>http://ftp.hk.debian.org/debian/
+    <span class=nv>security</span><span class=o>=</span>http://ftp.hk.debian.org/debian-security
+    <span class=nv>ntp</span><span class=o>=</span><span class=s1>&#39;0.hk.pool.ntp.org 1.hk.pool.ntp.org 2.hk.pool.ntp.org 3.hk.pool.ntp.org&#39;</span>
+<span class=o>}</span>
+setUS<span class=o>(){</span>
+    <span class=nv>mirror</span><span class=o>=</span>http://ftp.us.debian.org/debian/
+    <span class=nv>security</span><span class=o>=</span>http://security.debian.org/debian-security
+    <span class=nv>ntp</span><span class=o>=</span><span class=s1>&#39;0.us.pool.ntp.org 1.us.pool.ntp.org 2.us.pool.ntp.org 3.us.pool.ntp.org&#39;</span>
+<span class=o>}</span>
+setALI<span class=o>(){</span>
+    <span class=nv>mirror</span><span class=o>=</span>http://mirrors.aliyun.com/debian/
+    <span class=nv>security</span><span class=o>=</span>http://mirrors.aliyun.com/debian-security/  <span class=c1># must .../debian-security/ </span>
+    <span class=nv>ntp</span><span class=o>=</span><span class=s1>&#39;0.cn.pool.ntp.org 1.cn.pool.ntp.org 2.cn.pool.ntp.org 3.cn.pool.ntp.org&#39;</span>
+<span class=o>}</span>
 
-global_variables<span class=o>(){</span>
-    <span class=nv>_fqdn</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$full_domain</span><span class=s2>&#34;</span>
-    <span class=nv>_user</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$new_user</span><span class=s2>&#34;</span>
-    <span class=nv>_ssh_port</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$ssh_port</span><span class=s2>&#34;</span>
-    <span class=nv>_hostname</span><span class=o>=</span><span class=si>${</span><span class=nv>_fqdn</span><span class=p>%%.*</span><span class=si>}</span>
-    <span class=nv>_ip</span><span class=o>=</span><span class=sb>`</span>hostname -I <span class=p>|</span> awk <span class=s1>&#39;{print $1}&#39;</span><span class=sb>`</span>
-    <span class=nv>_source</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$debian_mirror</span><span class=s2>&#34;</span>
-    <span class=nv>_source_security</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$debian_security</span><span class=s2>&#34;</span>
-    <span class=nv>_ntp</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$ntp_servers</span><span class=s2>&#34;</span>
-    <span class=nv>_password</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$password16</span><span class=s2>&#34;</span>
-    <span class=nv>_passwd_rsa</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$password8</span><span class=s2>&#34;</span>
+getArguments<span class=o>(){</span>
+<span class=k>for</span> i in <span class=nv>$ARGS</span><span class=p>;</span> <span class=k>do</span>
+    <span class=k>case</span> <span class=nv>$i</span> in
+        --fqdn<span class=o>=</span>?*<span class=p>|</span><span class=nv>fqdn</span><span class=o>=</span>?*<span class=o>)</span>
+            <span class=nb>eval</span> <span class=si>${</span><span class=nv>i</span><span class=p>#--</span><span class=si>}</span>
+            <span class=p>;;</span>
+        --port<span class=o>=</span>?*<span class=p>|</span><span class=nv>port</span><span class=o>=</span>?*<span class=o>)</span>
+            <span class=nb>eval</span> <span class=si>${</span><span class=nv>i</span><span class=p>#--</span><span class=si>}</span>
+            <span class=p>;;</span>
+        --user<span class=o>=</span>?*<span class=p>|</span><span class=nv>user</span><span class=o>=</span>?*<span class=o>)</span>
+            <span class=nb>eval</span> <span class=si>${</span><span class=nv>i</span><span class=p>#--</span><span class=si>}</span>
+            <span class=p>;;</span>
+        --passwd<span class=o>=</span>?*<span class=p>|</span><span class=nv>passwd</span><span class=o>=</span>?*<span class=o>)</span>
+            <span class=nb>eval</span> <span class=si>${</span><span class=nv>i</span><span class=p>#--</span><span class=si>}</span>
+            <span class=p>;;</span>
+        --keyPasswd<span class=o>=</span>?*<span class=p>|</span><span class=nv>keyPasswd</span><span class=o>=</span>?*<span class=o>)</span>
+            <span class=nb>eval</span> <span class=si>${</span><span class=nv>i</span><span class=p>#--</span><span class=si>}</span>
+            <span class=p>;;</span>
+        --source<span class=o>=</span>?*<span class=p>|</span><span class=nv>source</span><span class=o>=</span>?*<span class=o>)</span>
+            <span class=nb>eval</span> <span class=si>${</span><span class=nv>i</span><span class=p>#--</span><span class=si>}</span>
+            <span class=o>{</span> <span class=o>[[</span> <span class=nv>$source</span> <span class=o>=</span> cn <span class=o>||</span> <span class=nv>$source</span> <span class=o>=</span> CN <span class=o>]]</span> <span class=o>&amp;&amp;</span> setCN<span class=p>;</span> <span class=o>}</span> <span class=o>||</span> <span class=se>\
+</span><span class=se></span>            <span class=o>{</span> <span class=o>[[</span> <span class=nv>$source</span> <span class=o>=</span> hk <span class=o>||</span> <span class=nv>$source</span> <span class=o>=</span> HK <span class=o>]]</span> <span class=o>&amp;&amp;</span> setHK<span class=p>;</span> <span class=o>}</span> <span class=o>||</span> <span class=se>\
+</span><span class=se></span>            <span class=o>{</span> <span class=o>[[</span> <span class=nv>$source</span> <span class=o>=</span> us <span class=o>||</span> <span class=nv>$source</span> <span class=o>=</span> US <span class=o>]]</span> <span class=o>&amp;&amp;</span> setUS<span class=p>;</span> <span class=o>}</span> <span class=o>||</span> <span class=se>\
+</span><span class=se></span>            <span class=o>{</span> <span class=o>[[</span> <span class=nv>$source</span> <span class=o>=</span> ali <span class=o>||</span> <span class=nv>$source</span> <span class=o>=</span> ALI <span class=o>]]</span> <span class=o>&amp;&amp;</span> setALI<span class=p>;</span> <span class=o>}</span>
+            <span class=p>;;</span>
+        --tz<span class=o>=</span>?*<span class=p>|</span><span class=nv>tz</span><span class=o>=</span>?*<span class=o>)</span>
+            <span class=nb>eval</span> <span class=si>${</span><span class=nv>i</span><span class=p>#--</span><span class=si>}</span>
+            <span class=p>;;</span>
+        --help<span class=p>|</span><span class=nb>help</span><span class=o>)</span>
+            usage
+            <span class=nb>exit</span> <span class=m>0</span>
+            <span class=p>;;</span>
+        *<span class=o>)</span>
+            usage
+            <span class=nb>exit</span> <span class=m>3</span>
+            <span class=p>;;</span>
+    <span class=k>esac</span>
+<span class=k>done</span>
+<span class=o>}</span>
+
+setDefaultVariables<span class=o>(){</span>
+    <span class=nv>full_domain</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>fqdn</span><span class=k>:-</span><span class=nv>www</span><span class=p>.example.com</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>my_hostname</span><span class=o>=</span><span class=si>${</span><span class=nv>full_domain</span><span class=p>%%.*</span><span class=si>}</span>
+    <span class=nv>my_ip</span><span class=o>=</span><span class=sb>`</span>hostname -I <span class=p>|</span> awk <span class=s1>&#39;{print $1}&#39;</span><span class=sb>`</span>
+    <span class=nv>ssh_port</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>port</span><span class=k>:-</span><span class=nv>22</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>new_user</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>user</span><span class=k>:-</span><span class=nv>example</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>password16</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>passwd</span><span class=k>:-</span><span class=sb>`</span>tr -dc <span class=s1>&#39;[:alnum:]&#39;</span> &lt; /dev/urandom <span class=p>|</span> head -c 16<span class=sb>`</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>password8</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>keyPasswd</span><span class=k>:-</span><span class=sb>`</span>tr -dc <span class=s1>&#39;[:digit:][:lower:]&#39;</span> &lt; /dev/urandom <span class=p>|</span> head -c 8<span class=sb>`</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>debian_mirror</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>mirror</span><span class=k>:-</span><span class=nv>http</span><span class=p>://mirrors.ustc.edu.cn/debian/</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>debian_security</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>security</span><span class=k>:-</span><span class=nv>http</span><span class=p>://mirrors.ustc.edu.cn/debian-security</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>ntp_servers</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>ntp</span><span class=k>:-</span><span class=nv>0</span><span class=p>.cn.pool.ntp.org 1.cn.pool.ntp.org 2.cn.pool.ntp.org 3.cn.pool.ntp.org</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>time_zone</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>tz</span><span class=k>:-</span><span class=nv>Asia</span><span class=p>/Shanghai</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>checkPort</span><span class=o>=</span><span class=sb>`</span>awk <span class=s1>&#39;/^Port/{print $2}&#39;</span> /etc/ssh/sshd_config<span class=sb>`</span>
+<span class=o>}</span>
+
+setGlobalVariables<span class=o>(){</span>
+    <span class=nv>_fqdn</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>full_domain</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>_hostname</span><span class=o>=</span><span class=si>${</span><span class=nv>my_hostname</span><span class=si>}</span>
+    <span class=nv>_ip</span><span class=o>=</span><span class=si>${</span><span class=nv>my_ip</span><span class=si>}</span>
+    <span class=nv>_sshport</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>ssh_port</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>_user</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>new_user</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>_password</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>password16</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>_passwd_key</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>password8</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>_source</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>debian_mirror</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>_source_security</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>debian_security</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>_ntp</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>ntp_servers</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>_tz</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>time_zone</span><span class=si>}</span><span class=s2>&#34;</span>
+    <span class=nv>_current_port</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>checkPort</span><span class=k>:-</span><span class=nv>22</span><span class=si>}</span><span class=s2>&#34;</span>
 <span class=o>}</span>
 
 updateOS<span class=o>(){</span>
-    <span class=k>if</span> <span class=o>[[</span> ! -f /etc/apt/sources.list.bak <span class=o>]]</span><span class=p>;</span> <span class=k>then</span> cp /etc/apt/sources.list<span class=o>{</span>,.bak<span class=o>}</span><span class=p>;</span> <span class=k>fi</span>
+    <span class=k>if</span> <span class=o>[[</span> ! -f /etc/apt/sources.list.origin <span class=o>]]</span><span class=p>;</span> <span class=k>then</span> cp /etc/apt/sources.list<span class=o>{</span>,.origin<span class=o>}</span><span class=p>;</span> <span class=k>fi</span>
     cat &gt; /etc/apt/sources.list <span class=s>&lt;&lt;- EOF
 </span><span class=s>deb $_source buster main
 </span><span class=s>deb-src $_source  buster main
@@ -204,7 +386,7 @@ updateOS<span class=o>(){</span>
     apt-get -y install man sudo vim net-tools
 <span class=o>}</span>
 
-set_hostname<span class=o>(){</span>
+setHostname<span class=o>(){</span>
     hostname <span class=nv>$_hostname</span>
     <span class=nb>echo</span> <span class=nv>$_hostname</span> &gt; /etc/hostname
     <span class=k>if</span> ! grep -q <span class=s2>&#34;</span><span class=nv>$_ip</span><span class=s2> </span><span class=nv>$_fqdn</span><span class=s2> </span><span class=nv>$_hostname</span><span class=s2>&#34;</span> /etc/hosts<span class=p>;</span> <span class=k>then</span>
@@ -212,11 +394,13 @@ set_hostname<span class=o>(){</span>
     <span class=k>fi</span>
 <span class=o>}</span>
 
-set_profile<span class=o>(){</span>
-cat &gt; /etc/profile.d/<span class=si>${</span><span class=nv>_fqdn</span><span class=si>}</span>.sh <span class=s>&lt;&lt;- EOF
+setProfile<span class=o>(){</span>
+<span class=k>if</span> <span class=o>[[</span> ! -f /etc/profile.d/myProfile.sh <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+
+    tee /etc/profile.d/myProfile.sh <span class=s>&lt;&lt;- EOF
 </span><span class=s>export HISTFILESIZE=20000
 </span><span class=s>export HISTTIMEFORMAT=&#34;%F %T&#34;
-</span><span class=s>export HISTCONTROL=&#34;ignoreboth&#34; 
+</span><span class=s>export HISTCONTROL=&#34;ignoreboth&#34;
 </span><span class=s>alias ls=&#39;ls --color=auto&#39;
 </span><span class=s>alias ll=&#39;ls -l --color=auto&#39;
 </span><span class=s>alias lt=&#39;ls -alt --color=auto&#39;
@@ -227,15 +411,17 @@ cat &gt; /etc/profile.d/<span class=si>${</span><span class=nv>_fqdn</span><span
 </span><span class=s>umask 022
 </span><span class=s>export TMOUT=3600
 </span><span class=s>EOF</span>
+
+<span class=k>fi</span>
 <span class=o>}</span>
 
-set_timezone<span class=o>(){</span>
-    timedatectl set-timezone Asia/Shanghai
-    sed -ri <span class=s1>&#39;s/^#(NTP=)$/\1&#39;</span><span class=s2>&#34;</span><span class=nv>$_ntp</span><span class=s2>&#34;</span><span class=s1>&#39;/&#39;</span> /etc/systemd/timesyncd.conf
+setTimezone<span class=o>(){</span>
+    timedatectl set-timezone <span class=nv>$_tz</span>
+    sed -ri <span class=s1>&#39;s/^#+(NTP=).*$/\1&#39;</span><span class=s2>&#34;</span><span class=nv>$_ntp</span><span class=s2>&#34;</span><span class=s1>&#39;/&#39;</span> /etc/systemd/timesyncd.conf
     systemctl restart systemd-timesyncd
 <span class=o>}</span>
 
-create_user<span class=o>(){</span>
+createUser<span class=o>(){</span>
     <span class=nv>iscreate</span><span class=o>=</span><span class=nb>false</span>
     <span class=k>if</span> ! id -u <span class=nv>$_user</span> <span class=p>&amp;</span>&gt; /dev/null<span class=p>;</span> <span class=k>then</span>
         <span class=nv>iscreate</span><span class=o>=</span><span class=nb>true</span>
@@ -246,17 +432,18 @@ create_user<span class=o>(){</span>
         mkdir /home/<span class=nv>$_user</span>/.ssh
         chown <span class=nv>$_user</span>:<span class=nv>$_user</span> /home/<span class=nv>$_user</span>/.ssh
         chmod <span class=m>700</span> /home/<span class=nv>$_user</span>/.ssh
-        su - <span class=nv>$_user</span> -c <span class=s2>&#34;ssh-keygen -qf /home/</span><span class=nv>$_user</span><span class=s2>/.ssh/id_rsa.</span><span class=si>${</span><span class=nv>_user</span><span class=si>}</span><span class=s2> -t rsa -N </span><span class=nv>$_passwd_rsa</span><span class=s2>&#34;</span>
+        su - <span class=nv>$_user</span> -c <span class=s2>&#34;ssh-keygen -qf /home/</span><span class=nv>$_user</span><span class=s2>/.ssh/id_rsa.</span><span class=nv>$_user</span><span class=s2> -t rsa -N </span><span class=nv>$_passwd_key</span><span class=s2>&#34;</span>
         cat /home/<span class=nv>$_user</span>/.ssh/id_rsa.<span class=nv>$_user</span>.pub &gt; /home/<span class=nv>$_user</span>/.ssh/authorized_keys
         chown <span class=nv>$_user</span>:<span class=nv>$_user</span> /home/<span class=nv>$_user</span>/.ssh/authorized_keys
         chmod <span class=m>600</span> /home/<span class=nv>$_user</span>/.ssh/authorized_keys
     <span class=k>else</span>
-        <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$_user</span><span class=s2> exist!(exit status 2)&#34;</span> <span class=o>&amp;&amp;</span> <span class=nb>exit</span> <span class=m>2</span>
+        <span class=nb>echo</span> -en <span class=s2>&#34;\033[33m[Warning] \033[0m&#34;</span>
+        <span class=nb>echo</span> <span class=s2>&#34;User: </span><span class=nv>$_user</span><span class=s2> exist!&#34;</span>
     <span class=k>fi</span>
 <span class=o>}</span>
 
-set_ssh<span class=o>(){</span>
-    <span class=k>if</span> <span class=o>[[</span> ! -f /etc/ssh/sshd_config.bak <span class=o>]]</span><span class=p>;</span> <span class=k>then</span> cp /etc/ssh/sshd_config<span class=o>{</span>,.bak<span class=o>}</span><span class=p>;</span> <span class=k>fi</span>
+setSSH<span class=o>(){</span>
+    <span class=k>if</span> <span class=o>[[</span> ! -f /etc/ssh/sshd_config.origin <span class=o>]]</span><span class=p>;</span> <span class=k>then</span> cp /etc/ssh/sshd_config<span class=o>{</span>,.origin<span class=o>}</span><span class=p>;</span> <span class=k>fi</span>
 
     <span class=k>if</span> grep -Eq <span class=s1>&#39;^PermitRootLogin (yes|no)$&#39;</span> /etc/ssh/sshd_config<span class=p>;</span> <span class=k>then</span>
         sed -ri -e <span class=s1>&#39;s/^(PermitRootLogin )yes$/\1no/&#39;</span> /etc/ssh/sshd_config
@@ -270,63 +457,76 @@ set_ssh<span class=o>(){</span>
         <span class=nb>echo</span> <span class=s1>&#39;PasswordAuthentication no&#39;</span> &gt;&gt; /etc/ssh/sshd_config
     <span class=k>fi</span>
 
-    <span class=k>if</span> grep -q <span class=s1>&#39;^Port [0-9]\+&#39;</span> /etc/ssh/sshd_config<span class=p>;</span> <span class=k>then</span>
-        sed -ri <span class=s1>&#39;s/^Port [0-9]+/Port &#39;</span><span class=s2>&#34;</span><span class=nv>$_ssh_port</span><span class=s2>&#34;</span><span class=s1>&#39;/&#39;</span> /etc/ssh/sshd_config
-    <span class=k>else</span>
-        <span class=nb>echo</span> <span class=s2>&#34;Port </span><span class=nv>$_ssh_port</span><span class=s2>&#34;</span> &gt;&gt; /etc/ssh/sshd_config
-    <span class=k>fi</span> 
+    <span class=k>if</span> <span class=o>[[</span> ! <span class=nv>$_sshport</span> <span class=o>=</span> <span class=nv>$_current_port</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+      <span class=k>if</span> grep -q <span class=s1>&#39;^Port [0-9]\+&#39;</span> /etc/ssh/sshd_config<span class=p>;</span> <span class=k>then</span>
+          sed -ri <span class=s1>&#39;s/^Port [0-9]+/Port &#39;</span><span class=s2>&#34;</span><span class=nv>$_sshport</span><span class=s2>&#34;</span><span class=s1>&#39;/&#39;</span> /etc/ssh/sshd_config
+      <span class=k>else</span>
+          <span class=nb>echo</span> <span class=s2>&#34;Port </span><span class=nv>$_sshport</span><span class=s2>&#34;</span> &gt;&gt; /etc/ssh/sshd_config
+      <span class=k>fi</span>
+    <span class=k>fi</span>
     systemctl reload ssh
 <span class=o>}</span>
 
-set_iptables<span class=o>(){</span>
-    iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-    iptables -A INPUT -i lo -j ACCEPT
-    iptables -A INPUT -p icmp -m state --state NEW --icmp-type echo-request -j ACCEPT
-    iptables -A INPUT -p tcp -m state --state NEW -m multiport --dports <span class=s2>&#34;</span><span class=nv>$_ssh_port</span><span class=s2>&#34;</span>,http,https -j ACCEPT
-    iptables -P INPUT DROP
-
+setIptables<span class=o>(){</span>
     <span class=nb>echo</span> <span class=s1>&#39;iptables-persistent iptables-persistent/autosave_v4 boolean true&#39;</span> <span class=p>|</span> debconf-set-selections
     <span class=nb>echo</span> <span class=s1>&#39;iptables-persistent iptables-persistent/autosave_v6 boolean false&#39;</span> <span class=p>|</span> debconf-set-selections
     apt-get -y install iptables-persistent
+
+    <span class=k>if</span> ! iptables -C INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT <span class=p>&amp;</span>&gt; /dev/null<span class=p>;</span> <span class=k>then</span> iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT<span class=p>;</span> <span class=k>fi</span>
+    <span class=k>if</span> ! iptables -C INPUT -i lo -j ACCEPT <span class=p>&amp;</span>&gt; /dev/null<span class=p>;</span> <span class=k>then</span> iptables -A INPUT -i lo -j ACCEPT<span class=p>;</span> <span class=k>fi</span>
+    <span class=k>if</span> ! iptables -C INPUT -p icmp -m state --state NEW --icmp-type echo-request -j ACCEPT <span class=p>&amp;</span>&gt; /dev/null<span class=p>;</span> <span class=k>then</span> iptables -A INPUT -p icmp -m state --state NEW --icmp-type echo-request -j ACCEPT<span class=p>;</span> <span class=k>fi</span>
+
+    <span class=k>if</span> <span class=o>[[</span> ! <span class=nv>$_sshport</span> <span class=o>=</span> <span class=nv>$_current_port</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>  <span class=c1># 如果端口不一致，删除当前规则，添加新规则</span>
+      <span class=k>if</span> iptables -C INPUT -p tcp -m state --state NEW -m tcp --dport <span class=s2>&#34;</span><span class=nv>$_current_port</span><span class=s2>&#34;</span> -j ACCEPT <span class=p>&amp;</span>&gt; /dev/null<span class=p>;</span> <span class=k>then</span> iptables -D INPUT -p tcp -m state --state NEW -m tcp --dport <span class=s2>&#34;</span><span class=nv>$_current_port</span><span class=s2>&#34;</span> -j ACCEPT<span class=p>;</span> <span class=k>fi</span>
+      <span class=k>if</span> ! iptables -C INPUT -p tcp -m state --state NEW -m tcp --dport <span class=s2>&#34;</span><span class=nv>$_sshport</span><span class=s2>&#34;</span> -j ACCEPT <span class=p>&amp;</span>&gt; /dev/null<span class=p>;</span> <span class=k>then</span> iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport <span class=s2>&#34;</span><span class=nv>$_sshport</span><span class=s2>&#34;</span> -j ACCEPT<span class=p>;</span> <span class=k>fi</span>
+    <span class=k>else</span>  <span class=c1># 如果端口一致，检测是否有防火墙规则，无则添加</span>
+      <span class=k>if</span> ! iptables -C INPUT -p tcp -m state --state NEW -m tcp --dport <span class=s2>&#34;</span><span class=nv>$_current_port</span><span class=s2>&#34;</span> -j ACCEPT <span class=p>&amp;</span>&gt; /dev/null<span class=p>;</span> <span class=k>then</span> iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport <span class=s2>&#34;</span><span class=nv>$_current_port</span><span class=s2>&#34;</span> -j ACCEPT<span class=p>;</span> <span class=k>fi</span>
+    <span class=k>fi</span>
+
+    <span class=k>if</span> ! iptables -C INPUT -p tcp -m state --state NEW -m multiport --dports http,https -j ACCEPT <span class=p>&amp;</span>&gt; /dev/null<span class=p>;</span> <span class=k>then</span> iptables -A INPUT -p tcp -m state --state NEW -m multiport --dports http,https -j ACCEPT<span class=p>;</span> <span class=k>fi</span>
+
+    iptables -P INPUT DROP
+
     netfilter-persistent save
-    <span class=k>if</span> <span class=o>[[</span> ! -f /etc/iptables/rules.v4.bak <span class=o>]]</span><span class=p>;</span> <span class=k>then</span> cp /etc/iptables/rules.v4<span class=o>{</span>,.bak<span class=o>}</span><span class=p>;</span> <span class=k>fi</span>
-    sed -ri <span class=s1>&#39;s/#?set_iptables$/#set_iptables/&#39;</span> <span class=nv>$0</span>  <span class=c1># once_exec</span>
+    <span class=k>if</span> <span class=o>[[</span> ! -f /etc/iptables/rules.v4.origin <span class=o>]]</span><span class=p>;</span> <span class=k>then</span> cp /etc/iptables/rules.v4<span class=o>{</span>,.origin<span class=o>}</span><span class=p>;</span> <span class=k>fi</span>
+    <span class=c1>#iptables-restore &lt; /etc/iptables/rules.v4.origin  # run the script multiple times</span>
 <span class=o>}</span>
 
-print_info<span class=o>(){</span>
+printInfo<span class=o>(){</span>
   <span class=k>if</span> <span class=nv>$iscreate</span><span class=p>;</span> <span class=k>then</span>
-    <span class=nb>echo</span> <span class=s2>&#34;&gt;&gt;&gt;&gt; /root/</span><span class=si>${</span><span class=nv>0</span><span class=si>}</span><span class=s2>.log&#34;</span>
-    cat &gt;&gt; /root/<span class=si>${</span><span class=nv>0</span><span class=si>}</span>.log <span class=s>&lt;&lt;- EOF
-</span><span class=s>**********************************************************************
-</span><span class=s>User name: $_user
-</span><span class=s>User password: $_password
-</span><span class=s>SSH port: $_ssh_port
-</span><span class=s>private key(id_rsa.$_user):
+    <span class=nb>echo</span> <span class=s1>&#39;**************************************** End ****************************************&#39;</span>
+    <span class=nb>echo</span> <span class=s2>&#34;Output -&gt; /root/</span><span class=nv>$SCRIPTNAME</span><span class=s2>.log&#34;</span>
+    cat &gt;&gt; /root/<span class=nv>$SCRIPTNAME</span>.log <span class=s>&lt;&lt;- EOF
+</span><span class=s>User Name: $_user
+</span><span class=s>User Password: $_password
+</span><span class=s>SSH Port: $_sshport
+</span><span class=s>Private Key(id_rsa.$_user):
 </span><span class=s>$(cat /home/$_user/.ssh/id_rsa.$_user)
-</span><span class=s>password(id_rsa.$_user): $_passwd_rsa
-</span><span class=s>**********************************************************************
+</span><span class=s>Password(id_rsa.$_user): $_passwd_key
 </span><span class=s>
 </span><span class=s>EOF</span>
-    chmod <span class=m>400</span> /root/<span class=si>${</span><span class=nv>0</span><span class=si>}</span>.log
-    <span class=nv>str</span><span class=o>=</span><span class=sb>`</span>cat /root/<span class=si>${</span><span class=nv>0</span><span class=si>}</span>.log<span class=sb>`</span>
+    chmod <span class=m>400</span> /root/<span class=nv>$SCRIPTNAME</span>.log
+    <span class=nv>str</span><span class=o>=</span><span class=sb>`</span>sed -n <span class=s2>&#34;/^User Name: </span><span class=nv>$_user</span>$<span class=s2>/,</span>$<span class=s2> p&#34;</span> /root/<span class=nv>$SCRIPTNAME</span>.log<span class=sb>`</span>
     <span class=nb>echo</span> -e <span class=s2>&#34;\033[31m</span><span class=si>${</span><span class=nv>str</span><span class=si>}</span><span class=s2>\033[0m&#34;</span>
   <span class=k>fi</span>
 <span class=o>}</span>
 
 main<span class=o>(){</span>
-    global_variables
+    getArguments
+    setDefaultVariables
+    setGlobalVariables
     updateOS
-    set_hostname
-    set_profile
-    set_timezone
-    create_user
-    set_ssh
-    set_iptables
-    print_info
+    setHostname
+    setProfile
+    setTimezone
+    createUser
+    setSSH
+    setIptables
+    printInfo
 <span class=o>}</span>
 
 main
-</code></pre></td></tr></table></div></div><h1 id=参考链接>参考链接:</h1><p><a href=https://www.debian.org/mirror/list>https://www.debian.org/mirror/list</a></p><p><a href=https://www.ntppool.org/en/zone/us>https://www.ntppool.org/en/zone/us</a></p><p><a href=https://en.wikipedia.org/wiki/Regular_expression>https://en.wikipedia.org/wiki/Regular_expression</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+</code></pre></td></tr></table></div></div><h1 id=参考链接>参考链接</h1><p><a href=https://www.debian.org/mirror/list>https://www.debian.org/mirror/list</a></p><p><a href=https://www.ntppool.org/zone/@>https://www.ntppool.org/zone/@</a></p><p><a href=https://en.wikipedia.org/wiki/Regular_expression>https://en.wikipedia.org/wiki/Regular_expression</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
 <span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
 <span class=item-content>2021-04-02</span></p><p class=copyright-item><span class=item-title>License</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/shell/>Shell</a>
