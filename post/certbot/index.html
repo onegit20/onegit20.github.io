@@ -1,0 +1,188 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Certbot自动续签Let's Encrypt免费泛域名SSL证书 - yy小站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="安装Certbot 参考链接： https://certbot.eff.org/docs/using.html?highlight=renew#automated-renewals https://askubuntu.com/questions/553937/what-is-the-difference-between-the-core-full-extras-and-light-packages-for-ngi https://salsa.debian.org/nginx-team/nginx/-/blob/master/debian/control debian操作系统： 1 2 3 4 sudo apt-get -y install certbot sudo apt-get -y install nginx-light libnginx-mod-stream # 可选 #sudo apt-get -y install nginx # nginx-full centos操作系统： 1 2 3 4 5 6"><meta name=generator content="Hugo 0.83.1 with theme even"><link rel=canonical href=https://yanyong.cc/post/certbot/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.a659bb31b17a54f7792e1bc783fc75b31118e6a175b42337b03fae0b1a3ef2b5.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Certbot自动续签Let's Encrypt免费泛域名SSL证书"><meta property="og:description" content="安装Certbot 参考链接： https://certbot.eff.org/docs/using.html?highlight=renew#automated-renewals https://askubuntu.com/questions/553937/what-is-the-difference-between-the-core-full-extras-and-light-packages-for-ngi https://salsa.debian.org/nginx-team/nginx/-/blob/master/debian/control debian操作系统： 1 2 3 4 sudo apt-get -y install certbot sudo apt-get -y install nginx-light libnginx-mod-stream # 可选 #sudo apt-get -y install nginx # nginx-full centos操作系统： 1 2 3 4 5 6"><meta property="og:type" content="article"><meta property="og:url" content="https://yanyong.cc/post/certbot/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-06-22T16:26:19+08:00"><meta property="article:modified_time" content="2021-06-22T16:26:19+08:00"><meta itemprop=name content="Certbot自动续签Let's Encrypt免费泛域名SSL证书"><meta itemprop=description content="安装Certbot 参考链接： https://certbot.eff.org/docs/using.html?highlight=renew#automated-renewals https://askubuntu.com/questions/553937/what-is-the-difference-between-the-core-full-extras-and-light-packages-for-ngi https://salsa.debian.org/nginx-team/nginx/-/blob/master/debian/control debian操作系统： 1 2 3 4 sudo apt-get -y install certbot sudo apt-get -y install nginx-light libnginx-mod-stream # 可选 #sudo apt-get -y install nginx # nginx-full centos操作系统： 1 2 3 4 5 6"><meta itemprop=datePublished content="2021-06-22T16:26:19+08:00"><meta itemprop=dateModified content="2021-06-22T16:26:19+08:00"><meta itemprop=wordCount content="782"><meta itemprop=keywords content="How To,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Certbot自动续签Let's Encrypt免费泛域名SSL证书"><meta name=twitter:description content="安装Certbot 参考链接： https://certbot.eff.org/docs/using.html?highlight=renew#automated-renewals https://askubuntu.com/questions/553937/what-is-the-difference-between-the-core-full-extras-and-light-packages-for-ngi https://salsa.debian.org/nginx-team/nginx/-/blob/master/debian/control debian操作系统： 1 2 3 4 sudo apt-get -y install certbot sudo apt-get -y install nginx-light libnginx-mod-stream # 可选 #sudo apt-get -y install nginx # nginx-full centos操作系统： 1 2 3 4 5 6"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>yy小站</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>yy小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Certbot自动续签Let's Encrypt免费泛域名SSL证书</h1><div class=post-meta><span class=post-time>2021-06-22</span>
+<span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#安装certbot>安装Certbot</a></li><li><a href=#获取ssl证书>获取SSL证书</a><ul><li><a href=#manual模式泛域名证书>manual模式，泛域名证书</a><ul><li><a href=#cloudflare>Cloudflare</a></li><li><a href=#dnspod腾讯云>DNSPod/腾讯云</a></li><li><a href=#godaddy>GoDaddy</a></li></ul></li><li><a href=#standalone模式参考>standalone模式参考</a></li><li><a href=#webroot模式参考>webroot模式参考</a></li></ul></li></ul></nav></div></div><div class=post-content><h1 id=安装certbot>安装Certbot</h1><p>参考链接：</p><p><a href="https://certbot.eff.org/docs/using.html?highlight=renew#automated-renewals">https://certbot.eff.org/docs/using.html?highlight=renew#automated-renewals</a></p><p><a href=https://askubuntu.com/questions/553937/what-is-the-difference-between-the-core-full-extras-and-light-packages-for-ngi>https://askubuntu.com/questions/553937/what-is-the-difference-between-the-core-full-extras-and-light-packages-for-ngi</a></p><p><a href=https://salsa.debian.org/nginx-team/nginx/-/blob/master/debian/control>https://salsa.debian.org/nginx-team/nginx/-/blob/master/debian/control</a></p><p>debian操作系统：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt-get -y install certbot
+sudo apt-get -y install nginx-light libnginx-mod-stream  # 可选
+
+#sudo apt-get -y install nginx  # nginx-full
+</code></pre></td></tr></table></div></div><p>centos操作系统：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo yum -y install epel-release
+sudo yum -y install certbot
+sudo systemctl start certbot-renew.timer &amp;&amp; sudo systemctl enable certbot-renew.timer
+sudo yum -y install nginx nginx-mod-stream  # 可选
+
+#SLEEPTIME=$(awk &#39;BEGIN{srand(); print int(rand()*(3600+1))}&#39;) &amp;&amp; echo &#34;0 0,12 * * * root sleep $SLEEPTIME &amp;&amp; certbot renew -q&#34; | sudo tee -a /etc/cron.d/certbot &gt; /dev/null
+</code></pre></td></tr></table></div></div><h1 id=获取ssl证书>获取SSL证书</h1><h2 id=manual模式泛域名证书>manual模式，泛域名证书</h2><p>参考链接：</p><p><a href=https://certbot.eff.org/docs/using.html#manual>https://certbot.eff.org/docs/using.html#manual</a></p><p><a href=https://certbot.eff.org/docs/using.html#pre-and-post-validation-hooks>https://certbot.eff.org/docs/using.html#pre-and-post-validation-hooks</a></p><p>Cloudflare API: <a href=https://api.cloudflare.com/#dns-records-for-a-zone-properties>官方链接</a></p><p>DNSPod API: <a href=https://docs.dnspod.cn/api/>官方链接</a></p><p>GoDaddy API: <a href=https://developer.godaddy.com/doc/endpoint/domains>官方链接</a></p><hr><h3 id=cloudflare>Cloudflare</h3><p>Login Email: <a href=mailto:info@yanyong.cc>info@yanyong.cc</a></p><p>Zone ID: 2109e1497fb164ac32a8a56f493jd767</p><p>Global API Key: b16b2371170e9i9t7aed5df44a69f3k0fd947</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo certbot certonly --manual \
+  -d yanyong.cc -d *.yanyong.cc \
+  --email info@yanyong.cc \
+  --agree-tos \
+  --no-eff-email \
+  --preferred-challenges=dns \
+  --manual-public-ip-logging-ok \
+  --manual-auth-hook \
+    &#39;curl -s -X POST &#34;https://api.cloudflare.com/client/v4/zones/2109e1497fb164ac32a8a56f493jd767/dns_records&#34; -H &#34;X-Auth-Email: info@yanyong.cc&#34; -H &#34;X-Auth-Key: b16b2371170e9i9t7aed5df44a69f3k0fd947&#34; -H &#34;Content-Type: application/json&#34; -d {\&#34;type\&#34;:\&#34;TXT\&#34;,\&#34;name\&#34;:\&#34;_acme-challenge.yanyong.cc\&#34;,\&#34;content\&#34;:\&#34;$CERTBOT_VALIDATION\&#34;,\&#34;ttl\&#34;:1,\&#34;proxied\&#34;:false} &amp;&amp; sleep 30&#39; \
+  --manual-cleanup-hook \
+    &#39;sleep 30 &amp;&amp; id=`curl -s -X GET &#34;https://api.cloudflare.com/client/v4/zones/2109e1497fb164ac32a8a56f493jd767/dns_records?name=_acme-challenge.yanyong.cc&#34; -H &#34;X-Auth-Email: info@yanyong.cc&#34; -H &#34;X-Auth-Key: b16b2371170e9i9t7aed5df44a69f3k0fd947&#34; -H &#34;Content-Type: application/json&#34; | \
+      grep -oP &#34;(?&lt;=result\&#34;:\[\{\&#34;id\&#34;:\&#34;)\w+&#34;` \
+    &amp;&amp; curl -s -X DELETE &#34;https://api.cloudflare.com/client/v4/zones/2109e1497fb164ac32a8a56f493jd767/dns_records/$id&#34; -H &#34;X-Auth-Email: info@yanyong.cc&#34; -H &#34;X-Auth-Key: b16b2371170e9i9t7aed5df44a69f3k0fd947&#34; -H &#34;Content-Type: application/json&#34;&#39; \
+  --deploy-hook &#39;systemctl reload nginx&#39;
+</code></pre></td></tr></table></div></div><h3 id=dnspod腾讯云>DNSPod/腾讯云</h3><p>ID: 168457</p><p>Token: b472bfa84ac4e861c926crb0926c9d77</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo certbot certonly --manual \
+  -d yanyong.cc -d *.yanyong.cc \
+  --email info@yanyong.cc \
+  --agree-tos \
+  --no-eff-email \
+  --preferred-challenges=dns \
+  --manual-public-ip-logging-ok \
+  --manual-auth-hook \
+      &#39;wget https://dnsapi.cn/Record.Create -qO - --post-data &#34;login_token=168457,b472bfa84ac4e861c926crb0926c9d77&amp;domain=$CERTBOT_DOMAIN&amp;sub_domain=_acme-challenge&amp;record_type=TXT&amp;record_line_id=0&amp;value=$CERTBOT_VALIDATION&#34; &amp;&amp; sleep 30&#39; \
+  --manual-cleanup-hook \
+      &#39;sleep 30 &amp;&amp; recordid=`wget https://dnsapi.cn/Record.List -qO - --post-data &#34;login_token=168457,b472bfa84ac4e861c926crb0926c9d77&amp;domain=$CERTBOT_DOMAIN&amp;sub_domain=_acme-challenge&amp;record_type=TXT&amp;record_line_id=0&#34; | \
+      grep -oP &#34;(?&lt;=records\&#34;:\[\{\&#34;id\&#34;:\&#34;)\d+&#34;` \
+      &amp;&amp; wget https://dnsapi.cn/Record.Remove -qO - --post-data &#34;login_token=168457,b472bfa84ac4e861c926crb0926c9d77&amp;domain=$CERTBOT_DOMAIN&amp;record_id=$recordid&#34;&#39; \
+  --deploy-hook &#39;systemctl reload nginx&#39;
+</code></pre></td></tr></table></div></div><h3 id=godaddy>GoDaddy</h3><p>API Key: e9CahQ5IAHEz_CbrhCS1CxpXgLPgAdCUk17</p><p>Key密码: LMFh2nNET8szNIT14bT1A7</p><p>客户编号: 379363747</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>### sudo certbot certonly --manual \
+  -d yanyong.cc -d *.yanyong.cc \
+  --email info@yanyong.cc \
+  --agree-tos \
+  --no-eff-email \
+  --preferred-challenges=dns \
+  --manual-public-ip-logging-ok \
+  --manual-auth-hook \
+      &#39;curl -s -X PATCH &#34;https://api.godaddy.com/v1/domains/yanyong.cc/records&#34; -H &#34;accept: application/json&#34; -H &#34;Content-Type: application/json&#34; -H &#34;Authorization: sso-key e9CahQ5IAHEz_CbrhCS1CxpXgLPgAdCUk17:LMFh2nNET8szNIT14bT1A7&#34; -d &#34;[ { \&#34;data\&#34;: \&#34;$CERTBOT_VALIDATION\&#34;, \&#34;name\&#34;: \&#34;_acme-challenge\&#34;, \&#34;ttl\&#34;: 600, \&#34;type\&#34;: \&#34;TXT\&#34; }]&#34; &amp;&amp; sleep 60&#39; \
+  --manual-cleanup-hook \
+      &#39;sleep 60 &amp;&amp; curl -s -X DELETE &#34;https://api.godaddy.com/v1/domains/yanyong.cc/records/TXT/_acme-challenge&#34; -H  &#34;accept: application/json&#34; -H  &#34;X-Shopper-Id: 379363747&#34; -H  &#34;Authorization: sso-key e9CahQ5IAHEz_CbrhCS1CxpXgLPgAdCUk17:LMFh2nNET8szNIT14bT1A7&#34;&#39; \
+  --deploy-hook &#39;systemctl reload nginx&#39;
+</code></pre></td></tr></table></div></div><h2 id=standalone模式参考>standalone模式参考</h2><p>如果服务器上已有web server(nginx或apache等)在运行，会有冲突，不建议使用。不需要开启web服务的情况可以使用，比如VPN服务器。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo certbot certonly --standalone -d vpn.yanyong.cc --email info@yanyong.cc --agree-tos --no-eff-email
+</code></pre></td></tr></table></div></div><h2 id=webroot模式参考>webroot模式参考</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>#nginx配置参考：
+server {
+    listen                  443 ssl http2;
+    server_name             yanyong.cc;
+    root                    /srv/www/www.yanyong.cc;
+
+    ssl_certificate         /etc/letsencrypt/live/yanyong.cc/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/yanyong.cc/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/yanyong.cc/chain.pem;
+    #略...
+}
+server {
+    listen      443 ssl http2;
+    server_name www.yanyong.cc;
+
+    ssl_certificate         /etc/letsencrypt/live/yanyong.cc/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/yanyong.cc/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/yanyong.cc/chain.pem;
+    return 301 https://yanyong.cc$request_uri;
+}
+server {
+    listen      80;
+    server_name yanyong.cc www.yanyong.cc;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /srv/www/_letsencrypt;
+    }
+
+    location / {
+        return 301 https://yanyong.cc$request_uri;
+    }
+}
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo certbot certonly --webroot -w /srv/www/_letsencrypt \
+  -d yanyong.cc -d www.yanyong.cc \
+  --email info@yanyong.cc \
+  --agree-tos \
+  --no-eff-email \
+  --deploy-hook &#39;systemctl reload nginx&#39;
+</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2021-06-22</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/how-to/>How To</a></div><nav class=post-nav><a class=next href=/post/fail2ban/><span class="next-text nav-default">Fail2ban</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:info@yanyong.cc class="iconfont icon-email" title=email></a><a href=https://github.com/onegit20 class="iconfont icon-github" title=github></a><a href=https://yanyong.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><div class=busuanzi-footer><span id=busuanzi_container_site_pv>site pv: <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span></span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv>site uv: <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span></span></div><span class=copyright-year>&copy;
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>info@yanyong.cc</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script></body></html>
