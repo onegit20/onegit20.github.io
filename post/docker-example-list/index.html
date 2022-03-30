@@ -1,0 +1,116 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Docker安装各种软件参考示例，不定期更新中... - yy小站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="MariaDB 创建数据目录和配置文件 1 sudo mkdir -p /data/mariadb/{data,conf.d} 1 2 3 4 5 6 7 8 9 10 11 cat &amp;lt;&amp;lt; EOF | sudo tee /data/mariadb/conf.d/my.cnf [mariadb] server_id=1 character-set-server=utf8mb4 # default collation-server=utf8mb4_general_ci # default lower_case_table_names=1 max_connections=10000 max_connect_errors=100000 innodb_buffer_pool_size=4294967296 # 4G. default 128M max_allowed_packet=1073741824 # 1G. default 16M EOF 如果镜像有安装tzdata"><meta name=generator content="Hugo 0.83.1 with theme even"><link rel=canonical href=https://yanyong.cc/post/docker-example-list/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.a659bb31b17a54f7792e1bc783fc75b31118e6a175b42337b03fae0b1a3ef2b5.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Docker安装各种软件参考示例，不定期更新中..."><meta property="og:description" content="MariaDB 创建数据目录和配置文件 1 sudo mkdir -p /data/mariadb/{data,conf.d} 1 2 3 4 5 6 7 8 9 10 11 cat << EOF | sudo tee /data/mariadb/conf.d/my.cnf [mariadb] server_id=1 character-set-server=utf8mb4 # default collation-server=utf8mb4_general_ci # default lower_case_table_names=1 max_connections=10000 max_connect_errors=100000 innodb_buffer_pool_size=4294967296 # 4G. default 128M max_allowed_packet=1073741824 # 1G. default 16M EOF 如果镜像有安装tzdata"><meta property="og:type" content="article"><meta property="og:url" content="https://yanyong.cc/post/docker-example-list/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-07-25T16:26:19+08:00"><meta property="article:modified_time" content="2021-07-25T16:26:19+08:00"><meta itemprop=name content="Docker安装各种软件参考示例，不定期更新中..."><meta itemprop=description content="MariaDB 创建数据目录和配置文件 1 sudo mkdir -p /data/mariadb/{data,conf.d} 1 2 3 4 5 6 7 8 9 10 11 cat << EOF | sudo tee /data/mariadb/conf.d/my.cnf [mariadb] server_id=1 character-set-server=utf8mb4 # default collation-server=utf8mb4_general_ci # default lower_case_table_names=1 max_connections=10000 max_connect_errors=100000 innodb_buffer_pool_size=4294967296 # 4G. default 128M max_allowed_packet=1073741824 # 1G. default 16M EOF 如果镜像有安装tzdata"><meta itemprop=datePublished content="2021-07-25T16:26:19+08:00"><meta itemprop=dateModified content="2021-07-25T16:26:19+08:00"><meta itemprop=wordCount content="620"><meta itemprop=keywords content="docker,mariadb,redis,xxl-job,postgres,rabbitmq,php,php-fpm,redmine,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Docker安装各种软件参考示例，不定期更新中..."><meta name=twitter:description content="MariaDB 创建数据目录和配置文件 1 sudo mkdir -p /data/mariadb/{data,conf.d} 1 2 3 4 5 6 7 8 9 10 11 cat << EOF | sudo tee /data/mariadb/conf.d/my.cnf [mariadb] server_id=1 character-set-server=utf8mb4 # default collation-server=utf8mb4_general_ci # default lower_case_table_names=1 max_connections=10000 max_connect_errors=100000 innodb_buffer_pool_size=4294967296 # 4G. default 128M max_allowed_packet=1073741824 # 1G. default 16M EOF 如果镜像有安装tzdata"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>yy小站</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>yy小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Docker安装各种软件参考示例，不定期更新中...</h1><div class=post-meta><span class=post-time>2021-07-25</span><div class=post-category><a href=/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/>未分类</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#mariadb>MariaDB</a></li><li><a href=#redis>Redis</a></li><li><a href=#xxl-job>xxl-job</a></li><li><a href=#postgresql>PostgreSQL</a></li><li><a href=#rabbitmq>RabbitMQ</a></li><li><a href=#php-fpm>PHP-FPM</a></li><li><a href=#redmine>Redmine</a></li></ul></nav></div></div><div class=post-content><h1 id=mariadb>MariaDB</h1><p>创建数据目录和配置文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo mkdir -p /data/mariadb/{data,conf.d}
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>cat &lt;&lt; EOF | sudo tee /data/mariadb/conf.d/my.cnf
+[mariadb]
+server_id=1
+character-set-server=utf8mb4  # default
+collation-server=utf8mb4_general_ci  # default
+lower_case_table_names=1
+max_connections=10000
+max_connect_errors=100000
+innodb_buffer_pool_size=4294967296  # 4G. default 128M
+max_allowed_packet=1073741824  # 1G. default 16M
+EOF
+</code></pre></td></tr></table></div></div><p>如果镜像有安装tzdata，加上TZ变量即可修改时区。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker network create --subnet=172.18.0.0/16 dbnet
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run -d --name mariadb01 \
+  -e TZ=&#39;Asia/Shanghai&#39; \
+  -e MYSQL_ROOT_PASSWORD=&#39;123456&#39; \
+  -p 3306:3306 \
+  -v /data/mariadb/data:/var/lib/mysql \
+  -v /data/mariadb/conf.d:/etc/mysql/conf.d \
+  --network dbnet \
+  --restart always \
+  mariadb:10.5
+</code></pre></td></tr></table></div></div><p>本地如需要mysql客户端工具，最小安装即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>apt search mariadb-client
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt-get -y install mariadb-client-core-10.3  # 只有mysql命令
+</code></pre></td></tr></table></div></div><p>或者</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt-get -y install mariadb-client  # 包含mysqladmin，mysqldump等命令
+</code></pre></td></tr></table></div></div><p>进入容器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker exec -it mariadb01 bash
+</code></pre></td></tr></table></div></div><p>不进入容器执行sql语句两种方法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>mysql -h 127.0.0.1 -P 3306 -u root -p&#39;123456&#39; -e &#34;create user testuser identified by &#39;123456&#39;;&#34;
+
+sudo docker exec mariadb01 /bin/bash -c &#34;mysql -u root -p&#39;123456&#39; -e &#39;create database testdb;&#39;&#34;
+</code></pre></td></tr></table></div></div><h1 id=redis>Redis</h1><p>可选项，数据持久化，<code>--appendonly yes</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run --name myredis -d -e TZ=&#39;Asia/Shanghai&#39; --network=host --restart=always -v /data/myredis:/data redis:alpine redis-server --appendonly yes --maxmemory 2GB --requirepass &#39;123456&#39;
+</code></pre></td></tr></table></div></div><h1 id=xxl-job>xxl-job</h1><p><a href=https://www.xuxueli.com/xxl-job/>xxl-job官网</a></p><p>默认帐号密码：<code>admin/123456</code>，此镜像已设置过TZ变量</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run \
+  -e PARAMS=&#34;--spring.datasource.url=jdbc:mysql://127.0.0.1:3306/xxl_job?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;serverTimezone=Asia/Shanghai \
+  --spring.datasource.username=root \
+  --spring.datasource.password=123456 \
+  --spring.datasource.driver-class-name=com.mysql.jdbc.Driver&#34; \
+  -p 8080:8080 -v /tmp:/data/applogs --name xxl-job-admin --restart always -d xuxueli/xxl-job-admin:2.3.0
+</code></pre></td></tr></table></div></div><h1 id=postgresql>PostgreSQL</h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run -d -e TZ=&#39;Asia/Shanghai&#39; --network host -v /data/postgres12:/var/lib/postgresql/data -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=postgres --restart always --name postgres12 postgres:12-alpine
+</code></pre></td></tr></table></div></div><h1 id=rabbitmq>RabbitMQ</h1><p>默认用户名密码：<code>guest/guest</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run -d --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3.8-management-alpine
+</code></pre></td></tr></table></div></div><p>也可以指定用户名和密码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run -d --name rabbitmq -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3.8-management-alpine
+</code></pre></td></tr></table></div></div><h1 id=php-fpm>PHP-FPM</h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run --name php74-fpm --restart always -p 9001:9000 -v /srv/www/www.abc.com:/srv/www/www.abc.com -d php:7.4-fpm-alpine
+</code></pre></td></tr></table></div></div><p>安装php模块</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker exec php74-fpm php -m
+sudo docker exec php74-fpm docker-php-ext-install pdo_mysql
+</code></pre></td></tr></table></div></div><p>docker-php-ext-install无法安装的模块，试试用pecl安装，进入容器执行更方便</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>pecl search XXX
+pecl install XXX
+docker-php-ext-enable XXX
+</code></pre></td></tr></table></div></div><h1 id=redmine>Redmine</h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker network create redmine-net
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run -d -e TZ=&#39;Asia/Shanghai&#39; --network redmine-net -v /data/redmine-postgres:/var/lib/postgresql/data -e POSTGRES_PASSWORD=secret -e POSTGRES_USER=redmine --restart always --name redmine-postgres postgres:alpine
+</code></pre></td></tr></table></div></div><p>默认帐号密码：admin/admin</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run -d -e TZ=&#39;Asia/Shanghai&#39; --name redmine --network redmine-net -p 3000:3000 -v /data/redmine:/usr/src/redmine/files --link redmine-postgres:postgres redmine:alpine
+</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2021-07-25</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/docker/>docker</a>
+<a href=/tags/mariadb/>mariadb</a>
+<a href=/tags/redis/>redis</a>
+<a href=/tags/xxl-job/>xxl-job</a>
+<a href=/tags/postgres/>postgres</a>
+<a href=/tags/rabbitmq/>rabbitmq</a>
+<a href=/tags/php/>php</a>
+<a href=/tags/php-fpm/>php-fpm</a>
+<a href=/tags/redmine/>redmine</a></div><nav class=post-nav><a class=prev href=/post/macos-tools/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">macOS常用工具推荐</span>
+<span class="prev-text nav-mobile">Prev</span></a>
+<a class=next href=/post/certbot/><span class="next-text nav-default">Certbot自动续签Let's Encrypt免费泛域名SSL证书</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=onegit20/utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:info@yanyong.cc class="iconfont icon-email" title=email></a><a href=https://stackoverflow.com/users/16859626/yanyong class="iconfont icon-stack-overflow" title=stack-overflow></a><a href=https://github.com/onegit20 class="iconfont icon-github" title=github></a><a href=https://yanyong.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><div class=busuanzi-footer><span id=busuanzi_container_site_pv>site pv: <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span></span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv>site uv: <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span></span></div><span class=copyright-year>&copy;
+<span class=heart></span><span>info@yanyong.cc</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script></body></html>
