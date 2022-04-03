@@ -1,8 +1,196 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>K8s(Kubernetes)集群安装 - yy小站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content><meta name=generator content="Hugo 0.83.1 with theme even"><link rel=canonical href=https://yanyong.cc/post/k8s/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.a659bb31b17a54f7792e1bc783fc75b31118e6a175b42337b03fae0b1a3ef2b5.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="K8s(Kubernetes)集群安装"><meta property="og:description" content><meta property="og:type" content="article"><meta property="og:url" content="https://yanyong.cc/post/k8s/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-03-08T10:04:35+08:00"><meta property="article:modified_time" content="2021-03-08T10:04:35+08:00"><meta itemprop=name content="K8s(Kubernetes)集群安装"><meta itemprop=description content><meta itemprop=datePublished content="2021-03-08T10:04:35+08:00"><meta itemprop=dateModified content="2021-03-08T10:04:35+08:00"><meta itemprop=wordCount content="0"><meta itemprop=keywords content="k8s,"><meta name=twitter:card content="summary"><meta name=twitter:title content="K8s(Kubernetes)集群安装"><meta name=twitter:description content><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>yy小站</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>yy小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>K8s(Kubernetes)集群安装</h1><div class=post-meta><span class=post-time>2021-03-08</span><div class=post-category><a href=/categories/k8s/>k8s</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>K8s(Kubernetes)集群安装 - yy小站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="官方文档入口 注：master和node的操作系统都是debian 10 Master和Node都需要 安装docker 安装docker参考这里 doc"><meta name=generator content="Hugo 0.83.1 with theme even"><link rel=canonical href=https://yanyong.cc/post/k8s/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.a659bb31b17a54f7792e1bc783fc75b31118e6a175b42337b03fae0b1a3ef2b5.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="K8s(Kubernetes)集群安装"><meta property="og:description" content="官方文档入口 注：master和node的操作系统都是debian 10 Master和Node都需要 安装docker 安装docker参考这里 doc"><meta property="og:type" content="article"><meta property="og:url" content="https://yanyong.cc/post/k8s/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-03-08T10:04:35+08:00"><meta property="article:modified_time" content="2021-03-08T10:04:35+08:00"><meta itemprop=name content="K8s(Kubernetes)集群安装"><meta itemprop=description content="官方文档入口 注：master和node的操作系统都是debian 10 Master和Node都需要 安装docker 安装docker参考这里 doc"><meta itemprop=datePublished content="2021-03-08T10:04:35+08:00"><meta itemprop=dateModified content="2021-03-08T10:04:35+08:00"><meta itemprop=wordCount content="1230"><meta itemprop=keywords content="k8s,"><meta name=twitter:card content="summary"><meta name=twitter:title content="K8s(Kubernetes)集群安装"><meta name=twitter:description content="官方文档入口 注：master和node的操作系统都是debian 10 Master和Node都需要 安装docker 安装docker参考这里 doc"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>yy小站</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>yy小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>K8s(Kubernetes)集群安装</h1><div class=post-meta><span class=post-time>2021-03-08</span><div class=post-category><a href=/categories/k8s/>k8s</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#master和node都需要>Master和Node都需要</a><ul><li><a href=#安装docker>安装docker</a></li><li><a href=#关闭swap>关闭swap</a></li><li><a href=#允许iptables桥接流量>允许iptables桥接流量</a></li><li><a href=#安装kubeadmkubeletkubectl>安装kubeadm，kubelet，kubectl</a></li></ul></li><li><a href=#master部署>Master部署</a></li><li><a href=#node部署>Node部署</a></li></ul></nav></div></div><div class=post-content><p><a href=https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/>官方文档入口</a></p><p>注：master和node的操作系统都是debian 10</p><h1 id=master和node都需要>Master和Node都需要</h1><h2 id=安装docker>安装docker</h2><p>安装docker参考<a href=https://yanyong.cc/post/install-docker/>这里</a></p><p>docker配置systemd管理cgroup</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo tee /etc/docker/daemon.json &lt;&lt; EOF
+{
+  &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;],
+  &#34;log-driver&#34;: &#34;json-file&#34;,
+  &#34;log-opts&#34;: {
+    &#34;max-size&#34;: &#34;100m&#34;
+  },
+  &#34;storage-driver&#34;: &#34;overlay2&#34;
+}
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre></td></tr></table></div></div><p>如果没有配置systemd，kubeadm init初始化时会有如下警告</p><pre><code>    # [WARNING IsDockerSystemdCheck]: detected &quot;cgroupfs&quot; as the Docker cgroup driver. The recommended driver is &quot;systemd&quot;. Please follow the guide at https://kubernetes.io/docs/setup/cri/
+    # [WARNING SystemVerification]: missing optional cgroups: hugetlb
+</code></pre><h2 id=关闭swap>关闭swap</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo swapoff -a
+sudo cp /etc/fstab{,.origin}
+sudo sed -i &#39;s/swap[ ][ ]*sw/&amp;,noauto/&#39; /etc/fstab
+</code></pre></td></tr></table></div></div><h2 id=允许iptables桥接流量>允许iptables桥接流量</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat &lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+
+sudo sysctl -p
+sudo sysctl --system
+</code></pre></td></tr></table></div></div><h2 id=安装kubeadmkubeletkubectl>安装kubeadm，kubelet，kubectl</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+
+curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add -
+
+echo &#39;deb https://mirrors.aliyun.com/kubernetes/apt kubernetes-xenial main&#39; | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+</code></pre></td></tr></table></div></div><p>如需安装指定版本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>apt-cache madison kubeadm  # 查找版本
+sudo apt-get install -y kubelet=1.21.2-00 kubeadm=1.21.2-00 kubectl=1.21.2-00
+</code></pre></td></tr></table></div></div><h1 id=master部署>Master部署</h1><p>由于国内无法访问k8s.gcr.io，kubeadm init不成功，查看需要拉哪些镜像</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>kubeadm config images list
+</code></pre></td></tr></table></div></div><pre><code>k8s.gcr.io/kube-apiserver:v1.21.2
+k8s.gcr.io/kube-controller-manager:v1.21.2
+k8s.gcr.io/kube-scheduler:v1.21.2
+k8s.gcr.io/kube-proxy:v1.21.2
+k8s.gcr.io/pause:3.4.1
+k8s.gcr.io/etcd:3.4.13-0
+k8s.gcr.io/coredns/coredns:v1.8.0
+</code></pre><p>从阿里云拉镜像</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo kubeadm config images pull --image-repository registry.aliyuncs.com/google_containers
+</code></pre></td></tr></table></div></div><p>给镜像打tag，注意k8s.gcr.io/coredns/coredns:v1.8.0在阿里云的镜像路径有所不同registry.aliyuncs.com/google_containers/coredns:v1.8.0，以下脚本已做特殊处理</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>a=($(kubeadm config images list))
+#b=(${a[*]//k8s.gcr.io*\//registry.aliyuncs.com/google_containers/})
+b=($(kubeadm config images list --image-repository registry.aliyuncs.com/google_containers))
+
+for ((i=0; i&lt;${#a[*]}; i++)); do
+  sudo docker tag &#34;${b[i]}&#34; &#34;${a[i]}&#34;
+  sudo docker rmi &#34;${b[i]}&#34;
+done
+</code></pre></td></tr></table></div></div><p>现在可以愉快的kubeadm init了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo kubeadm init --pod-network-cidr 10.244.0.0/16
+</code></pre></td></tr></table></div></div><p>kubeadm init成功后返回的信息，加入节点要用到此信息</p><pre><code>Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run &quot;kubectl apply -f [podnetwork].yaml&quot; with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 172.34.169.111:6443 --token mhn6aa.xlz608qvtueq4rk8 \
+        --discovery-token-ca-cert-hash sha256:3b73c9ec63b6e1d4402be7b267eca83e056d337e8e6675cf6390a47ef88f4fb0 
+</code></pre><p>初始化完成以后</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>#普通用户使用kubectl
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+#root使用kubectl，可选，不建议
+sudo cp /root/.bashrc{,.bak}
+echo &#39;export KUBECONFIG=/etc/kubernetes/admin.conf&#39; | sudo tee -a /root/.bashrc
+</code></pre></td></tr></table></div></div><p>安装网络插件，这里选择flannel</p><p><a href=https://kubernetes.io/zh/docs/concepts/cluster-administration/networking/#flannel>kubernetes.io地址</a></p><p><a href=https://github.com/flannel-io/flannel>github地址</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>#有可能要梯子访问
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+#国内可访问，可能不是最新版本
+kubectl apply -f https://raw.yanyong.cc/downloads/k8s/kube-flannel.yml
+</code></pre></td></tr></table></div></div><p>防火墙开放端口</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo iptables -A INPUT -p tcp -m state --state NEW -m multiport --dports 6443,2379:2380,10250,10257,10259 -j ACCEPT
+</code></pre></td></tr></table></div></div><h1 id=node部署>Node部署</h1><p>拉取k8s.gcr.io的镜像，参考master部署</p><pre><code>略...
+</code></pre><p>如果没有记录初始化后join相关信息，在master执行以下命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback># 在master执行
+
+# 查找token
+kubeadm token list
+
+# 查找discovery-token-ca-cert-hash
+openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | \
+   openssl dgst -sha256 -hex | sed &#39;s/^.* //&#39;
+
+# 如果24小时后已过期
+kubeadm token create --print-join-command
+</code></pre></td></tr></table></div></div><p>kubeadm join</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo kubeadm join 172.34.169.111:6443 --token mhn6aa.xlz608qvtueq4rk8 \
+        --discovery-token-ca-cert-hash sha256:3b73c9ec63b6e1d4402be7b267eca83e056d337e8e6675cf6390a47ef88f4fb0
+</code></pre></td></tr></table></div></div><p>可选操作，重新运行coredns</p><p>由于集群节点通常是按顺序初始化的，CoreDNS Pods 很可能都运行在第一个控制面节点上。 为了提供更高的可用性，请在加入至少一个新节点后使用以下命令，重新平衡 CoreDNS Pods</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>kubectl -n kube-system rollout restart deployment coredns
+</code></pre></td></tr></table></div></div><p>防火墙开放端口</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo iptables -A INPUT -p tcp -m state --state NEW -m multiport --dports 10250,30000:32767 -j ACCEPT
+</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
 <span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
 <span class=item-content>2021-03-08</span></p><p class=copyright-item><span class=item-title>License</span>
-<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/k8s/>k8s</a></div><nav class=post-nav><a class=prev href=/post/zabbix/><i class="iconfont icon-left"></i>
-<span class="prev-text nav-default">Docker容器三分钟安装Zabbix</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/k8s/>k8s</a></div><nav class=post-nav><a class=prev href=/post/k8s02/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Kubernetes Dashboard安装</span>
 <span class="prev-text nav-mobile">Prev</span></a>
 <a class=next href=/post/install-docker/><span class="next-text nav-default">Debian Docker安装教程</span>
 <span class="next-text nav-mobile">Next</span>
