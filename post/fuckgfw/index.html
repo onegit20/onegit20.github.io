@@ -1,0 +1,526 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>梯子，懂的都懂不解释 - yy小站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="基础配置 初始化OS https://yanyong.cc/post/debian11-init/ fail2ban 1 2 3 4 5 6 7 8 sudo apt-get install -y fail2ban sudo tee /etc/fail2ban/jail.d/sshd.local &amp;lt;&amp;lt; EOF [sshd] enabled = true port = 22 EOF sudo systemctl reload fail2ban sudo fail2ban-client reload 安装docker和nginx 略 ssl泛域名证书和cl"><meta name=generator content="Hugo 0.83.1 with theme even"><link rel=canonical href=https://yanyong.cc/post/fuckgfw/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="梯子，懂的都懂不解释"><meta property="og:description" content="基础配置 初始化OS https://yanyong.cc/post/debian11-init/ fail2ban 1 2 3 4 5 6 7 8 sudo apt-get install -y fail2ban sudo tee /etc/fail2ban/jail.d/sshd.local << EOF [sshd] enabled = true port = 22 EOF sudo systemctl reload fail2ban sudo fail2ban-client reload 安装docker和nginx 略 ssl泛域名证书和cl"><meta property="og:type" content="article"><meta property="og:url" content="https://yanyong.cc/post/fuckgfw/"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-04-25T15:55:23+08:00"><meta property="article:modified_time" content="2022-04-25T15:55:23+08:00"><meta itemprop=name content="梯子，懂的都懂不解释"><meta itemprop=description content="基础配置 初始化OS https://yanyong.cc/post/debian11-init/ fail2ban 1 2 3 4 5 6 7 8 sudo apt-get install -y fail2ban sudo tee /etc/fail2ban/jail.d/sshd.local << EOF [sshd] enabled = true port = 22 EOF sudo systemctl reload fail2ban sudo fail2ban-client reload 安装docker和nginx 略 ssl泛域名证书和cl"><meta itemprop=datePublished content="2022-04-25T15:55:23+08:00"><meta itemprop=dateModified content="2022-04-25T15:55:23+08:00"><meta itemprop=wordCount content="1041"><meta itemprop=keywords content="trojan,trojan-go,v2ray,IKEv2,"><meta name=twitter:card content="summary"><meta name=twitter:title content="梯子，懂的都懂不解释"><meta name=twitter:description content="基础配置 初始化OS https://yanyong.cc/post/debian11-init/ fail2ban 1 2 3 4 5 6 7 8 sudo apt-get install -y fail2ban sudo tee /etc/fail2ban/jail.d/sshd.local << EOF [sshd] enabled = true port = 22 EOF sudo systemctl reload fail2ban sudo fail2ban-client reload 安装docker和nginx 略 ssl泛域名证书和cl"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>yy小站</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>yy小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>梯子，懂的都懂不解释</h1><div class=post-meta><span class=post-time>2022-04-25</span><div class=post-category><a href=/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/>未分类</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#基础配置>基础配置</a><ul><li><a href=#初始化os>初始化OS</a></li><li><a href=#fail2ban>fail2ban</a></li><li><a href=#安装docker和nginx>安装docker和nginx</a></li><li><a href=#ssl泛域名证书和cloudflare>ssl泛域名证书和cloudflare</a></li><li><a href=#bbr-and-tfo>BBR and TFO</a></li></ul></li><li><a href=#trojan>trojan</a></li><li><a href=#trojan-go>trojan-go</a></li><li><a href=#v2ray>v2ray</a></li><li><a href=#xray>Xray</a></li><li><a href=#nginx配置>nginx配置</a></li></ul></nav></div></div><div class=post-content><h1 id=基础配置>基础配置</h1><h2 id=初始化os>初始化OS</h2><p><a href=https://yanyong.cc/post/debian11-init/>https://yanyong.cc/post/debian11-init/</a></p><h2 id=fail2ban>fail2ban</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt-get install -y fail2ban
+sudo tee  /etc/fail2ban/jail.d/sshd.local &lt;&lt; EOF
+[sshd]
+enabled = true
+port = 22
+EOF
+sudo systemctl reload fail2ban
+sudo fail2ban-client reload
+</code></pre></td></tr></table></div></div><h2 id=安装docker和nginx>安装docker和nginx</h2><pre><code>略
+</code></pre><h2 id=ssl泛域名证书和cloudflare>ssl泛域名证书和cloudflare</h2><p><a href=https://yanyong.cc/post/certbot/>https://yanyong.cc/post/certbot/</a></p><h2 id=bbr-and-tfo>BBR and TFO</h2><p><a href=https://wiki.crowncloud.net/?How_to_enable_BBR_on_Debian_11>https://wiki.crowncloud.net/?How_to_enable_BBR_on_Debian_11</a></p><p><a href=https://www.geeksforgeeks.org/what-is-tcp-fast-open/>https://www.geeksforgeeks.org/what-is-tcp-fast-open/</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo tee /etc/sysctl.d/bbr.sysctl.conf &lt;&lt; EOF
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+EOF
+sudo sysctl -p /etc/sysctl.d/bbr.sysctl.conf
+
+echo &#39;net.ipv4.tcp_fastopen=3&#39; | sudo tee /etc/sysctl.d/tfo.sysctl.conf
+sudo sysctl -p /etc/sysctl.d/tfo.sysctl.conf
+</code></pre></td></tr></table></div></div><h1 id=trojan>trojan</h1><p><a href=https://trojan-gfw.github.io/trojan/>https://trojan-gfw.github.io/trojan/</a></p><p><a href=https://github.com/trojan-gfw/trojan>https://github.com/trojan-gfw/trojan</a></p><p><a href=https://hub.docker.com/r/trojangfw/trojan>https://hub.docker.com/r/trojangfw/trojan</a> 此镜像配置文件在/config，不在/etc/trojan，且没装tzdata。fuck!</p><p><a href=https://hub.docker.com/r/teddysun/trojan>https://hub.docker.com/r/teddysun/trojan</a> 些镜像配置文件在/etc/trojan</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run -d --name trojan --network=host --restart=always -v /etc/trojan:/config trojangfw/trojan
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>sudo tee /etc/trojan/config.json <span class=s>&lt;&lt; EOF
+</span><span class=s>{
+</span><span class=s>    &#34;run_type&#34;: &#34;server&#34;,
+</span><span class=s>    &#34;local_addr&#34;: &#34;0.0.0.0&#34;,
+</span><span class=s>    &#34;local_port&#34;: 8443,
+</span><span class=s>    &#34;remote_addr&#34;: &#34;127.0.0.1&#34;,
+</span><span class=s>    &#34;remote_port&#34;: 80,
+</span><span class=s>    &#34;password&#34;: [
+</span><span class=s>        &#34;password1&#34;,
+</span><span class=s>        &#34;password2&#34;
+</span><span class=s>    ],
+</span><span class=s>    &#34;log_level&#34;: 3,
+</span><span class=s>    &#34;ssl&#34;: {
+</span><span class=s>        &#34;cert&#34;: &#34;/config/ssl/fullchain.pem&#34;,
+</span><span class=s>        &#34;key&#34;: &#34;/config/ssl/privkey.pem&#34;,
+</span><span class=s>        &#34;key_password&#34;: &#34;&#34;,
+</span><span class=s>        &#34;cipher&#34;: &#34;ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384&#34;,
+</span><span class=s>        &#34;cipher_tls13&#34;: &#34;TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384&#34;,
+</span><span class=s>        &#34;prefer_server_cipher&#34;: true,
+</span><span class=s>        &#34;alpn&#34;: [
+</span><span class=s>            &#34;http/1.1&#34;,
+</span><span class=s>            &#34;h2&#34;
+</span><span class=s>        ],
+</span><span class=s>        &#34;alpn_port_override&#34;: {
+</span><span class=s>            &#34;h2&#34;: 81
+</span><span class=s>        },
+</span><span class=s>        &#34;reuse_session&#34;: true,
+</span><span class=s>        &#34;session_ticket&#34;: false,
+</span><span class=s>        &#34;session_timeout&#34;: 600,
+</span><span class=s>        &#34;plain_http_response&#34;: &#34;&#34;,
+</span><span class=s>        &#34;curves&#34;: &#34;&#34;,
+</span><span class=s>        &#34;dhparam&#34;: &#34;&#34;
+</span><span class=s>    },
+</span><span class=s>    &#34;tcp&#34;: {
+</span><span class=s>        &#34;prefer_ipv4&#34;: false,
+</span><span class=s>        &#34;no_delay&#34;: true,
+</span><span class=s>        &#34;keep_alive&#34;: true,
+</span><span class=s>        &#34;reuse_port&#34;: false,
+</span><span class=s>        &#34;fast_open&#34;: true,
+</span><span class=s>        &#34;fast_open_qlen&#34;: 20
+</span><span class=s>    },
+</span><span class=s>    &#34;mysql&#34;: {
+</span><span class=s>        &#34;enabled&#34;: false,
+</span><span class=s>        &#34;server_addr&#34;: &#34;127.0.0.1&#34;,
+</span><span class=s>        &#34;server_port&#34;: 3306,
+</span><span class=s>        &#34;database&#34;: &#34;trojan&#34;,
+</span><span class=s>        &#34;username&#34;: &#34;trojan&#34;,
+</span><span class=s>        &#34;password&#34;: &#34;&#34;,
+</span><span class=s>        &#34;key&#34;: &#34;&#34;,
+</span><span class=s>        &#34;cert&#34;: &#34;&#34;,
+</span><span class=s>        &#34;ca&#34;: &#34;&#34;
+</span><span class=s>    }
+</span><span class=s>}
+</span><span class=s>EOF</span>
+
+sudo mkdir /etc/trojan/ssl
+
+sudo tee /etc/letsencrypt/renewal-hooks/deploy/trojan.sslUpdate.sh <span class=s>&lt;&lt; EOF
+</span><span class=s>#!/bin/bash
+</span><span class=s>cp /etc/letsencrypt/live/yanyong.cc/{privkey.pem,fullchain.pem} /etc/trojan/ssl/
+</span><span class=s>chown nobody /etc/trojan/ssl/*
+</span><span class=s>chmod 400 /etc/trojan/ssl/*
+</span><span class=s>docker restart trojan
+</span><span class=s>EOF</span>
+
+sudo chmod +x /etc/letsencrypt/renewal-hooks/deploy/trojan.sslUpdate.sh
+sudo /etc/letsencrypt/renewal-hooks/deploy/trojan.sslUpdate.sh
+</code></pre></td></tr></table></div></div><h1 id=trojan-go>trojan-go</h1><p><a href=https://p4gefau1t.github.io/trojan-go/>https://p4gefau1t.github.io/trojan-go/</a></p><p><a href=https://github.com/p4gefau1t/trojan-go>https://github.com/p4gefau1t/trojan-go</a></p><p><a href=https://hub.docker.com/r/p4gefau1t/trojan-go>https://hub.docker.com/r/p4gefau1t/trojan-go</a></p><p><a href=https://hub.docker.com/r/teddysun/trojan-go>https://hub.docker.com/r/teddysun/trojan-go</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>sudo docker run <span class=se>\
+</span><span class=se></span>    --name trojan-go <span class=se>\
+</span><span class=se></span>    -d <span class=se>\
+</span><span class=se></span>    -v /etc/trojan-go/:/etc/trojan-go <span class=se>\
+</span><span class=se></span>    --network<span class=o>=</span>host <span class=se>\
+</span><span class=se></span>    -e <span class=nv>TZ</span><span class=o>=</span>Asia/Shanghai <span class=se>\
+</span><span class=se></span>    p4gefau1t/trojan-go
+
+sudo tee /etc/trojan-go/config.json <span class=s>&lt;&lt; EOF
+</span><span class=s>{
+</span><span class=s>    &#34;run_type&#34;: &#34;server&#34;,
+</span><span class=s>    &#34;local_addr&#34;: &#34;0.0.0.0&#34;,
+</span><span class=s>    &#34;local_port&#34;: 8444,
+</span><span class=s>    &#34;remote_addr&#34;: &#34;127.0.0.1&#34;,
+</span><span class=s>    &#34;remote_port&#34;: 80,
+</span><span class=s>    &#34;password&#34;: [
+</span><span class=s>        &#34;123456&#34;
+</span><span class=s>    ],
+</span><span class=s>    &#34;log_level&#34;: 3,
+</span><span class=s>    &#34;ssl&#34;: {
+</span><span class=s>        &#34;cert&#34;: &#34;/etc/trojan-go/ssl/fullchain.pem&#34;,
+</span><span class=s>        &#34;key&#34;: &#34;/etc/trojan-go/ssl/privkey.pem&#34;
+</span><span class=s>    },
+</span><span class=s>    &#34;websocket&#34;: {
+</span><span class=s>        &#34;enabled&#34;: true,
+</span><span class=s>        &#34;path&#34;: &#34;/abcdefg&#34;
+</span><span class=s>    }
+</span><span class=s>
+</span><span class=s>}
+</span><span class=s>EOF</span>
+
+sudo mkdir /etc/trojan-go/ssl
+
+sudo tee /etc/letsencrypt/renewal-hooks/deploy/trojan-go.sh <span class=s>&lt;&lt; EOF
+</span><span class=s>#!/bin/bash
+</span><span class=s>cp /etc/letsencrypt/live/yanyong.cc/{privkey.pem,fullchain.pem} /etc/trojan-go/ssl/
+</span><span class=s>chown nobody /etc/trojan-go/ssl/*
+</span><span class=s>chmod 400 /etc/trojan-go/ssl/*
+</span><span class=s>docker restart trojan-go
+</span><span class=s>EOF</span>
+
+sudo chmod +x /etc/letsencrypt/renewal-hooks/deploy/trojan-go.sh
+sudo /etc/letsencrypt/renewal-hooks/deploy/trojan-go.sh
+</code></pre></td></tr></table></div></div><h1 id=v2ray>v2ray</h1><p><a href=https://www.v2fly.org/>https://www.v2fly.org/</a></p><p><a href=https://github.com/v2fly/v2ray-core>https://github.com/v2fly/v2ray-core</a></p><p><a href=https://hub.docker.com/r/v2fly/v2fly-core>https://hub.docker.com/r/v2fly/v2fly-core</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>#查看默认文件
+sudo docker run -d --name v2ray v2fly/v2fly-core
+sudo docker cp v2ray:/etc/v2ray/config.json config.json
+sudo docker stop v2ray
+sudo docker rm -v v2ray
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run -d --name v2ray --network=host --restart=always -v /etc/v2ray/:/etc/v2ray/ v2fly/v2fly-core
+</code></pre></td></tr></table></div></div><p><a href=https://www.v2fly.org/config/overview.html>https://www.v2fly.org/config/overview.html</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>cat /proc/sys/kernel/random/uuid
+
+sudo tee /etc/v2ray/config.json &lt;&lt; EOF
+{
+  &#34;log&#34;: {
+    &#34;access&#34;: &#34;/var/log/v2ray/access.log&#34;,
+    &#34;error&#34;: &#34;/var/log/v2ray/error.log&#34;,
+    &#34;loglevel&#34;: &#34;error&#34;
+  },
+  &#34;api&#34;: {
+    &#34;tag&#34;: &#34;api&#34;
+  },
+  &#34;inbounds&#34;: [{
+    &#34;port&#34;: 16801,
+    &#34;protocol&#34;: &#34;vmess&#34;,
+    &#34;settings&#34;: {
+      &#34;clients&#34;: [
+        {
+          &#34;alterId&#34;: 8,
+          &#34;id&#34;: &#34;9cf6573b-12a5-47c4-bc48-8f1643252a5f&#34;,
+          &#34;level&#34;: 1
+        }
+      ]
+    },
+    &#34;streamSettings&#34;: {
+      &#34;network&#34;: &#34;ws&#34;,
+      &#34;security&#34;: &#34;none&#34;,  // TLS已经交给nginx处理
+      &#34;wsSettings&#34;: {
+        &#34;path&#34;: &#34;/abcdefg&#34;  // 复杂点避免嗅探
+      }
+    },
+    &#34;sniffing&#34;: {
+      &#34;enabled&#34;: false
+    },
+    &#34;allocate&#34;: {
+      &#34;strategy&#34;: &#34;always&#34;
+    }
+  }],
+  &#34;outbounds&#34;: [{
+    &#34;protocol&#34;: &#34;freedom&#34;,
+    &#34;settings&#34;: {},
+    &#34;tag&#34;: &#34;direct&#34;
+  },{
+    &#34;protocol&#34;: &#34;blackhole&#34;,
+    &#34;settings&#34;: {},
+    &#34;tag&#34;: &#34;blocked&#34;
+  }],
+  &#34;routing&#34;: {
+    &#34;domainStrategy&#34;: &#34;IPIfNonMatch&#34;,
+    &#34;rules&#34;:[
+      {
+        &#34;type&#34;: &#34;field&#34;,
+        &#34;ip&#34;: [&#34;geoip:private&#34;],
+        &#34;outboundTag&#34;: &#34;blocked&#34;
+      }
+    ]
+  },
+  &#34;dns&#34;: {
+    &#34;servers&#34;: [
+      &#34;https://1.1.1.1/dns-query&#34;,
+      &#34;https://8.8.8.8/dns-query&#34;,
+      &#34;localhost&#34;
+    ]
+  },
+  &#34;policy&#34;: {},
+  &#34;other&#34;: {}
+}
+EOF
+
+sudo docker restart v2ray
+</code></pre></td></tr></table></div></div><h1 id=xray>Xray</h1><p>vless + tcp + xtls</p><p><a href=https://xtls.github.io/>https://xtls.github.io/</a></p><p><a href=https://github.com/XTLS/Xray-core>https://github.com/XTLS/Xray-core</a></p><p><a href=https://hub.docker.com/r/teddysun/xray>https://hub.docker.com/r/teddysun/xray</a></p><p><a href=https://github.com/XTLS/Xray-examples/blob/main/VLESS-TCP-XTLS-WHATEVER/config_server.json>https://github.com/XTLS/Xray-examples/blob/main/VLESS-TCP-XTLS-WHATEVER/config_server.json</a></p><p>暂未安装！</p><h1 id=nginx配置>nginx配置</h1><p><a href=http://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html>http://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html</a></p><p><a href=http://nginx.org/en/docs/http/ngx_http_core_module.html#listen>http://nginx.org/en/docs/http/ngx_http_core_module.html#listen</a></p><p><a href=https://www.chengxiaobai.com/trouble-maker/trojan-shared-443-port-scheme#more>https://www.chengxiaobai.com/trouble-maker/trojan-shared-443-port-scheme#more</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo mkdir /etc/nginx/stream.d
+echo &#39;include /etc/nginx/stream.d/*.conf;&#39; | sudo tee -a /etc/nginx/nginx.conf
+</code></pre></td></tr></table></div></div><p>编辑文件/etc/nginx/sites-enabled/v.vgmcn.com，内容如下：</p><pre><code>server {
+    listen                  8445 ssl http2; 
+    server_name             v.vgmcn.com;
+
+    # SSL
+    ssl_certificate         /etc/letsencrypt/live/vgmcn.com/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/vgmcn.com/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/vgmcn.com/chain.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    # logging
+    access_log              /var/log/nginx/v.vgmcn.com.access.log;
+    error_log               /var/log/nginx/v.vgmcn.com.error.log warn;
+
+    # WebSocket proxy
+    location /abcdefg {
+        proxy_pass http://127.0.0.1:16801;
+        proxy_redirect off;
+        proxy_http_version                 1.1;
+        proxy_cache_bypass                 $http_upgrade;
+
+        # Proxy headers
+        proxy_set_header Upgrade           $http_upgrade;
+        proxy_set_header Connection        &quot;upgrade&quot;;
+        proxy_set_header Host              $host;
+    }
+
+    # reverse proxy
+    location / {
+        #return 301 https://vgmcn.com$request_uri;
+        proxy_pass http://127.0.0.1;
+    }
+}
+</code></pre><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo tee /etc/nginx/stream.d/sni.conf &lt;&lt;EOF
+stream{
+    #SNI，将域名映射到一个配置名
+    map \$ssl_preread_server_name \$backend_name {
+        t.vgmcn.com trojan;
+        tg.vgmcn.com trojan-go;
+        v.vgmcn.com v2ray;
+        default web;
+    }
+
+    upstream trojan {
+        server 127.0.0.1:8443;
+    }
+
+    upstream trojan-go {
+        server 127.0.0.1:8444;
+    }
+
+    upstream v2ray {
+        server 127.0.0.1:8445;
+    }
+
+    upstream web {
+        server 127.0.0.1:80;
+    }
+
+    server {
+        listen 443 reuseport;
+        proxy_pass \$backend_name;
+        ssl_preread on;
+    }
+}
+EOF
+
+sudo nginx -t &amp;&amp; sudo nginx -s reload
+</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2022-04-25</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/trojan/>trojan</a>
+<a href=/tags/trojan-go/>trojan-go</a>
+<a href=/tags/v2ray/>v2ray</a>
+<a href=/tags/ikev2/>IKEv2</a></div><nav class=post-nav><a class=next href=/post/rabbitmq-k8s/><span class="next-text nav-default">k8s部署rabbitmq</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=onegit20/utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:info@yanyong.cc class="iconfont icon-email" title=email></a><a href=https://stackoverflow.com/users/16859626/yanyong class="iconfont icon-stack-overflow" title=stack-overflow></a><a href=https://github.com/onegit20 class="iconfont icon-github" title=github></a><a href=https://yanyong.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><div class=busuanzi-footer><span id=busuanzi_container_site_pv>site pv: <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span></span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv>site uv: <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span></span></div><span class=copyright-year>&copy;
+<span class=heart></span><span>info@yanyong.cc</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script></body></html>
