@@ -12,16 +12,13 @@ rke:1.4.6  docker:20.10.X(5:20.10.24~3-0~ubuntu-focal)
 rancher:2.7.5  k8s:支持1.23-1.26(rancher/hyperkube:v1.26.4-rancher2)
 kustomize:5.1.0
 kubeflow:1.7.0
-</code></pre><h1 id=安装k8s集群>安装k8s集群</h1><p>172.27.244.151-156等6台服务器。
-默认6台服务器都执行，如果只在其中的某些机器执行会说明。</p><h2 id=配置sudo用户免密>配置sudo用户免密</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre><h1 id=安装k8s集群>安装k8s集群</h1><p>172.27.244.151-156等6台服务器。</p><p>默认6台服务器都执行，如果只在其中的某些机器执行会说明。</p><h2 id=配置sudo用户免密>配置sudo用户免密</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>echo &#34;$USER   ALL=(ALL:ALL) NOPASSWD:ALL&#34; | sudo tee /etc/sudoers.d/$USER
 </code></pre></td></tr></table></div></div><h2 id=关闭防火墙>关闭防火墙</h2><p>我机器在内网，关闭防火墙省事。放在外网的服务最好开启防火墙，放行端口参考各自业务的官方文档！</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo systemctl stop ufw
 sudo systemctl disable ufw
-</code></pre></td></tr></table></div></div><h2 id=安装docker>安装docker</h2><p><a href=https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/installation-requirements/install-docker>https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/installation-requirements/install-docker</a>
-rancher官方有个docker安装脚本（非常不建议使用这个脚本安装！！）</p><p>开始安装！
-docker官方文档：https://docs.docker.com/engine/install/ubuntu/</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><h2 id=安装docker>安装docker</h2><p>~<a href=https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/installation-requirements/install-docker~>https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/installation-requirements/install-docker~</a></p><p>rancher官方有个docker安装脚本（非常不建议使用这个脚本安装！！）</p><p>开始安装！</p><p>docker官方文档：https://docs.docker.com/engine/install/ubuntu/</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -51,11 +48,7 @@ echo \
 sudo apt-get update
 VERSION_STRING=5:20.10.24~3-0~ubuntu-focal
 sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
-</code></pre></td></tr></table></div></div><h2 id=配置k8s需求>配置k8s需求</h2><p>k8s官方文档：
-<a href=https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/>https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/</a>
-<a href=https://kubernetes.io/docs/setup/production-environment/container-runtimes/#install-and-configure-prerequisites>https://kubernetes.io/docs/setup/production-environment/container-runtimes/#install-and-configure-prerequisites</a>
-rke官方文档：
-<a href=https://rke.docs.rancher.com/os>https://rke.docs.rancher.com/os</a></p><h3 id=禁用swap>禁用swap</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h2 id=配置k8s需求>配置k8s需求</h2><p>k8s官方文档：</p><p><a href=https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/>https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/</a></p><p><a href=https://kubernetes.io/docs/setup/production-environment/container-runtimes/#install-and-configure-prerequisites>https://kubernetes.io/docs/setup/production-environment/container-runtimes/#install-and-configure-prerequisites</a></p><p>rke官方文档：</p><p><a href=https://rke.docs.rancher.com/os>https://rke.docs.rancher.com/os</a></p><h3 id=禁用swap>禁用swap</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo swapoff -a &amp;&amp; sudo sed -i &#39;/swap/s/^/#/&#39; /etc/fstab
 </code></pre></td></tr></table></div></div><h3 id=允许iptables桥接流量>允许iptables桥接流量</h3><p>确认信息。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -93,8 +86,7 @@ net.ipv4.ip_forward                 = 1
 EOF
 
 sudo sysctl --system
-</code></pre></td></tr></table></div></div><h2 id=安装rke>安装RKE</h2><p>找其中一台机器安装rke工具即可，在172.27.244.151安装rke。
-rke官方文档：https://rke.docs.rancher.com/installation</p><h3 id=创建rke用户>创建rke用户</h3><p>172.27.244.151-156都创建用户，并添加到docker组。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h2 id=安装rke>安装RKE</h2><p>找其中一台机器安装rke工具即可，在172.27.244.151安装rke。</p><p>rke官方文档：https://rke.docs.rancher.com/installation</p><h3 id=创建rke用户>创建rke用户</h3><p>172.27.244.151-156都创建用户，并添加到docker组。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo useradd -m -s /bin/bash rkeuser
@@ -114,8 +106,7 @@ ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@
 ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@172.27.244.154
 ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@172.27.244.155
 ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@172.27.244.156
-</code></pre></td></tr></table></div></div><h3 id=rke创建k8s集群>rke创建k8s集群</h3><p>在172.27.244.151上执行。
-rke下载地址：https://github.com/rancher/rke/releases/tag/v1.4.6</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h3 id=rke创建k8s集群>rke创建k8s集群</h3><p>在172.27.244.151上执行。</p><p>rke下载地址：https://github.com/rancher/rke/releases/tag/v1.4.6</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -137,8 +128,7 @@ sudo ln -s $HOME/bin/rke_linux-amd64 /usr/local/bin/rke
     flannel_backend_port: &#34;8972&#34;
 </code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>rke up
-</code></pre></td></tr></table></div></div><h3 id=安装kubectl>安装kubectl</h3><p>在172.27.244.151上执行。
-安装kubectl并配置命令自动补全。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h3 id=安装kubectl>安装kubectl</h3><p>在172.27.244.151上执行。</p><p>安装kubectl并配置命令自动补全。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -148,8 +138,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 echo &#39;source &lt;(kubectl completion bash)&#39; &gt;&gt;~/.bashrc &amp;&amp; . ~/.bashrc
 mkdir $HOME/.kube
 cp kube_config_cluster.yml $HOME/.kube/config
-</code></pre></td></tr></table></div></div><h2 id=安装rancher>安装rancher</h2><p>在172.27.244.151上执行。
-官方文档：https://ranchermanager.docs.rancher.com/zh/pages-for-subheaders/install-upgrade-on-a-kubernetes-cluster</p><p>安装helm。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h2 id=安装rancher>安装rancher</h2><p>在172.27.244.151上执行。</p><p>官方文档：https://ranchermanager.docs.rancher.com/zh/pages-for-subheaders/install-upgrade-on-a-kubernetes-cluster</p><p>安装helm。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>wget https://get.helm.sh/helm-v3.12.1-linux-amd64.tar.gz
@@ -207,12 +196,7 @@ helm install rancher rancher-stable/rancher \
 kubectl -n cattle-system get deploy rancher
 </code></pre></td></tr></table></div></div><p>如有需要，查看密码方法。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>kubectl get secret --namespace cattle-system bootstrap-secret -o go-template=&#39;{{ .data.bootstrapPassword|base64decode}}{{ &#34;\n&#34; }}&#39;
-</code></pre></td></tr></table></div></div><h1 id=安装kubeflow>安装kubeflow</h1><h2 id=安装storageclass>安装storageClass</h2><p>前提条件，在172.27.244.150先安装nfs-server ，再安装存储类nfs-cient-provisioner，在172.27.244.151上执行。</p><p>nfs-cient-provisioner文档：
-<a href=https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner>https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner</a>
-<a href=https://artifacthub.io/packages/helm/nfs-subdir-external-provisioner/nfs-subdir-external-provisioner>https://artifacthub.io/packages/helm/nfs-subdir-external-provisioner/nfs-subdir-external-provisioner</a>
-挂载选项相关文档：
-<a href=https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/s1-nfs-client-config-options>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/s1-nfs-client-config-options</a>
-<a href=https://www.man7.org/linux/man-pages/man5/nfs.5.html>https://www.man7.org/linux/man-pages/man5/nfs.5.html</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h1 id=安装kubeflow>安装kubeflow</h1><h2 id=安装storageclass>安装storageClass</h2><p>前提条件，在172.27.244.150先安装nfs-server ，再安装存储类nfs-cient-provisioner，在172.27.244.151上执行。</p><p>nfs-cient-provisioner文档：</p><p><a href=https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner>https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner</a></p><p><a href=https://artifacthub.io/packages/helm/nfs-subdir-external-provisioner/nfs-subdir-external-provisioner>https://artifacthub.io/packages/helm/nfs-subdir-external-provisioner/nfs-subdir-external-provisioner</a></p><p>挂载选项相关文档：</p><p><a href=https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/s1-nfs-client-config-options>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/s1-nfs-client-config-options</a></p><p><a href=https://www.man7.org/linux/man-pages/man5/nfs.5.html>https://www.man7.org/linux/man-pages/man5/nfs.5.html</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -272,8 +256,7 @@ gcr.io/ml-pipeline/visualization-server
 gcr.io/ml-pipeline/visualization-server:2.0.0-alpha.7
 gcr.io/ml-pipeline/workflow-controller:v3.3.8-license-compliance
 gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0
-</code></pre><h3 id=下载相关镜像>下载相关镜像</h3><p>下载镜像并推送到hub.docker.com个人仓库(脚本中未放docker login，登录后再执行即可，也可以把登录放入脚本中)。
-hub.docker.com仓库需要自行注册，比如我的个人仓库https://hub.docker.com/u/strongxyz</p><p>在能访问gcr.io的服务器上执行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre><h3 id=下载相关镜像>下载相关镜像</h3><p>下载镜像并推送到hub.docker.com个人仓库(脚本中未放docker login，登录后再执行即可，也可以把登录放入脚本中)。</p><p>hub.docker.com仓库需要自行注册，比如我的个人仓库https://hub.docker.com/u/strongxyz</p><p>在能访问gcr.io的服务器上执行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -399,8 +382,7 @@ for ((i=0; i&lt;${#a[*]}; i++)); do
     sudo docker rmi &#34;${b[i]}&#34;
     sudo docker rmi &#34;${a[i]}&#34;
 done
-</code></pre></td></tr></table></div></div><p>在172.27.244.154-156等3台worker机器执行，拉取镜像，重新打tag。如果master也是worker节点，master也需要拉取镜像。
-拉取镜像不需要登录。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><p>在172.27.244.154-156等3台worker机器执行，拉取镜像，重新打tag。如果master也是worker节点，master也需要拉取镜像。</p><p>拉取镜像不需要登录。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -598,15 +580,9 @@ done
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt install python3-pip
 sudo pip3 install passlib
 python3 -c &#39;from passlib.hash import bcrypt; import getpass; print(bcrypt.using(rounds=12, ident=&#34;2y&#34;).hash(getpass.getpass()))&#39;
-</code></pre></td></tr></table></div></div><p>以上为交互式命令，输入密码，返回hash值。
-123456
-$2y$12$cDyyBfNqBDpQ9kkRoJYSI.xWggu2r9iHj1234GuTFddJkaWZu3a33</p><p>vi common/dex/base/config-map.yaml，修改对应内容。</p><h2 id=一键安装kubeflow>一键安装kubeflow</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>以上为交互式命令，输入密码，返回hash值。</p><p>123456</p><p>$2y$12$cDyyBfNqBDpQ9kkRoJYSI.xWggu2r9iHj1234GuTFddJkaWZu3a33</p><p>vi common/dex/base/config-map.yaml，修改对应内容。</p><h2 id=一键安装kubeflow>一键安装kubeflow</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>while ! kustomize build example | awk &#39;!/well-defined/&#39; | kubectl apply -f -; do echo &#34;Retrying to apply resources&#34;; sleep 10; done
-</code></pre></td></tr></table></div></div><h2 id=安装完成后>安装完成后</h2><h3 id=问题1>问题1</h3><p>pod报错：
-error: resource mapping not found for name: &ldquo;webhook&rdquo; namespace: &ldquo;knative-serving&rdquo; from &ldquo;STDIN&rdquo;: no matches for kind &ldquo;HorizontalPodAutoscaler&rdquo; in version &ldquo;autoscaling/v2beta2&rdquo;</p><p>原因：
-<a href=https://kubernetes.io/docs/reference/using-api/deprecation-guide/#horizontalpodautoscaler-v125>https://kubernetes.io/docs/reference/using-api/deprecation-guide/#horizontalpodautoscaler-v125</a>
-<a href=https://www.kubeflow.org/docs/releases/kubeflow-1.7/#dependency-versions-manifests>https://www.kubeflow.org/docs/releases/kubeflow-1.7/#dependency-versions-manifests</a></p><p>解决办法：
-修改common/knative/knative-serving/base/upstream/serving-core.yaml对应的镜像autoscaling/v2</p><h3 id=问题2>问题2</h3><p>有些镜像拉取策略需要修改成IfNotPresent，如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h2 id=安装完成后>安装完成后</h2><h3 id=问题1>问题1</h3><p>pod报错：</p><p>error: resource mapping not found for name: &ldquo;webhook&rdquo; namespace: &ldquo;knative-serving&rdquo; from &ldquo;STDIN&rdquo;: no matches for kind &ldquo;HorizontalPodAutoscaler&rdquo; in version &ldquo;autoscaling/v2beta2&rdquo;</p><p>原因：</p><p><a href=https://kubernetes.io/docs/reference/using-api/deprecation-guide/#horizontalpodautoscaler-v125>https://kubernetes.io/docs/reference/using-api/deprecation-guide/#horizontalpodautoscaler-v125</a></p><p><a href=https://www.kubeflow.org/docs/releases/kubeflow-1.7/#dependency-versions-manifests>https://www.kubeflow.org/docs/releases/kubeflow-1.7/#dependency-versions-manifests</a></p><p>解决办法：</p><p>修改common/knative/knative-serving/base/upstream/serving-core.yaml对应的镜像autoscaling/v2</p><h3 id=问题2>问题2</h3><p>有些镜像拉取策略需要修改成IfNotPresent，如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>common/oidc-authservice/base/statefulset.yaml
@@ -618,10 +594,7 @@ apps/pipeline/upstream/base/cache/cache-deployment.yaml
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker pull kubeflowkatib/katib-db-manager:v0.15.0
 sudo docker pull mysql:8.0.29
 sudo docker pull python:3.7
-</code></pre></td></tr></table></div></div><h3 id=问题4>问题4</h3><p>mysql的pod报错 chown: changing ownership of &lsquo;/var/lib/mysql/': Operation not permitted</p><p>解决：
-修改nfs-server，把all_squash改成no_root_squash
-sudo vi /etc/exports
-sudo exportfs -a</p><p>安装nfs-server时就用no_root_squash，避免此问题产生。</p><h1 id=安装keepalived>安装keepalived</h1><p>找两台机器安装keepalived，这里选在172.27.244.152-153上安装。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h3 id=问题4>问题4</h3><p>mysql的pod报错 chown: changing ownership of &lsquo;/var/lib/mysql/': Operation not permitted</p><p>解决：</p><p>修改nfs-server，把all_squash改成no_root_squash</p><p>sudo vi /etc/exports</p><p>sudo exportfs -a</p><p>安装nfs-server时就用no_root_squash，避免此问题产生。</p><h1 id=安装keepalived>安装keepalived</h1><p>找两台机器安装keepalived，这里选在172.27.244.152-153上安装。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt -y install nginx keepalived
 </code></pre></td></tr></table></div></div><p>nginx配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -677,13 +650,7 @@ sudo vi /etc/nginx/nginx.conf
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo nginx -t
 sudo nginx -s reload
-</code></pre></td></tr></table></div></div><p>keepalived配置：
-<a href=https://manpages.debian.org/unstable/keepalived/keepalived.conf.5.en.html>https://manpages.debian.org/unstable/keepalived/keepalived.conf.5.en.html</a>
-<a href=https://manpages.ubuntu.com/manpages/focal/man5/keepalived.conf.5.html>https://manpages.ubuntu.com/manpages/focal/man5/keepalived.conf.5.html</a>
-<a href=https://keepalived.readthedocs.io/en/latest/configuration_synopsis.html#global-definitions-synopsis>https://keepalived.readthedocs.io/en/latest/configuration_synopsis.html#global-definitions-synopsis</a>
-<a href=https://github.com/acassen/keepalived/tree/master/doc/samples>https://github.com/acassen/keepalived/tree/master/doc/samples</a>
-/usr/share/doc/keepalived/samples/keepalived.conf.vrrp.localcheck
-/usr/share/doc/keepalived/samples/keepalived.conf.vrrp</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>keepalived配置：</p><p><a href=https://manpages.debian.org/unstable/keepalived/keepalived.conf.5.en.html>https://manpages.debian.org/unstable/keepalived/keepalived.conf.5.en.html</a></p><p><a href=https://manpages.ubuntu.com/manpages/focal/man5/keepalived.conf.5.html>https://manpages.ubuntu.com/manpages/focal/man5/keepalived.conf.5.html</a></p><p><a href=https://keepalived.readthedocs.io/en/latest/configuration_synopsis.html#global-definitions-synopsis>https://keepalived.readthedocs.io/en/latest/configuration_synopsis.html#global-definitions-synopsis</a></p><p><a href=https://github.com/acassen/keepalived/tree/master/doc/samples>https://github.com/acassen/keepalived/tree/master/doc/samples</a></p><p>/usr/share/doc/keepalived/samples/keepalived.conf.vrrp.localcheck</p><p>/usr/share/doc/keepalived/samples/keepalived.conf.vrrp</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo vi /etc/keepalived/keepalived.conf
 </code></pre></td></tr></table></div></div><p>配置参考，两台机器IP对换一下即可。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -755,9 +722,7 @@ vrrp_instance VI_1 {
 }
 </code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo systemctl restart keepalived
-</code></pre></td></tr></table></div></div><p>域名解析：
-172.27.244.160 rancher.ai.example.com
-172.27.244.160 kubeflow.ai.example.com</p><h1 id=安装nfs-server>安装nfs server</h1><p>在172.27.244.150执行。</p><p>安装。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>域名解析：</p><p>172.27.244.160 rancher.ai.example.com</p><p>172.27.244.160 kubeflow.ai.example.com</p><h1 id=安装nfs-server>安装nfs server</h1><p>在172.27.244.150执行。</p><p>安装。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -775,7 +740,7 @@ sudo exportfs -a
 sudo rpcinfo -p | grep nfs
 cat /var/lib/nfs/etab
 sudo exportfs
-</code></pre></td></tr></table></div></div><h1 id=安装harbor>安装harbor</h1><p>在172.27.244.150执行。</p><h2 id=安装docker-1>安装docker</h2><p>版本换成5:23.0.6-1~ubuntu.20.04~focal，也可以不带版本号安装最新版本，其它略。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h1 id=安装harbor>安装harbor</h1><p>在172.27.244.150执行。</p><h2 id=安装docker-1>安装docker</h2><p>版本换成<code>5:23.0.6-1~ubuntu.20.04~focal</code>，也可以不带版本号安装最新版本，其它略。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -951,8 +916,7 @@ server {
         return 301 https://harbor.ai.example.com$request_uri;
     }
 }
-</code></pre></td></tr></table></div></div><h2 id=信任自签ca证书>信任自签CA证书</h2><p>在worker节点执行，从harbor.ai.example.com拉取镜像的节点都需要信任自签证书。
-自签的CA证书可以用nginx公布出来，方便下载使用，终端传文件挺麻烦的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h2 id=信任自签ca证书>信任自签CA证书</h2><p>在worker节点执行，从harbor.ai.example.com拉取镜像的节点都需要信任自签证书。</p><p>自签的CA证书可以用nginx公布出来，方便下载使用，终端传文件挺麻烦的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -1012,9 +976,7 @@ sudo wget http://172.27.244.150/download/ssl/ca.H1.crt -O /etc/docker/certs.d/ha
         }
     }
 }
-</code></pre></td></tr></table></div></div><p>域名解析：
-172.27.244.150 harbor.ai.example.com
-172.27.244.150 downloads.ai.example.com</p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+</code></pre></td></tr></table></div></div><p>域名解析：</p><p>172.27.244.150 harbor.ai.example.com</p><p>172.27.244.150 downloads.ai.example.com</p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
 <span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
 <span class=item-content>2023-07-24</span></p><p class=copyright-item><span class=item-title>License</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/kubeflow/>kubeflow</a></div><nav class=post-nav><a class=next href=/post/vcpkgstaticlink/><span class="next-text nav-default">vcpkg静态链接libcurl</span>
