@@ -1,0 +1,1022 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>kubeflow安装教程 - yy小站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="服务器和软件版本规划 7台服务器和1个虚拟IP： 172.27.244.151-153(3台master,4C/8G/500GB) 172.27."><meta name=generator content="Hugo 0.83.1 with theme even"><link rel=canonical href=https://yanyong.cc/post/kubeflow-install/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css rel=stylesheet><link rel=stylesheet href=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="kubeflow安装教程"><meta property="og:description" content="服务器和软件版本规划 7台服务器和1个虚拟IP： 172.27.244.151-153(3台master,4C/8G/500GB) 172.27."><meta property="og:type" content="article"><meta property="og:url" content="https://yanyong.cc/post/kubeflow-install/"><meta property="article:section" content="post"><meta property="article:published_time" content="2023-07-24T09:45:37+08:00"><meta property="article:modified_time" content="2023-07-24T09:45:37+08:00"><meta itemprop=name content="kubeflow安装教程"><meta itemprop=description content="服务器和软件版本规划 7台服务器和1个虚拟IP： 172.27.244.151-153(3台master,4C/8G/500GB) 172.27."><meta itemprop=datePublished content="2023-07-24T09:45:37+08:00"><meta itemprop=dateModified content="2023-07-24T09:45:37+08:00"><meta itemprop=wordCount content="4372"><meta itemprop=keywords content="kubeflow,"><meta name=twitter:card content="summary"><meta name=twitter:title content="kubeflow安装教程"><meta name=twitter:description content="服务器和软件版本规划 7台服务器和1个虚拟IP： 172.27.244.151-153(3台master,4C/8G/500GB) 172.27."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://testingcf.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://testingcf.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>yy小站</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a><a href=/search/><li class=mobile-menu-item>搜索本站</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>yy小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li><li class=menu-item><a class=menu-item-link href=/search/>搜索本站</a></li></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>kubeflow安装教程</h1><div class=post-meta><span class=post-time>2023-07-24</span><div class=post-category><a href=/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/>未分类</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#服务器和软件版本规划>服务器和软件版本规划</a></li><li><a href=#安装k8s集群>安装k8s集群</a><ul><li><a href=#配置sudo用户免密>配置sudo用户免密</a></li><li><a href=#关闭防火墙>关闭防火墙</a></li><li><a href=#安装docker>安装docker</a></li><li><a href=#配置k8s需求>配置k8s需求</a><ul><li><a href=#禁用swap>禁用swap</a></li><li><a href=#允许iptables桥接流量>允许iptables桥接流量</a></li></ul></li><li><a href=#安装rke>安装RKE</a><ul><li><a href=#创建rke用户>创建rke用户</a></li><li><a href=#创建密钥并拷贝>创建密钥并拷贝</a></li><li><a href=#rke创建k8s集群>rke创建k8s集群</a></li><li><a href=#安装kubectl>安装kubectl</a></li></ul></li><li><a href=#安装rancher>安装rancher</a></li></ul></li><li><a href=#安装kubeflow>安装kubeflow</a><ul><li><a href=#安装storageclass>安装storageClass</a></li><li><a href=#安装kustomize>安装kustomize</a></li><li><a href=#下载kubeflow和镜像>下载kubeflow和镜像</a><ul><li><a href=#下载kubeflow>下载kubeflow</a></li><li><a href=#下载相关镜像>下载相关镜像</a></li></ul></li><li><a href=#修改kubeflow默认密码>修改kubeflow默认密码</a></li><li><a href=#一键安装kubeflow>一键安装kubeflow</a></li><li><a href=#安装完成后>安装完成后</a><ul><li><a href=#问题1>问题1</a></li><li><a href=#问题2>问题2</a></li><li><a href=#问题3>问题3</a></li><li><a href=#问题4>问题4</a></li></ul></li></ul></li><li><a href=#安装keepalived>安装keepalived</a></li><li><a href=#安装nfs-server>安装nfs server</a></li><li><a href=#安装harbor>安装harbor</a><ul><li><a href=#安装docker-1>安装docker</a></li><li><a href=#安装docker-compose>安装docker-compose</a></li><li><a href=#自签证书>自签证书</a></li><li><a href=#开始安装harbor>开始安装harbor</a></li><li><a href=#安装nginx>安装nginx</a></li><li><a href=#信任自签ca证书>信任自签CA证书</a></li></ul></li></ul></nav></div></div><div class=post-content><h1 id=服务器和软件版本规划>服务器和软件版本规划</h1><p>7台服务器和1个虚拟IP：
+172.27.244.151-153(3台master,4C/8G/500GB)
+172.27.244.154-156(3台worker,8C/32G/500GB)
+172.27.24.150(nfs/harbor,4C/8G/2TB)
+172.27.244.160(虚拟IP)
+说明：
+harbor镜像仓库可以考虑装到nfs服务器上备用，kubeflow平台暂时不需要镜像仓库。</p><p>版本：
+OS:ubuntu20.04.6
+rke:1.4.6 docker:20.10.X(5:20.10.24~3-0~ubuntu-focal)
+rancher:2.7.5 k8s:支持1.23-1.26(rancher/hyperkube:v1.26.4-rancher2)
+kustomize:5.1.0
+kubeflow:1.7.0</p><h1 id=安装k8s集群>安装k8s集群</h1><p>172.27.244.151-156等6台服务器。
+默认6台服务器都执行，如果只在其中的某些机器执行会说明。</p><h2 id=配置sudo用户免密>配置sudo用户免密</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>echo &#34;$USER   ALL=(ALL:ALL) NOPASSWD:ALL&#34; | sudo tee /etc/sudoers.d/$USER
+</code></pre></td></tr></table></div></div><h2 id=关闭防火墙>关闭防火墙</h2><p>我机器在内网，关闭防火墙省事。放在外网的服务最好开启防火墙，放行端口参考各自业务的官方文档！</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo systemctl stop ufw
+sudo systemctl disable ufw
+</code></pre></td></tr></table></div></div><h2 id=安装docker>安装docker</h2><p><a href=https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/installation-requirements/install-docker>https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/installation-requirements/install-docker</a>
+rancher官方有个docker安装脚本（非常不建议使用这个脚本安装！！）</p><p>开始安装！
+docker官方文档：https://docs.docker.com/engine/install/ubuntu/</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+echo \
+  &#34;deb [arch=&#34;$(dpkg --print-architecture)&#34; signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  &#34;$(. /etc/os-release &amp;&amp; echo &#34;$VERSION_CODENAME&#34;)&#34; stable&#34; | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+
+sudo apt-get update
+VERSION_STRING=5:20.10.24~3-0~ubuntu-focal
+sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
+</code></pre></td></tr></table></div></div><h2 id=配置k8s需求>配置k8s需求</h2><p>k8s官方文档：
+<a href=https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/>https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/</a>
+<a href=https://kubernetes.io/docs/setup/production-environment/container-runtimes/#install-and-configure-prerequisites>https://kubernetes.io/docs/setup/production-environment/container-runtimes/#install-and-configure-prerequisites</a>
+rke官方文档：
+<a href=https://rke.docs.rancher.com/os>https://rke.docs.rancher.com/os</a></p><h3 id=禁用swap>禁用swap</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo swapoff -a &amp;&amp; sudo sed -i &#39;/swap/s/^/#/&#39; /etc/fstab
+</code></pre></td></tr></table></div></div><h3 id=允许iptables桥接流量>允许iptables桥接流量</h3><p>确认信息。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>lsmod | grep br_netfilter
+lsmod | grep overlay
+sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
+</code></pre></td></tr></table></div></div><p>跳过此步，我本此的机器环境默认已符合。如有需要则执行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
+EOF
+
+sudo modprobe overlay
+sudo modprobe br_netfilter
+
+cat &lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward                 = 1
+EOF
+
+sudo sysctl --system
+</code></pre></td></tr></table></div></div><h2 id=安装rke>安装RKE</h2><p>找其中一台机器安装rke工具即可，在172.27.244.151安装rke。
+rke官方文档：https://rke.docs.rancher.com/installation</p><h3 id=创建rke用户>创建rke用户</h3><p>172.27.244.151-156都创建用户，并添加到docker组。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo useradd -m -s /bin/bash rkeuser
+sudo usermod -aG docker rkeuser
+sudo chpasswd &lt;&lt;&lt; &#39;rkeuser:123456&#39;
+</code></pre></td></tr></table></div></div><h3 id=创建密钥并拷贝>创建密钥并拷贝</h3><p>在172.27.244.151上执行，本机rkeuser用户也要拷贝密钥。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>ssh-keygen -qf ~/.ssh/id_rsa -P &#39;&#39;
+ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@172.27.244.151
+ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@172.27.244.152
+ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@172.27.244.153
+ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@172.27.244.154
+ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@172.27.244.155
+ssh-copy-id -f -p 5008 -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no rkeuser@172.27.244.156
+</code></pre></td></tr></table></div></div><h3 id=rke创建k8s集群>rke创建k8s集群</h3><p>在172.27.244.151上执行。
+rke下载地址：https://github.com/rancher/rke/releases/tag/v1.4.6</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>cd &amp;&amp; wget https://github.com/rancher/rke/releases/download/v1.4.6/rke_linux-amd64
+
+mkdir bin &amp;&amp; cp rke_linux-amd64 bin &amp;&amp; chmod +x bin/rke_linux-amd64
+sudo ln -s $HOME/bin/rke_linux-amd64 /usr/local/bin/rke
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>rke config --name cluster.yml
+</code></pre></td></tr></table></div></div><p>默认端口8472与深信服超融合有冲突，修改cluster.yml,参考 <a href=https://rke.docs.rancher.com/config-options/add-ons/network-plugins#flannel>https://rke.docs.rancher.com/config-options/add-ons/network-plugins#flannel</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>network:
+  plugin: flannel
+  options:
+    flannel_backend_type: vxlan
+    flannel_backend_port: &#34;8972&#34;
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>rke up
+</code></pre></td></tr></table></div></div><h3 id=安装kubectl>安装kubectl</h3><p>在172.27.244.151上执行。
+安装kubectl并配置命令自动补全。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>curl -LO &#34;https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl&#34;
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+echo &#39;source &lt;(kubectl completion bash)&#39; &gt;&gt;~/.bashrc &amp;&amp; . ~/.bashrc
+mkdir $HOME/.kube
+cp kube_config_cluster.yml $HOME/.kube/config
+</code></pre></td></tr></table></div></div><h2 id=安装rancher>安装rancher</h2><p>在172.27.244.151上执行。
+官方文档：https://ranchermanager.docs.rancher.com/zh/pages-for-subheaders/install-upgrade-on-a-kubernetes-cluster</p><p>安装helm。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>wget https://get.helm.sh/helm-v3.12.1-linux-amd64.tar.gz
+tar zxf helm-v3.12.1-linux-amd64.tar.gz
+sudo mv linux-amd64/helm /usr/local/bin/helm
+</code></pre></td></tr></table></div></div><p>用helm安装rancher。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
+
+kubectl create namespace cattle-system
+
+#确认v1.12.2版本信息，如有需要可替换
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.2/cert-manager.crds.yaml
+
+helm repo add jetstack https://charts.jetstack.io
+
+helm repo update
+
+helm install cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.12.2
+
+
+helm install rancher rancher-stable/rancher \
+  --namespace cattle-system \
+  --set hostname=rancher.ai.example.com \
+  --set bootstrapPassword=123456 \
+  --set global.cattle.psp.enabled=false \
+  --version 2.7.5
+</code></pre></td></tr></table></div></div><p>安装完，检查rancher状态。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>kubectl -n cattle-system rollout status deploy/rancher
+kubectl -n cattle-system get deploy rancher
+</code></pre></td></tr></table></div></div><p>如有需要，查看密码方法。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>kubectl get secret --namespace cattle-system bootstrap-secret -o go-template=&#39;{{ .data.bootstrapPassword|base64decode}}{{ &#34;\n&#34; }}&#39;
+</code></pre></td></tr></table></div></div><h1 id=安装kubeflow>安装kubeflow</h1><h2 id=安装storageclass>安装storageClass</h2><p>前提条件，在172.27.244.150先安装nfs-server ，再安装存储类nfs-cient-provisioner，在172.27.244.151上执行。</p><p>nfs-cient-provisioner文档：
+<a href=https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner>https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner</a>
+<a href=https://artifacthub.io/packages/helm/nfs-subdir-external-provisioner/nfs-subdir-external-provisioner>https://artifacthub.io/packages/helm/nfs-subdir-external-provisioner/nfs-subdir-external-provisioner</a>
+挂载选项相关文档：
+<a href=https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/s1-nfs-client-config-options>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/s1-nfs-client-config-options</a>
+<a href=https://www.man7.org/linux/man-pages/man5/nfs.5.html>https://www.man7.org/linux/man-pages/man5/nfs.5.html</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+helm repo update
+helm install nfs-client-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
+    --set nfs.server=172.27.244.150 \
+    --set nfs.path=/data_nfs \
+    --set nfs.mountOptions={&#34;nfsvers=4\,minorversion=0\,rsize=1048576\,wsize=1048576\,hard\,timeo=600\,retrans=2\,noresvport&#34;} \
+    --set storageClass.defaultClass=true
+</code></pre></td></tr></table></div></div><p>默认是拉取v4.0.2，在3台worker服务器执行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker pull strongxyz/nfs-subdir-external-provisioner:v4.0.2
+sudo docker tag strongxyz/nfs-subdir-external-provisioner:v4.0.2 registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+</code></pre></td></tr></table></div></div><h2 id=安装kustomize>安装kustomize</h2><p>在172.27.244.151上执行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>wget https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.1.0/kustomize_v5.1.0_linux_amd64.tar.gz
+tar zxf kustomize_v5.1.0_linux_amd64.tar.gz &amp;&amp; cp kustomize /usr/local/bin/
+</code></pre></td></tr></table></div></div><h2 id=下载kubeflow和镜像>下载kubeflow和镜像</h2><p>在172.27.244.151上执行。</p><h3 id=下载kubeflow>下载kubeflow</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>wget https://github.com/kubeflow/manifests/archive/refs/tags/v1.7.0.tar.gz
+tar zxf manifests-1.7.0 &amp;&amp; cd manifests-1.7.0
+</code></pre></td></tr></table></div></div><p>查看需要哪些镜像，国内环境无法访问gcr.io，从国外服务器中转镜像到hub.docker.com（需要自己注册仓库），然后再拉取镜像！</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>kustomize build example &gt; kustomize_build_example.out.txt
+awk -F&#39;: &#39; &#39;/image: gcr.io/{print $2}&#39; kustomize_build_example.out.txt | sort -u &gt; pull.image.list.txt
+</code></pre></td></tr></table></div></div><p>所需镜像列表:</p><pre><code>gcr.io/arrikto/kubeflow/oidc-authservice:e236439
+gcr.io/knative-releases/knative.dev/eventing/cmd/controller@sha256:33d78536e9b38dbb2ec2952207b48ff8e05acb48e7d28c2305bd0a0f7156198f
+gcr.io/knative-releases/knative.dev/eventing/cmd/mtping@sha256:282b5265e1ef26309b3343038c9b4f172654e06cbee46f6ddffd23ea9ad9a3be
+gcr.io/knative-releases/knative.dev/eventing/cmd/webhook@sha256:d217ab7e3452a87f8cbb3b45df65c98b18b8be39551e3e960cd49ea44bb415ba
+gcr.io/knative-releases/knative.dev/net-istio/cmd/controller@sha256:2b484d982ef1a5d6ff93c46d3e45f51c2605c2e3ed766e20247d1727eb5ce918
+gcr.io/knative-releases/knative.dev/net-istio/cmd/webhook@sha256:59b6a46d3b55a03507c76a3afe8a4ee5f1a38f1130fd3d65c9fe57fff583fa8d
+gcr.io/knative-releases/knative.dev/serving/cmd/activator@sha256:c3bbf3a96920048869dcab8e133e00f59855670b8a0bbca3d72ced2f512eb5e1
+gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler@sha256:caae5e34b4cb311ed8551f2778cfca566a77a924a59b775bd516fa8b5e3c1d7f
+gcr.io/knative-releases/knative.dev/serving/cmd/controller@sha256:38f9557f4d61ec79cc2cdbe76da8df6c6ae5f978a50a2847c22cc61aa240da95
+gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping@sha256:763d648bf1edee2b4471b0e211dbc53ba2d28f92e4dae28ccd39af7185ef2c96
+gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping-webhook@sha256:a4ba0076df2efaca2eed561339e21b3a4ca9d90167befd31de882bff69639470
+gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:505179c0c4892ea4a70e78bc52ac21b03cd7f1a763d2ecc78e7bbaa1ae59c86c
+gcr.io/knative-releases/knative.dev/serving/cmd/webhook@sha256:bc13765ba4895c0fa318a065392d05d0adc0e20415c739e0aacb3f56140bf9ae
+gcr.io/kubebuilder/kube-rbac-proxy:v0.13.1
+gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+gcr.io/ml-pipeline/api-server:2.0.0-alpha.7
+gcr.io/ml-pipeline/cache-server:2.0.0-alpha.7
+gcr.io/ml-pipeline/frontend
+gcr.io/ml-pipeline/frontend:2.0.0-alpha.7
+gcr.io/ml-pipeline/metadata-envoy:2.0.0-alpha.7
+gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.7
+gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+gcr.io/ml-pipeline/mysql:8.0.26
+gcr.io/ml-pipeline/persistenceagent:2.0.0-alpha.7
+gcr.io/ml-pipeline/scheduledworkflow:2.0.0-alpha.7
+gcr.io/ml-pipeline/viewer-crd-controller:2.0.0-alpha.7
+gcr.io/ml-pipeline/visualization-server
+gcr.io/ml-pipeline/visualization-server:2.0.0-alpha.7
+gcr.io/ml-pipeline/workflow-controller:v3.3.8-license-compliance
+gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0
+</code></pre><h3 id=下载相关镜像>下载相关镜像</h3><p>下载镜像并推送到hub.docker.com个人仓库(脚本中未放docker login，登录后再执行即可，也可以把登录放入脚本中)。
+hub.docker.com仓库需要自行注册，比如我的个人仓库https://hub.docker.com/u/strongxyz</p><p>在能访问gcr.io的服务器上执行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>a=(
+gcr.io/arrikto/kubeflow/oidc-authservice:e236439
+gcr.io/kubebuilder/kube-rbac-proxy:v0.13.1
+gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+gcr.io/ml-pipeline/api-server:2.0.0-alpha.7
+gcr.io/ml-pipeline/cache-server:2.0.0-alpha.7
+gcr.io/ml-pipeline/frontend
+gcr.io/ml-pipeline/frontend:2.0.0-alpha.7
+gcr.io/ml-pipeline/metadata-envoy:2.0.0-alpha.7
+gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.7
+gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+gcr.io/ml-pipeline/mysql:8.0.26
+gcr.io/ml-pipeline/persistenceagent:2.0.0-alpha.7
+gcr.io/ml-pipeline/scheduledworkflow:2.0.0-alpha.7
+gcr.io/ml-pipeline/viewer-crd-controller:2.0.0-alpha.7
+gcr.io/ml-pipeline/visualization-server
+gcr.io/ml-pipeline/visualization-server:2.0.0-alpha.7
+gcr.io/ml-pipeline/workflow-controller:v3.3.8-license-compliance
+gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0
+)
+b=(${a[*]//gcr.io*\//strongxyz/})
+for ((i=0; i&lt;${#a[*]}; i++)); do
+    sudo docker pull &#34;${a[i]}&#34;
+    sudo docker tag &#34;${a[i]}&#34; &#34;${b[i]}&#34;
+    sudo docker push &#34;${b[i]}&#34;
+    sudo docker rmi &#34;${b[i]}&#34;
+    sudo docker rmi &#34;${a[i]}&#34;
+done
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>a=(
+gcr.io/knative-releases/knative.dev/eventing/cmd/controller@sha256:33d78536e9b38dbb2ec2952207b48ff8e05acb48e7d28c2305bd0a0f7156198f
+gcr.io/knative-releases/knative.dev/eventing/cmd/mtping@sha256:282b5265e1ef26309b3343038c9b4f172654e06cbee46f6ddffd23ea9ad9a3be
+gcr.io/knative-releases/knative.dev/eventing/cmd/webhook@sha256:d217ab7e3452a87f8cbb3b45df65c98b18b8be39551e3e960cd49ea44bb415ba
+gcr.io/knative-releases/knative.dev/net-istio/cmd/controller@sha256:2b484d982ef1a5d6ff93c46d3e45f51c2605c2e3ed766e20247d1727eb5ce918
+gcr.io/knative-releases/knative.dev/net-istio/cmd/webhook@sha256:59b6a46d3b55a03507c76a3afe8a4ee5f1a38f1130fd3d65c9fe57fff583fa8d
+gcr.io/knative-releases/knative.dev/serving/cmd/activator@sha256:c3bbf3a96920048869dcab8e133e00f59855670b8a0bbca3d72ced2f512eb5e1
+gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler@sha256:caae5e34b4cb311ed8551f2778cfca566a77a924a59b775bd516fa8b5e3c1d7f
+gcr.io/knative-releases/knative.dev/serving/cmd/controller@sha256:38f9557f4d61ec79cc2cdbe76da8df6c6ae5f978a50a2847c22cc61aa240da95
+gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping@sha256:763d648bf1edee2b4471b0e211dbc53ba2d28f92e4dae28ccd39af7185ef2c96
+gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping-webhook@sha256:a4ba0076df2efaca2eed561339e21b3a4ca9d90167befd31de882bff69639470
+gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:505179c0c4892ea4a70e78bc52ac21b03cd7f1a763d2ecc78e7bbaa1ae59c86c
+gcr.io/knative-releases/knative.dev/serving/cmd/webhook@sha256:bc13765ba4895c0fa318a065392d05d0adc0e20415c739e0aacb3f56140bf9ae
+)
+b=(
+strongxyz/eventing_cmd_controller:sha256
+strongxyz/eventing_cmd_mtping:sha256
+strongxyz/eventing_cmd_webhook:sha256
+strongxyz/net-istio_cmd_controller:sha256
+strongxyz/net-istio_cmd_webhook:sha256
+strongxyz/serving_cmd_activator:sha256
+strongxyz/serving_cmd_autoscaler:sha256
+strongxyz/serving_cmd_controller:sha256
+strongxyz/serving_cmd_domain-mapping:sha256
+strongxyz/serving_cmd_domain-mapping-webhook:sha256
+strongxyz/serving_cmd_queue:sha256
+strongxyz/serving_cmd_webhook:sha256
+)
+for ((i=0; i&lt;${#a[*]}; i++)); do
+    sudo docker pull &#34;${a[i]}&#34;
+    sudo docker tag &#34;${a[i]}&#34; &#34;${b[i]}&#34;
+    sudo docker push &#34;${b[i]}&#34;
+    sudo docker rmi &#34;${b[i]}&#34;
+    sudo docker rmi &#34;${a[i]}&#34;
+done
+</code></pre></td></tr></table></div></div><p>在172.27.244.154-156等3台worker机器执行，拉取镜像，重新打tag。如果master也是worker节点，master也需要拉取镜像。
+拉取镜像不需要登录。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>a=(
+gcr.io/arrikto/kubeflow/oidc-authservice:e236439
+gcr.io/kubebuilder/kube-rbac-proxy:v0.13.1
+gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+gcr.io/ml-pipeline/api-server:2.0.0-alpha.7
+gcr.io/ml-pipeline/cache-server:2.0.0-alpha.7
+gcr.io/ml-pipeline/frontend
+gcr.io/ml-pipeline/frontend:2.0.0-alpha.7
+gcr.io/ml-pipeline/metadata-envoy:2.0.0-alpha.7
+gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.7
+gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+gcr.io/ml-pipeline/mysql:8.0.26
+gcr.io/ml-pipeline/persistenceagent:2.0.0-alpha.7
+gcr.io/ml-pipeline/scheduledworkflow:2.0.0-alpha.7
+gcr.io/ml-pipeline/viewer-crd-controller:2.0.0-alpha.7
+gcr.io/ml-pipeline/visualization-server
+gcr.io/ml-pipeline/visualization-server:2.0.0-alpha.7
+gcr.io/ml-pipeline/workflow-controller:v3.3.8-license-compliance
+gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0
+)
+b=(${a[*]//gcr.io*\//strongxyz/})
+for ((i=0; i&lt;${#a[*]}; i++)); do
+    sudo docker pull &#34;${b[i]}&#34;
+    sudo docker tag &#34;${b[i]}&#34; &#34;${a[i]}&#34;
+    sudo docker rmi &#34;${b[i]}&#34;
+done
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>a=(
+gcr.io/knative-releases/knative.dev/eventing/cmd/controller:sha256
+gcr.io/knative-releases/knative.dev/eventing/cmd/mtping:sha256
+gcr.io/knative-releases/knative.dev/eventing/cmd/webhook:sha256
+gcr.io/knative-releases/knative.dev/net-istio/cmd/controller:sha256
+gcr.io/knative-releases/knative.dev/net-istio/cmd/webhook:sha256
+gcr.io/knative-releases/knative.dev/serving/cmd/activator:sha256
+gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler:sha256
+gcr.io/knative-releases/knative.dev/serving/cmd/controller:sha256
+gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping:sha256
+gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping-webhook:sha256
+gcr.io/knative-releases/knative.dev/serving/cmd/queue:sha256
+gcr.io/knative-releases/knative.dev/serving/cmd/webhook:sha256
+)
+b=(
+strongxyz/eventing_cmd_controller:sha256
+strongxyz/eventing_cmd_mtping:sha256
+strongxyz/eventing_cmd_webhook:sha256
+strongxyz/net-istio_cmd_controller:sha256
+strongxyz/net-istio_cmd_webhook:sha256
+strongxyz/serving_cmd_activator:sha256
+strongxyz/serving_cmd_autoscaler:sha256
+strongxyz/serving_cmd_controller:sha256
+strongxyz/serving_cmd_domain-mapping:sha256
+strongxyz/serving_cmd_domain-mapping-webhook:sha256
+strongxyz/serving_cmd_queue:sha256
+strongxyz/serving_cmd_webhook:sha256
+)
+for ((i=0; i&lt;${#a[*]}; i++)); do
+    sudo docker pull &#34;${b[i]}&#34;
+    sudo docker tag &#34;${b[i]}&#34; &#34;${a[i]}&#34;
+    sudo docker rmi &#34;${b[i]}&#34;
+done
+</code></pre></td></tr></table></div></div><p>vi example/kustomization.yaml，最后添加以下内容。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>images:
+  - name: gcr.io/knative-releases/knative.dev/eventing/cmd/controller@sha256:33d78536e9b38dbb2ec2952207b48ff8e05acb48e7d28c2305bd0a0f7156198f
+    newName: gcr.io/knative-releases/knative.dev/eventing/cmd/controller
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/eventing/cmd/mtping@sha256:282b5265e1ef26309b3343038c9b4f172654e06cbee46f6ddffd23ea9ad9a3be
+    newName: gcr.io/knative-releases/knative.dev/eventing/cmd/mtping
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/eventing/cmd/webhook@sha256:d217ab7e3452a87f8cbb3b45df65c98b18b8be39551e3e960cd49ea44bb415ba
+    newName: gcr.io/knative-releases/knative.dev/eventing/cmd/webhook
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/net-istio/cmd/controller@sha256:2b484d982ef1a5d6ff93c46d3e45f51c2605c2e3ed766e20247d1727eb5ce918
+    newName: gcr.io/knative-releases/knative.dev/net-istio/cmd/controller
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/net-istio/cmd/webhook@sha256:59b6a46d3b55a03507c76a3afe8a4ee5f1a38f1130fd3d65c9fe57fff583fa8d
+    newName: gcr.io/knative-releases/knative.dev/net-istio/cmd/webhook
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/serving/cmd/activator@sha256:c3bbf3a96920048869dcab8e133e00f59855670b8a0bbca3d72ced2f512eb5e1
+    newName: gcr.io/knative-releases/knative.dev/serving/cmd/activator
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler@sha256:caae5e34b4cb311ed8551f2778cfca566a77a924a59b775bd516fa8b5e3c1d7f
+    newName: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/serving/cmd/controller@sha256:38f9557f4d61ec79cc2cdbe76da8df6c6ae5f978a50a2847c22cc61aa240da95
+    newName: gcr.io/knative-releases/knative.dev/serving/cmd/controller
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping@sha256:763d648bf1edee2b4471b0e211dbc53ba2d28f92e4dae28ccd39af7185ef2c96
+    newName: gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping-webhook@sha256:a4ba0076df2efaca2eed561339e21b3a4ca9d90167befd31de882bff69639470
+    newName: gcr.io/knative-releases/knative.dev/serving/cmd/domain-mapping-webhook
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:505179c0c4892ea4a70e78bc52ac21b03cd7f1a763d2ecc78e7bbaa1ae59c86c
+    newName: gcr.io/knative-releases/knative.dev/serving/cmd/queue
+    newTag: &#34;sha256&#34;
+  - name: gcr.io/knative-releases/knative.dev/serving/cmd/webhook@sha256:bc13765ba4895c0fa318a065392d05d0adc0e20415c739e0aacb3f56140bf9ae
+    newName: gcr.io/knative-releases/knative.dev/serving/cmd/webhook
+    newTag: &#34;sha256&#34;
+</code></pre></td></tr></table></div></div><h2 id=修改kubeflow默认密码>修改kubeflow默认密码</h2><p>随便找台有python3的机器执行都可以，这里在172.27.244.151上执行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt install python3-pip
+sudo pip3 install passlib
+python3 -c &#39;from passlib.hash import bcrypt; import getpass; print(bcrypt.using(rounds=12, ident=&#34;2y&#34;).hash(getpass.getpass()))&#39;
+</code></pre></td></tr></table></div></div><p>以上为交互式命令，输入密码，返回hash值。
+123456
+$2y$12$cDyyBfNqBDpQ9kkRoJYSI.xWggu2r9iHj1234GuTFddJkaWZu3a33</p><p>vi common/dex/base/config-map.yaml，修改对应内容。</p><h2 id=一键安装kubeflow>一键安装kubeflow</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>while ! kustomize build example | awk &#39;!/well-defined/&#39; | kubectl apply -f -; do echo &#34;Retrying to apply resources&#34;; sleep 10; done
+</code></pre></td></tr></table></div></div><h2 id=安装完成后>安装完成后</h2><h3 id=问题1>问题1</h3><p>pod报错：
+error: resource mapping not found for name: &ldquo;webhook&rdquo; namespace: &ldquo;knative-serving&rdquo; from &ldquo;STDIN&rdquo;: no matches for kind &ldquo;HorizontalPodAutoscaler&rdquo; in version &ldquo;autoscaling/v2beta2&rdquo;</p><p>原因：
+<a href=https://kubernetes.io/docs/reference/using-api/deprecation-guide/#horizontalpodautoscaler-v125>https://kubernetes.io/docs/reference/using-api/deprecation-guide/#horizontalpodautoscaler-v125</a>
+<a href=https://www.kubeflow.org/docs/releases/kubeflow-1.7/#dependency-versions-manifests>https://www.kubeflow.org/docs/releases/kubeflow-1.7/#dependency-versions-manifests</a></p><p>解决办法：
+修改common/knative/knative-serving/base/upstream/serving-core.yaml对应的镜像autoscaling/v2</p><h3 id=问题2>问题2</h3><p>有些镜像拉取策略需要修改成IfNotPresent，如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>common/oidc-authservice/base/statefulset.yaml
+apps/pipeline/upstream/base/pipeline/ml-pipeline-viewer-crd-deployment.yaml
+apps/pipeline/upstream/base/cache/cache-deployment.yaml
+</code></pre></td></tr></table></div></div><h3 id=问题3>问题3</h3><p>有些只有一个副本，避免下次运行在另一台worker机器又去拉取镜像，3台worker都拉取以下镜像。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker pull kubeflowkatib/katib-db-manager:v0.15.0
+sudo docker pull mysql:8.0.29
+sudo docker pull python:3.7
+</code></pre></td></tr></table></div></div><h3 id=问题4>问题4</h3><p>mysql的pod报错 chown: changing ownership of &lsquo;/var/lib/mysql/': Operation not permitted</p><p>解决：
+修改nfs-server，把all_squash改成no_root_squash
+sudo vi /etc/exports
+sudo exportfs -a</p><p>安装nfs-server时就用no_root_squash，避免此问题产生。</p><h1 id=安装keepalived>安装keepalived</h1><p>找两台机器安装keepalived，这里选在172.27.244.152-153上安装。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt -y install nginx keepalived
+</code></pre></td></tr></table></div></div><p>nginx配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo rm /etc/nginx/sites-enabled/default
+sudo cp /etc/nginx/nginx.conf{,.bak}
+sudo vi /etc/nginx/nginx.conf
+</code></pre></td></tr></table></div></div><p>配置参考：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>stream {
+        upstream k8s-80 {
+            least_conn;
+            server 172.27.244.154:80 max_fails=3 fail_timeout=5s;
+            server 172.27.244.155:80 max_fails=3 fail_timeout=5s;
+            server 172.27.244.156:80 max_fails=3 fail_timeout=5s;
+        }
+        upstream k8s-443 {
+            least_conn;
+            server 172.27.244.154:443 max_fails=3 fail_timeout=5s;
+            server 172.27.244.155:443 max_fails=3 fail_timeout=5s;
+            server 172.27.244.156:443 max_fails=3 fail_timeout=5s;
+        }
+        server {
+            listen 80;
+            proxy_pass k8s-80;
+        }
+        server {
+            listen 443;
+            proxy_pass k8s-443;
+        }
+}
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo nginx -t
+sudo nginx -s reload
+</code></pre></td></tr></table></div></div><p>keepalived配置：
+<a href=https://manpages.debian.org/unstable/keepalived/keepalived.conf.5.en.html>https://manpages.debian.org/unstable/keepalived/keepalived.conf.5.en.html</a>
+<a href=https://manpages.ubuntu.com/manpages/focal/man5/keepalived.conf.5.html>https://manpages.ubuntu.com/manpages/focal/man5/keepalived.conf.5.html</a>
+<a href=https://keepalived.readthedocs.io/en/latest/configuration_synopsis.html#global-definitions-synopsis>https://keepalived.readthedocs.io/en/latest/configuration_synopsis.html#global-definitions-synopsis</a>
+<a href=https://github.com/acassen/keepalived/tree/master/doc/samples>https://github.com/acassen/keepalived/tree/master/doc/samples</a>
+/usr/share/doc/keepalived/samples/keepalived.conf.vrrp.localcheck
+/usr/share/doc/keepalived/samples/keepalived.conf.vrrp</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo vi /etc/keepalived/keepalived.conf
+</code></pre></td></tr></table></div></div><p>配置参考，两台机器IP对换一下即可。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>global_defs {
+   script_user root
+   enable_script_security
+}
+
+vrrp_script chk_nginx {
+    script &#34;killall -0 nginx&#34;
+    interval 2
+    weight 2
+}
+
+vrrp_instance VI_1 {
+    state MASTER
+    interface ens18
+    garp_master_delay 10  #default
+    #smtp_alert  #是否发送邮件
+    virtual_router_id 55
+    priority 100  #实例优先级
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 00002023
+    }
+    unicast_src_ip 172.27.244.152
+    unicast_peer {  #单播
+        172.27.244.153
+    }
+    virtual_ipaddress {
+        172.27.244.160
+    }
+    track_script {
+       chk_nginx
+    }
+}
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo systemctl restart keepalived
+</code></pre></td></tr></table></div></div><p>域名解析：
+172.27.244.160 rancher.ai.example.com
+172.27.244.160 kubeflow.ai.example.com</p><h1 id=安装nfs-server>安装nfs server</h1><p>在172.27.244.150执行。</p><p>安装。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt -y install nfs-kernel-server
+sudo mkdir /data_nfs
+sudo chown 1000.1000 /data_nfs
+echo &#39;/data_nfs 172.27.244.0/24(rw,sync,no_subtree_check,insecure,no_root_squash,anonuid=1000,anongid=1000)&#39; | sudo tee -a /etc/exports
+sudo exportfs -a
+</code></pre></td></tr></table></div></div><p>检查nfs状态。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>systemctl status nfs-server
+sudo rpcinfo -p | grep nfs
+cat /var/lib/nfs/etab
+sudo exportfs
+</code></pre></td></tr></table></div></div><h1 id=安装harbor>安装harbor</h1><p>在172.27.244.150执行。</p><h2 id=安装docker-1>安装docker</h2><p>版本换成5:23.0.6-1~ubuntu.20.04~focal，也可以不带版本号安装最新版本，其它略。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>#查看可安装版本
+apt-cache madison docker-ce
+
+VERSION_STRING=5:23.0.6-1~ubuntu.20.04~focal
+sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
+</code></pre></td></tr></table></div></div><h2 id=安装docker-compose>安装docker-compose</h2><p>版本号v2.20.1需要自行确认，可以安装当前最新版本。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo curl -L https://github.com/docker/compose/releases/download/v2.20.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre></td></tr></table></div></div><h2 id=自签证书>自签证书</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl genrsa -out ca.key 4096
+openssl req -x509 -new -nodes -sha512 -days 3650 -subj &#34;/O=Sunwoda-evb/CN=Sunwoda-evb Certs H1&#34; -key ca.key -out ca.crt
+openssl genrsa -out ai.example.com.key 4096
+openssl req -sha512 -new -subj &#34;/C=CN/ST=Guangdong/L=Shenzhen/O=sunwoda-evb/OU=IT/CN=ai.example.com&#34; -key ai.example.com.key -out ai.example.com.csr
+
+tee v3.ext &lt;&lt;- EOF
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1=*.ai.example.com
+EOF
+
+openssl x509 -req -sha512 -days 3650 -extfile v3.ext -CA ca.crt -CAkey ca.key -CAcreateserial -in ai.example.com.csr -out ai.example.com.crt
+</code></pre></td></tr></table></div></div><h2 id=开始安装harbor>开始安装harbor</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>wget https://github.com/goharbor/harbor/releases/download/v2.8.2/harbor-offline-installer-v2.8.2.tgz
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo mkdir -p /data/harbor/cert
+sudo cp ai.example.com.key ai.example.com.crt /data/harbor/cert
+openssl x509 -inform PEM -in ai.example.com.crt -out ai.example.com.cert
+sudo mkdir -p /etc/docker/certs.d/harbor.ai.example.com
+sudo cp {ca.crt,ai.example.com.key,ai.example.com.cert} /etc/docker/certs.d/harbor.ai.example.com
+sudo systemctl restart docker
+</code></pre></td></tr></table></div></div><p>修改harbor.yml，配置示例：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>hostname: harbor.ai.example.com
+http:
+  port: 8083
+https:
+  port: 8443
+  certificate: /data/harbor/cert/ai.example.com.crt
+  private_key: /data/harbor/cert/ai.example.com.key
+external_url: https://harbor.ai.example.com
+harbor_admin_password: hb..1213
+database:
+  password: root123
+  max_idle_conns: 100
+  max_open_conns: 900
+  conn_max_lifetime: 5m
+  conn_max_idle_time: 0
+data_volume: /data/harbor
+</code></pre></td></tr></table></div></div><p>开始安装。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo ./install.sh --with-trivy
+sudo docker-compose up -d
+</code></pre></td></tr></table></div></div><p>变更harbor.yml后重新配置。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo ./prepare --with-trivy
+sudo docker-compose down -v
+sudo docker-compose up -d
+</code></pre></td></tr></table></div></div><h2 id=安装nginx>安装nginx</h2><p>配置示例：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>server {
+    listen                  443 ssl http2;
+    server_name             harbor.ai.example.com;
+
+    # SSL
+    ssl_certificate         /etc/nginx/ssl/ai.example.com.crt;
+    ssl_certificate_key     /etc/nginx/ssl/ai.example.com.key;
+
+    location / {
+        proxy_pass                         https://127.0.0.1:8443;
+        proxy_http_version                 1.1;
+
+        # Proxy headers
+        proxy_set_header Host              $host;
+        proxy_set_header X-Real-IP         $remote_addr;
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host  $host;
+        proxy_set_header X-Forwarded-Port  $server_port;
+
+        # Proxy timeouts
+        proxy_connect_timeout              3600s;
+        proxy_send_timeout                 3600s;
+        proxy_read_timeout                 3600s;
+    }
+}
+
+server {
+    listen      80;
+    listen      [::]:80;
+    server_name harbor.ai.example.com;
+
+    location / {
+        return 301 https://harbor.ai.example.com$request_uri;
+    }
+}
+</code></pre></td></tr></table></div></div><h2 id=信任自签ca证书>信任自签CA证书</h2><p>在worker节点执行，从harbor.ai.example.com拉取镜像的节点都需要信任自签证书。
+自签的CA证书可以用nginx公布出来，方便下载使用，终端传文件挺麻烦的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo mkdir -p /etc/docker/certs.d/harbor.ai.example.com
+sudo wget http://downloads.ai.example.com/download/ssl/ca.H1.crt -O /etc/docker/certs.d/harbor.ai.example.com/ca.H1.crt
+#或者没解析域名的话
+sudo wget http://172.27.244.150/download/ssl/ca.H1.crt -O /etc/docker/certs.d/harbor.ai.example.com/ca.H1.crt
+</code></pre></td></tr></table></div></div><p>nginx配置示例：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>server {
+    listen      80;
+    listen                  443 ssl http2;
+    server_name             downloads.ai.example.com;
+    root                    /srv/www/downloads.ai.example.com;
+
+    # SSL
+    ssl_certificate         /etc/nginx/ssl/ai.example.com.crt;
+    ssl_certificate_key     /etc/nginx/ssl/ai.example.com.key;
+
+    location /download/ {
+        autoindex on;
+        autoindex_exact_size off;
+        autoindex_localtime on;
+
+        location ~* .(yml|yaml|conf|cnf)$ {
+            add_header Content-Type &#39;text/plain; charset=utf-8&#39;;
+        }
+    }
+
+    location / {
+        location ~* {
+            add_header Content-Type &#39;text/plain; charset=utf-8&#39;;
+        }
+    }
+}
+</code></pre></td></tr></table></div></div><p>域名解析：
+172.27.244.150 harbor.ai.example.com
+172.27.244.150 downloads.ai.example.com</p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2023-07-24</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/kubeflow/>kubeflow</a></div><nav class=post-nav><a class=next href=/post/vcpkgstaticlink/><span class="next-text nav-default">vcpkg静态链接libcurl</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=onegit20/utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:info@yanyong.cc class="iconfont icon-email" title=email></a><a href=https://stackoverflow.com/users/16859626/yanyong class="iconfont icon-stack-overflow" title=stack-overflow></a><a href=https://github.com/onegit20 class="iconfont icon-github" title=github></a><a href=https://yanyong.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><div class=busuanzi-footer><span id=busuanzi_container_site_pv>site pv: <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span></span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv>site uv: <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span></span></div><span class=copyright-year>&copy;
+<span class=heart></span><span>info@yanyong.cc</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://testingcf.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script id=baidu_push>(function(){var a,c,b;if(window.location.hostname==='localhost')return;a=document.createElement('script'),a.async=!0,c=window.location.protocol.split(':')[0],c==='https'?a.src='https://zz.bdstatic.com/linksubmit/push.js':a.src='http://push.zhanzhang.baidu.com/push.js',b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></body></html>
