@@ -371,7 +371,7 @@ set_zabbixAgent<span class=o>()</span> <span class=o>{</span>
 </span><span class=s>PIDFile=/tmp/zabbix_agentd.pid
 </span><span class=s>KillMode=control-group
 </span><span class=s>ExecStart=/usr/local/zabbix/sbin/zabbix_agentd -c /usr/local/zabbix/conf/zabbix_agentd.conf
-</span><span class=s>ExecStop=/bin/sh -c &#39;[ -n \&#34;\$1\&#34; ] &amp;&amp; kill -s TERM \&#34;\$1\&#34;&#39; -- \&#34;\$MAINPID\&#34;
+</span><span class=s>ExecStop=/bin/sh -c &#39;[ -n &#34;\$1&#34; ] &amp;&amp; kill -s TERM &#34;\$1&#34;&#39; -- &#34;\$MAINPID&#34;
 </span><span class=s>RestartSec=10s
 </span><span class=s>User=zabbix
 </span><span class=s>Group=zabbix
