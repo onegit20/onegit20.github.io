@@ -730,7 +730,7 @@ vrrp_instance VI_1 {
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo apt -y install nfs-kernel-server
 sudo mkdir /data_nfs
 sudo chown 1000.1000 /data_nfs
-echo &#39;/data_nfs 172.27.244.0/24(rw,sync,insecure,no_root_squash,no_all_squash,anonuid=1000,anongid=1000)&#39; | sudo tee -a /etc/exports
+echo &#39;/data_nfs 172.27.244.0/24(rw,sync,insecure,no_subtree_check,no_root_squash,no_all_squash,anonuid=1000,anongid=1000)&#39; | sudo tee -a /etc/exports
 sudo exportfs -a
 </code></pre></td></tr></table></div></div><p>检查nfs状态。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
