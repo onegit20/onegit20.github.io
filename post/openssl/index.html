@@ -15,7 +15,7 @@ ssl_certificate_key /path/domain.key;
 </code></pre></li></ul><h1 id=ca签名>CA签名</h1><ul><li><p>生成证书签发机构证书</p><ul><li><p>生成CA证书私钥</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl genrsa -out ca.key 4096
 </code></pre></td></tr></table></div></div></li><li><p>生成CA证书</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl req -x509 -new -nodes -sha512 -days 3650 -subj &#34;/O=MegaCombine/CN=MegaCombine Certs C1&#34; -key ca.key -out ca.crt
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl req -x509 -new -nodes -sha512 -days 3650 -subj &#34;/O=MKL/CN=MKL Certs C1&#34; -key ca.key -out ca.crt
 </code></pre></td></tr></table></div></div></li></ul></li><li><p>生成服务器证书</p><ul><li>生成私钥<div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl genrsa -out mkl.io.key 4096
 </code></pre></td></tr></table></div></div></li><li>生成证书签名请求(CSR)<div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
