@@ -168,7 +168,7 @@ RUN git config --global url.&quot;https://&quot;.insteadOf git:// \
   &amp;&amp; yarn &amp;&amp; yarn build:prod
 
 FROM nginx:alpine
-MAINTAINER megacombine
+MAINTAINER yanyong
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
   &amp;&amp; echo 'Asia/Shanghai' &gt; /etc/timezone
 COPY --from=nodebuilder /Node/dist/ /usr/share/nginx/html/
