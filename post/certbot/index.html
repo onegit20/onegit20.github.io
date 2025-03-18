@@ -40,10 +40,10 @@ sudo yum -y install nginx nginx-mod-stream  # 可选
   --preferred-challenges=dns \
   --manual-public-ip-logging-ok \
   --manual-auth-hook \
-    &#39;curl -sS -X POST &#34;https://api.cloudflare.com/client/v4/zones/2109e1497fb164ac32a8a56f493jd767/dns_records&#34; -H &#34;X-Auth-Email: info@yanyong.cc&#34; -H &#34;X-Auth-Key: b16b2371170e9i9t7aed5df44a69f3k0fd947&#34; -H &#34;Content-Type: application/json&#34; -d {\&#34;type\&#34;:\&#34;TXT\&#34;,\&#34;name\&#34;:\&#34;_acme-challenge.yanyong.cc\&#34;,\&#34;content\&#34;:\&#34;$CERTBOT_VALIDATION\&#34;,\&#34;ttl\&#34;:1,\&#34;proxied\&#34;:false} &amp;&amp; sleep 30&#39; \
+    &#39;curl -sS -X POST &#34;https://api.cloudflare.com/client/v4/zones/2109e1497fb164ac32a8a56f493jd767/dns_records&#34; -H &#34;X-Auth-Email: info@yanyong.cc&#34; -H &#34;X-Auth-Key: b16b2371170e9i9t7aed5df44a69f3k0fd947&#34; -H &#34;Content-Type: application/json&#34; -d {\&#34;type\&#34;:\&#34;TXT\&#34;,\&#34;name\&#34;:\&#34;_acme-challenge.yanyong.cc\&#34;,\&#34;content\&#34;:\&#34;$CERTBOT_VALIDATION\&#34;,\&#34;ttl\&#34;:60,\&#34;proxied\&#34;:false} &amp;&amp; sleep 30&#39; \
   --manual-cleanup-hook \
-    &#39;sleep 30 &amp;&amp; id=`curl -sS -X GET &#34;https://api.cloudflare.com/client/v4/zones/2109e1497fb164ac32a8a56f493jd767/dns_records?name=_acme-challenge.yanyong.cc&#34; -H &#34;X-Auth-Email: info@yanyong.cc&#34; -H &#34;X-Auth-Key: b16b2371170e9i9t7aed5df44a69f3k0fd947&#34; -H &#34;Content-Type: application/json&#34; | \
-    grep -oP &#34;(?&lt;=result\&#34;:\[\{\&#34;id\&#34;:\&#34;)\w+&#34;` \
+    &#39;sleep 30 &amp;&amp; id=`curl -sS -X GET &#34;https://api.cloudflare.com/client/v4/zones/2109e1497fb164ac32a8a56f493jd767/dns_records?name=_acme-challenge.yanyong.cc&#34; -H &#34;X-Auth-Email: info@yanyong.cc&#34; -H &#34;X-Auth-Key: b16b2371170e9i9t7aed5df44a69f3k0fd947&#34; -H &#34;Content-Type: application/json&#34; \
+    | grep -oP &#34;(?&lt;=result\&#34;:\[\{\&#34;id\&#34;:\&#34;)\w+&#34;` \
     &amp;&amp; curl -sS -X DELETE &#34;https://api.cloudflare.com/client/v4/zones/2109e1497fb164ac32a8a56f493jd767/dns_records/$id&#34; -H &#34;X-Auth-Email: info@yanyong.cc&#34; -H &#34;X-Auth-Key: b16b2371170e9i9t7aed5df44a69f3k0fd947&#34; -H &#34;Content-Type: application/json&#34;&#39; \
   --deploy-hook &#39;systemctl reload nginx&#39;
 </code></pre></td></tr></table></div></div><h3 id=dnspod腾讯云>DNSPod/腾讯云</h3><p>ID: 168457</p><p>Token: b472bfa84ac4e861c926crb0926c9d77</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
