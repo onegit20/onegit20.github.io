@@ -14,7 +14,7 @@ sudo docker exec gitlab gitlab-ctl stop sidekiq
 sudo docker exec gitlab gitlab-ctl status
 
 sudo docker exec gitlab gitlab-backup create
-</code></pre></td></tr></table></div></div><ul><li><p>会在容器内下面位置生成备份文件，拷贝到新的gitlab服务器</p><pre><code> /var/opt/gitlab/backups/1625145187_2021_07_01_13.3.5_gitlab_backup.tar
+</code></pre></td></tr></table></div></div><ul><li><p>会在容器内下面位置生成备份文件，拷贝到新的gitlab服务器</p><pre><code>  /var/opt/gitlab/backups/1625145187_2021_07_01_13.3.5_gitlab_backup.tar
 </code></pre></li><li><p>配置文件，拷贝到新的gitlab服务器 <a href=https://docs.gitlab.com/ee/raketasks/backup_restore.html#storing-configuration-files>官方链接</a></p><pre><code>  /etc/gitlab/gitlab-secrets.json
   /etc/gitlab/gitlab.rb  # 可选
 </code></pre></li></ul><h1 id=还原>还原</h1><p><a href=https://docs.gitlab.com/ee/update/#upgrade-paths>官方跨版本升级</a></p><p>13.3.5 &ndash;> 13.12.5 &ndash;> 14.0.1</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
