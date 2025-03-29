@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: megaordermiddleware-basic-gateway
-        image: harbor.mkl.io/oms/megaordermiddleware-basic-gateway:1.0-$BUILD_NUMBER
+        image: harbor.example.com/oms/megaordermiddleware-basic-gateway:1.0-$BUILD_NUMBER
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7777
@@ -49,10 +49,10 @@ spec:
   cloud:
     nacos:
       discovery:
-        server-addr: nacos.mkl.io
+        server-addr: nacos.example.com
         namespace: yanyong
       config:
-        server-addr: nacos.mkl.io
+        server-addr: nacos.example.com
         file-extension: yml
         namespace: yanyong
 </code></pre><p>jenkins, maven打包</p><pre><code>clean package -pl megaordermiddleware-basic/megaordermiddleware-basic-gateway -am -Dmaven.test.skip=true
@@ -103,7 +103,7 @@ spec:
 </span><span class=cp></span><span class=nb>set</span> -ex
 
 
-<span class=nv>_image</span><span class=o>=</span><span class=s2>&#34;harbor.mkl.io/oms/megaordermiddleware-basic-gateway:1.0-</span><span class=nv>$BUILD_NUMBER</span><span class=s2>&#34;</span>
+<span class=nv>_image</span><span class=o>=</span><span class=s2>&#34;harbor.example.com/oms/megaordermiddleware-basic-gateway:1.0-</span><span class=nv>$BUILD_NUMBER</span><span class=s2>&#34;</span>
 <span class=nv>_image_latest</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>_image</span><span class=p>%-*</span><span class=si>}</span><span class=s2>&#34;</span>-latest
 <span class=nv>_workspace</span><span class=o>=</span><span class=s2>&#34;megaordermiddleware-basic/megaordermiddleware-basic-gateway&#34;</span>  <span class=c1>#默认当前目录</span>
 <span class=nv>_dockerfile</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>_workspace</span><span class=si>}</span><span class=s2>/Dockerfile-test&#34;</span>
@@ -191,7 +191,7 @@ spec:
     spec:
       containers:
       - name: megaordermiddleware-management-ui-vue
-        image: harbor.mkl.io/oms/megaordermiddleware-management-ui-vue:1.0-$BUILD_NUMBER
+        image: harbor.example.com/oms/megaordermiddleware-management-ui-vue:1.0-$BUILD_NUMBER
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -258,7 +258,7 @@ spec:
 </span><span class=cp></span><span class=nb>set</span> -ex
 
 
-<span class=nv>_image</span><span class=o>=</span><span class=s2>&#34;harbor.mkl.io/oms/megaordermiddleware-management-ui-vue:1.0-</span><span class=nv>$BUILD_NUMBER</span><span class=s2>&#34;</span>
+<span class=nv>_image</span><span class=o>=</span><span class=s2>&#34;harbor.example.com/oms/megaordermiddleware-management-ui-vue:1.0-</span><span class=nv>$BUILD_NUMBER</span><span class=s2>&#34;</span>
 <span class=nv>_image_latest</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>_image</span><span class=p>%-*</span><span class=si>}</span><span class=s2>&#34;</span>-latest
 <span class=nv>_dockerfile</span><span class=o>=</span>Dockerfile-test
 <span class=nv>_workspace</span><span class=o>=</span><span class=s2>&#34;&#34;</span>  <span class=c1>#默认当前目录</span>
