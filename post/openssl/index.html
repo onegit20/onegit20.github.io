@@ -10,15 +10,15 @@
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>ssl_certificate     /path/domain.crt;
 ssl_certificate_key /path/domain.key;
-</code></pre></td></tr></table></div></div><h1 id=ca签名>CA签名</h1><ul><li><p>生成证书签发机构证书</p><ul><li><p>生成CA证书私钥</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h1 id=ca签名>CA签名</h1><ul><li>生成证书签发机构证书</li></ul><ol><li>生成CA证书私钥</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl genrsa -out ca.key 4096
-</code></pre></td></tr></table></div></div></li><li><p>生成CA证书</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><ol start=2><li>生成CA证书</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl req -x509 -new -nodes -sha512 -days 3650 -subj &#34;/O=Example/CN=Example Certs C1&#34; -key ca.key -out ca.crt
-</code></pre></td></tr></table></div></div></li></ul></li><li><p>生成服务器证书</p><ul><li><p>生成私钥</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><ul><li>生成服务器证书</li></ul><ol><li>生成私钥</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl genrsa -out example.com.key 4096
-</code></pre></td></tr></table></div></div></li><li><p>生成证书签名请求(CSR)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><ol start=2><li>生成证书签名请求(CSR)</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl req -sha512 -new -subj &#34;/C=CN/ST=Guangdong/L=Shenzhen/O=Example/OU=IT/CN=example.com&#34; -key example.com.key -out example.com.csr
-</code></pre></td></tr></table></div></div></li><li><p>生成x509 v3 扩展文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><ol start=3><li>生成x509 v3 扩展文件</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -40,9 +40,9 @@ subjectAltName = @alt_names
 DNS.1=www.example.com
 DNS.2=*.example.com
 EOF
-</code></pre></td></tr></table></div></div></li><li><p>生成证书</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><ol start=4><li>生成证书</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl x509 -req -sha512 -days 3650 -extfile v3.ext -CA ca.crt -CAkey ca.key -CAcreateserial -in example.com.csr -out example.com.crt
-</code></pre></td></tr></table></div></div></li></ul></li><li><p>查看证书</p></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><ul><li>查看证书</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>openssl x509 -in example.com.crt -noout -text
 </code></pre></td></tr></table></div></div><ul><li>nginx配置参考</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
