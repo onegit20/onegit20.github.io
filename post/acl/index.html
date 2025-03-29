@@ -10,11 +10,11 @@
 
 # or
 sudo chown :www-data /srv/www/www.example.com
-</code></pre></td></tr></table></div></div><p>文件设置SGID位，文件会以文件所属的组的权限运行，而不是以执行者的组权限运行</p><p>目录设置SGID位，在该目录中创建的文件或子目录会自动继承该目录的组，而不是继承创建者的组，子目录也会继承SGID位，子文件不会继承SGID</p><p>组添加写权限(w)，让www-data用户组有写权限，所以用户user01对/srv/www/www.example.com有写权限</p><p>组添加SGID位(s)，所以/srv/www/www.example.com下创建的子目录或文件的属主组都属于www-data组</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>文件设置SGID位，文件会以文件所属的组的权限运行，而不是以执行者的组权限运行</p><p>目录设置SGID位，在该目录中创建的文件或子目录会自动继承该目录的组，而不是继承创建者的组，子目录也会继承SGID位，子文件不会继承SGID</p><p>组添加写权限(w)，让www-data用户组有写权限，所以用户user01对<code>/srv/www/www.example.com</code>有写权限</p><p>组添加SGID位(s)，所以<code>/srv/www/www.example.com</code>下创建的子目录或文件的属主组都属于www-data组</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo chmod g+ws /srv/www/www.example.com
-</code></pre></td></tr></table></div></div><p>设置/srv/www/www.example.com目录的默认组ACL权限，此目录下新建的子目录或文件都会继承此ACL权限，文件不会继承执行权限(x)，新建的文件是664，新建的目录是775</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>设置<code>/srv/www/www.example.com</code>目录的默认组ACL权限，此目录下新建的子目录或文件都会继承此ACL权限，文件不会继承执行权限(x)，新建的文件是664，新建的目录是775</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo setfacl -d -m g::rwx /srv/www/www.example.com  
-</code></pre></td></tr></table></div></div><h1 id=如果是已存在目录>如果是已存在目录</h1><p>如果/srv/www/www.example.com目录下已经有文件或目录，添加ACL权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h1 id=如果是已存在目录>如果是已存在目录</h1><p>如果<code>/srv/www/www.example.com</code>目录下已经有文件或目录，添加ACL权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
