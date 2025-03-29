@@ -16,7 +16,7 @@ sudo systemctl start certbot-renew.timer &amp;&amp; sudo systemctl enable certbo
 sudo yum -y install nginx nginx-mod-stream  # 可选
 
 #SLEEPTIME=$(awk &#39;BEGIN{srand(); print int(rand()*(3600+1))}&#39;) &amp;&amp; echo &#34;0 0,12 * * * root sleep $SLEEPTIME &amp;&amp; certbot renew -q&#34; | sudo tee -a /etc/cron.d/certbot &gt; /dev/null
-</code></pre></td></tr></table></div></div><h1 id=获取ssl证书>获取SSL证书</h1><h2 id=manual模式>manual模式</h2><p>参考链接：</p><p><a href=https://certbot.eff.org/docs/using.html#manual>https://certbot.eff.org/docs/using.html#manual</a></p><p><a href=https://certbot.eff.org/docs/using.html#pre-and-post-validation-hooks>https://certbot.eff.org/docs/using.html#pre-and-post-validation-hooks</a></p><p>Cloudflare API: <a href=https://api.cloudflare.com/#dns-records-for-a-zone-properties>官方链接</a></p><p>DNSPod API: <a href=https://docs.dnspod.cn/api/>官方链接</a></p><p>GoDaddy API: <a href=https://developer.godaddy.com/doc/endpoint/domains>官方链接</a></p><hr><h3 id=cloudflare>Cloudflare</h3><hr><p>Login Email: <a href=mailto:info@yanyong.cc>info@yanyong.cc</a></p><p>Zone ID: 2109e1497fb164ac32a8a56f493jd767</p><p>Global API Key: b16b2371170e9i9t7aed5df44a69f3k0fd947</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><h1 id=获取ssl证书>获取SSL证书</h1><h2 id=manual模式>manual模式</h2><p>参考链接：</p><p><a href=https://certbot.eff.org/docs/using.html#manual>https://certbot.eff.org/docs/using.html#manual</a></p><p><a href=https://certbot.eff.org/docs/using.html#pre-and-post-validation-hooks>https://certbot.eff.org/docs/using.html#pre-and-post-validation-hooks</a></p><p>Cloudflare API: <a href=https://api.cloudflare.com/#dns-records-for-a-zone-properties>官方链接</a></p><p>DNSPod API: <a href=https://docs.dnspod.cn/api/>官方链接</a></p><p>GoDaddy API: <a href=https://developer.godaddy.com/doc/endpoint/domains>官方链接</a></p><hr><h3 id=cloudflare>Cloudflare</h3><p>Login Email: <a href=mailto:info@yanyong.cc>info@yanyong.cc</a></p><p>Zone ID: 2109e1497fb164ac32a8a56f493jd767</p><p>Global API Key: b16b2371170e9i9t7aed5df44a69f3k0fd947</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -44,7 +44,7 @@ sudo yum -y install nginx nginx-mod-stream  # 可选
     | grep -oP &#34;(?&lt;=result\&#34;:\[\{\&#34;id\&#34;:\&#34;)\w+&#34;` \
     &amp;&amp; curl -sS -X DELETE &#34;https://api.cloudflare.com/client/v4/zones/2109e1497fb164ac32a8a56f493jd767/dns_records/$id&#34; -H &#34;X-Auth-Email: info@yanyong.cc&#34; -H &#34;X-Auth-Key: b16b2371170e9i9t7aed5df44a69f3k0fd947&#34; -H &#34;Content-Type: application/json&#34;&#39; \
   --deploy-hook &#39;systemctl reload nginx&#39;
-</code></pre></td></tr></table></div></div><h3 id=dnspod腾讯云>DNSPod/腾讯云</h3><hr><p>ID: 168457</p><p>Token: b472bfa84ac4e861c926crb0926c9d77</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><h3 id=dnspod腾讯云>DNSPod/腾讯云</h3><p>ID: 168457</p><p>Token: b472bfa84ac4e861c926crb0926c9d77</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -72,7 +72,7 @@ sudo yum -y install nginx nginx-mod-stream  # 可选
       | grep -oP &#34;(?&lt;=records\&#34;:\[\{\&#34;id\&#34;:\&#34;)\d+&#34;` \
       &amp;&amp; wget https://dnsapi.cn/Record.Remove -qO - --post-data &#34;login_token=168457,b472bfa84ac4e861c926crb0926c9d77&amp;domain=$CERTBOT_DOMAIN&amp;record_id=$recordid&#34;&#39; \
   --deploy-hook &#39;systemctl reload nginx&#39;
-</code></pre></td></tr></table></div></div><h3 id=godaddy>GoDaddy</h3><hr><p>API Key: e9CahQ5IAHEz_CbrhCS1CxpXgLPgAdCUk17</p><p>Secret API Key: LMFh2nNET8szNIT14bT1A7</p><p>Customer ID: 379363747</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><h3 id=godaddy>GoDaddy</h3><p>API Key: e9CahQ5IAHEz_CbrhCS1CxpXgLPgAdCUk17</p><p>Secret API Key: LMFh2nNET8szNIT14bT1A7</p><p>Customer ID: 379363747</p><p><code>--manual-public-ip-logging-ok</code> # 此参数在certbot新版中已弃用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
