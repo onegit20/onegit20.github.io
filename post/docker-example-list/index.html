@@ -133,7 +133,7 @@ nacos.naming.data.warmup=true
 </code></pre></td></tr></table></div></div><p>也可以指定用户名和密码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run -d --name rabbitmq --restart always -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3.8-management-alpine
 </code></pre></td></tr></table></div></div><h1 id=php-fpm>PHP-FPM</h1><p>此镜像默认没有安装<code>tzdata</code>包</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run --name php74-fpm --restart always -p 9001:9000 -v /srv/www/www.abc.com:/srv/www/www.abc.com -d php:7.4-fpm-alpine
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker run --name php74-fpm --restart always -p 9001:9000 -v /srv/www/www.example.com:/srv/www/www.example.com -d php:7.4-fpm-alpine
 </code></pre></td></tr></table></div></div><p>安装php模块</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>sudo docker exec php74-fpm php -m
