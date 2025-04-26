@@ -256,7 +256,7 @@ helm install nfs-client-provisioner nfs-subdir-external-provisioner/nfs-subdir-e
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>helm install nfs-client-provisioner-yw ./nfs-subdir-external-provisioner-4.0.12.tgz \
     --set nfs.server=172.27.244.150 \
     --set nfs.path=/data/nfs/nfs-client-provisioner \
-    --set image.repository=harbor-ai.sunwoda-evb.com/kf1.9/registry.k8s.io/sig-storage/nfs-subdir-external-provisioner \
+    --set image.repository=harbor-ai.example.com/kf1.9/registry.k8s.io/sig-storage/nfs-subdir-external-provisioner \
     --set image.tag=v4.0.2 \
     --set storageClass.name=nfs-client \
     --namespace nfs-client-system
