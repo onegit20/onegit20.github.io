@@ -1,0 +1,178 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>iRedMail批量创建邮箱 - YY小站</title>
+<meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=Cache-Control content="no-transform"><meta http-equiv=Cache-Control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="需求 来活儿了！开通500个邮箱！约摸2年前自建的iRedMail邮箱服务器闪亮登场！ 这要是从后台届面手动注册，没个一天估计点不完，需求方没有"><meta name=keywords content="Hugo,theme,even"><meta name=generator content="Hugo 0.127.0 with theme even"><link rel=canonical href=https://yanyong.cc/post/iredmail-create-mail-user/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:url" content="https://yanyong.cc/post/iredmail-create-mail-user/"><meta property="og:site_name" content="YY小站"><meta property="og:title" content="iRedMail批量创建邮箱"><meta property="og:description" content="需求 来活儿了！开通500个邮箱！约摸2年前自建的iRedMail邮箱服务器闪亮登场！ 这要是从后台届面手动注册，没个一天估计点不完，需求方没有"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-06-15T14:37:12+08:00"><meta property="article:modified_time" content="2022-06-15T14:37:12+08:00"><meta property="article:tag" content="Iredmail"><meta property="article:tag" content="Shell"><meta itemprop=name content="iRedMail批量创建邮箱"><meta itemprop=description content="需求 来活儿了！开通500个邮箱！约摸2年前自建的iRedMail邮箱服务器闪亮登场！ 这要是从后台届面手动注册，没个一天估计点不完，需求方没有"><meta itemprop=datePublished content="2022-06-15T14:37:12+08:00"><meta itemprop=dateModified content="2022-06-15T14:37:12+08:00"><meta itemprop=wordCount content="1123"><meta itemprop=keywords content="Iredmail,Shell"><meta name=twitter:card content="summary"><meta name=twitter:title content="iRedMail批量创建邮箱"><meta name=twitter:description content="需求 来活儿了！开通500个邮箱！约摸2年前自建的iRedMail邮箱服务器闪亮登场！ 这要是从后台届面手动注册，没个一天估计点不完，需求方没有"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>YY小站</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>YY小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>iRedMail批量创建邮箱</h1><div class=post-meta><span class=post-time>2022-06-15</span><div class=post-category><a href=/categories/uncategorized/>Uncategorized</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#需求>需求</a></li><li><a href=#脚本>脚本</a></li><li><a href=#创建邮箱>创建邮箱</a></li><li><a href=#收集邮箱信息>收集邮箱信息</a></li></ul></nav></div></div><div class=post-content><h1 id=需求>需求</h1><p>来活儿了！开通500个邮箱！约摸2年前自建的<a href=https://www.iredmail.org/>iRedMail</a>邮箱服务器闪亮登场！</p><p>这要是从后台届面手动注册，没个一天估计点不完，需求方没有给出用户名列表，光想出500个用户名也是不小的工作量，经过沟通，简单提取了一下需求，邮箱主要用来注册某某平台帐号，收一下验证码或验证邮件，所以容量方便应该没有太多要求，为减少被平台风控，尽量不要用太有规律的用户名，比如user001-user500之类的，如果用随机字符串做用户名也感觉像机器人搞出来的，是不是也会增加被风控的风险呢，如果能随机一些单词做为用户名就再好不过了。</p><p>经过一番搜索发现Debian系统自带了一个字典/usr/share/dict/words，此字典内包含了一些法语字母，脚本中正则过滤掉法语。随机数可能出现重复的情况，利用循环处理一下得到500个邮箱地址。</p><h1 id=脚本>脚本</h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=c1>#iredmail脚本路径</span>
+</span></span><span class=line><span class=cl><span class=c1>#https://raw.yanyong.cc/sh/create_mail_user_SQL.sh</span>
+</span></span><span class=line><span class=cl><span class=nv>sh</span><span class=o>=</span><span class=s1>&#39;/home/yan/iRedMail-1.3.2/tools/create_mail_user_SQL.sh&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#利用系统自带字典生成长度4-12的小写单词字典，-P 以perl-regexp模式很重要，不然会匹配到法语字母</span>
+</span></span><span class=line><span class=cl>grep -P <span class=s1>&#39;^[a-z]{4,12}$&#39;</span> /usr/share/dict/words &gt; /tmp/words.txt
+</span></span><span class=line><span class=cl><span class=nv>wordsPath</span><span class=o>=</span><span class=s1>&#39;/tmp/words.txt&#39;</span>  <span class=c1>#字典文件路径</span>
+</span></span><span class=line><span class=cl><span class=nv>wordsLines</span><span class=o>=</span><span class=k>$(</span>wc -l <span class=nv>$wordsPath</span> <span class=p>|</span> awk <span class=s1>&#39;{print $1}&#39;</span><span class=k>)</span>  <span class=c1>#字典单词总数，我这里是59386</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#保存邮箱地址</span>
+</span></span><span class=line><span class=cl><span class=nv>mailList</span><span class=o>=</span><span class=s1>&#39;mail.txt&#39;</span>
+</span></span><span class=line><span class=cl><span class=c1>#保存邮箱密码，与用户名行数一一对应</span>
+</span></span><span class=line><span class=cl><span class=nv>passwordList</span><span class=o>=</span><span class=s1>&#39;password.txt&#39;</span>
+</span></span><span class=line><span class=cl><span class=c1>#要生成单词数量，也就是要创建邮箱的数量</span>
+</span></span><span class=line><span class=cl><span class=nv>count</span><span class=o>=</span><span class=m>500</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#随机数$RANDOM范围0-32767，$prime最好是质数，尽可能让结果覆盖1-59386</span>
+</span></span><span class=line><span class=cl><span class=nv>prime</span><span class=o>=</span><span class=m>13</span>
+</span></span><span class=line><span class=cl>rand<span class=o>()</span> <span class=o>{</span> <span class=nv>rand</span><span class=o>=</span><span class=k>$((</span><span class=nv>$RANDOM</span> <span class=o>*</span> <span class=nv>$prime</span> <span class=o>%</span> <span class=nv>$wordsLines</span> <span class=o>+</span> <span class=m>1</span><span class=k>))</span><span class=p>;</span> <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>domain</span><span class=o>=</span>mydomain.com
+</span></span><span class=line><span class=cl><span class=nv>username</span><span class=o>=</span><span class=s1>&#39;显示名称&#39;</span>
+</span></span><span class=line><span class=cl><span class=nv>language</span><span class=o>=</span><span class=s1>&#39;zh_CN&#39;</span>
+</span></span><span class=line><span class=cl><span class=nv>settings</span><span class=o>=</span><span class=s1>&#39;timezone:Asia/Hong_Kong;&#39;</span>
+</span></span><span class=line><span class=cl><span class=nv>quota</span><span class=o>=</span><span class=s1>&#39;256&#39;</span>  <span class=c1>#邮箱大小，单位MB</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#随机数$rand可能出现相同的数字，利用while循环检测去重后的数量，生成$count个不重复的邮箱地址</span>
+</span></span><span class=line><span class=cl>touch /tmp/.temp.txt <span class=o>&amp;&amp;</span> &gt; /tmp/.temp.txt
+</span></span><span class=line><span class=cl><span class=k>while</span> <span class=o>[[</span> <span class=k>$(</span>sort -u /tmp/.temp.txt <span class=p>|</span> wc -l<span class=k>)</span> -lt <span class=nv>$count</span> <span class=o>]]</span><span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>    rand  <span class=c1>#调用rand()函数</span>
+</span></span><span class=line><span class=cl>    <span class=nv>word</span><span class=o>=</span><span class=k>$(</span>sed -n <span class=s2>&#34;</span><span class=nv>$rand</span><span class=s2>&#34;</span>p <span class=nv>$wordsPath</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$word</span><span class=s2>&#34;</span>@<span class=s2>&#34;</span><span class=nv>$domain</span><span class=s2>&#34;</span> &gt;&gt; /tmp/.temp.txt
+</span></span><span class=line><span class=cl><span class=k>done</span>
+</span></span><span class=line><span class=cl>sort -u /tmp/.temp.txt &gt; <span class=nv>$mailList</span>
+</span></span><span class=line><span class=cl>rm /tmp/.temp.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>mail_array</span><span class=o>=(</span><span class=sb>`</span>cat <span class=nv>$mailList</span><span class=sb>`</span><span class=o>)</span>  <span class=c1>#存入数组mail_array</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=o>((</span><span class=nv>i</span><span class=o>=</span>0<span class=p>;</span> i&lt;<span class=nv>$count</span><span class=p>;</span> i++<span class=o>))</span><span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>    <span class=nv>mail</span><span class=o>=</span><span class=si>${</span><span class=nv>mail_array</span><span class=p>[i]</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    <span class=nv>password</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>tr -dc <span class=s1>&#39;[:digit:][:alpha:]&#39;</span> &lt; /dev/urandom <span class=p>|</span> head -c 10<span class=k>)</span><span class=s2>&#34;</span>  <span class=c1>#大小写母数字10位</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=nv>$password</span> &gt;&gt; <span class=nv>$passwordList</span>
+</span></span><span class=line><span class=cl>    sudo bash <span class=nv>$sh</span> <span class=nv>$mail</span> <span class=nv>$password</span> <span class=nv>$username</span> <span class=nv>$language</span> <span class=nv>$settings</span> <span class=nv>$quota</span> &gt;&gt; adduser.20220615.sql
+</span></span><span class=line><span class=cl><span class=k>done</span>
+</span></span></code></pre></td></tr></table></div></div><p>执行脚本会在当前目录生成三个文件adduser.20220615.sql，mail.txt，password.txt。</p><p>三个文件输出部分示例如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>$</span> <span class=n>tail</span> <span class=n>adduser</span><span class=o>.</span><span class=mf>20220615.</span><span class=n>sql</span> 
+</span></span><span class=line><span class=cl><span class=n>INSERT</span> <span class=n>INTO</span> <span class=n>mailbox</span> <span class=p>(</span><span class=n>username</span><span class=p>,</span> <span class=n>password</span><span class=p>,</span> <span class=n>name</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                     <span class=n>language</span><span class=p>,</span> <span class=n>settings</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                     <span class=n>storagebasedirectory</span><span class=p>,</span><span class=n>storagenode</span><span class=p>,</span> <span class=n>maildir</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                     <span class=n>quota</span><span class=p>,</span> <span class=n>domain</span><span class=p>,</span> <span class=n>active</span><span class=p>,</span> <span class=n>passwordlastchange</span><span class=p>,</span> <span class=n>created</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>             <span class=n>VALUES</span> <span class=p>(</span><span class=s1>&#39;zodiac@mydomain.com&#39;</span><span class=p>,</span> <span class=s1>&#39;{SSHA512}+uaG/k7jRMxp9aB66PcO7n/lWLHUMtgOtBPcPUQ0mprIKZp7M3exKlMQ2ASGsXHqDFsIPcS/SIoo+YtcWQgYmdOWGF0=&#39;</span><span class=p>,</span> <span class=s1>&#39;显示名称&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                     <span class=s1>&#39;zh_CN&#39;</span><span class=p>,</span> <span class=s1>&#39;timezone:Asia/Hong_Kong;&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                     <span class=s1>&#39;/var/vmail&#39;</span><span class=p>,</span><span class=s1>&#39;vmail1&#39;</span><span class=p>,</span> <span class=s1>&#39;mydomain.com/zodiac-2022.06.15.14.48.03/&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                     <span class=s1>&#39;256&#39;</span><span class=p>,</span> <span class=s1>&#39;mydomain.com&#39;</span><span class=p>,</span> <span class=s1>&#39;1&#39;</span><span class=p>,</span> <span class=n>NOW</span><span class=p>(),</span> <span class=n>NOW</span><span class=p>());</span>
+</span></span><span class=line><span class=cl><span class=n>INSERT</span> <span class=n>INTO</span> <span class=n>forwardings</span> <span class=p>(</span><span class=n>address</span><span class=p>,</span> <span class=n>forwarding</span><span class=p>,</span> <span class=n>domain</span><span class=p>,</span> <span class=n>dest_domain</span><span class=p>,</span> <span class=n>is_forwarding</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                 <span class=n>VALUES</span> <span class=p>(</span><span class=s1>&#39;zodiac@mydomain.com&#39;</span><span class=p>,</span> <span class=s1>&#39;zodiac@mydomain.com&#39;</span><span class=p>,</span><span class=s1>&#39;mydomain.com&#39;</span><span class=p>,</span> <span class=s1>&#39;mydomain.com&#39;</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nl mail.txt | tail
+</span></span><span class=line><span class=cl>   491  wittingly@mydomain.com
+</span></span><span class=line><span class=cl>   492  wolverine@mydomain.com
+</span></span><span class=line><span class=cl>   493  writhing@mydomain.com
+</span></span><span class=line><span class=cl>   494  wrongdoers@mydomain.com
+</span></span><span class=line><span class=cl>   495  wuss@mydomain.com
+</span></span><span class=line><span class=cl>   496  yacht@mydomain.com
+</span></span><span class=line><span class=cl>   497  yardages@mydomain.com
+</span></span><span class=line><span class=cl>   498  yawed@mydomain.com
+</span></span><span class=line><span class=cl>   499  zilch@mydomain.com
+</span></span><span class=line><span class=cl>   500  zodiac@mydomain.com
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nl password.txt | tail
+</span></span><span class=line><span class=cl>   491  G8qjEsHjZU
+</span></span><span class=line><span class=cl>   492  jLcP0zmBYE
+</span></span><span class=line><span class=cl>   493  LCYZO8JuX7
+</span></span><span class=line><span class=cl>   494  8GwTSdn1Mo
+</span></span><span class=line><span class=cl>   495  4UXgp5fEZY
+</span></span><span class=line><span class=cl>   496  DDYH962JF9
+</span></span><span class=line><span class=cl>   497  3JP8JdDunV
+</span></span><span class=line><span class=cl>   498  2XhVcDyxTS
+</span></span><span class=line><span class=cl>   499  rwnxjDeDPI
+</span></span><span class=line><span class=cl>   500  5Wg7jLpFs4
+</span></span></code></pre></td></tr></table></div></div><h1 id=创建邮箱>创建邮箱</h1><p>准备工作已做好，开始创建500个邮箱！</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>passwd</span><span class=o>=</span><span class=m>123456</span>
+</span></span><span class=line><span class=cl>mysql -uroot -p<span class=nv>$passwd</span> vmail &lt; adduser.20220615.sql
+</span></span></code></pre></td></tr></table></div></div><h1 id=收集邮箱信息>收集邮箱信息</h1><p>mail.txt和password.txt直接复制文本，粘帖到excel表格即可，excel表格会自动分行！</p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2022-06-15</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/iredmail/>iredmail</a>
+<a href=/tags/shell/>shell</a></div><nav class=post-nav><a class=prev href=/post/ym-163-com-javascript/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Javascript是最好的语言，[狗头保命]</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a><a class=next href=/post/strongswan/><span class="next-text nav-default">IKEv2不解释</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=onegit20/utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:info@yanyong.cc class="iconfont icon-email" title=email></a><a href=https://stackoverflow.com/users/16859626/yanyong class="iconfont icon-stack-overflow" title=stack-overflow></a><a href=https://github.com/onegit20 class="iconfont icon-github" title=github></a></div><div class=copyright><div class=busuanzi-footer><span id=busuanzi_container_site_pv>site pv: <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> </span><span class=division>|</span>
+<span id=busuanzi_container_site_uv>site uv: <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span></span></div><span class=copyright-year>&copy;
+&nbsp;2025&nbsp;
+<span>yanyong.cc</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://testingcf.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script><script id=baidu_push>(function(){if(window.location.hostname==="localhost")return;var t,n,e=document.createElement("script");e.async=!0,n=window.location.protocol.split(":")[0],n==="https"?e.src="https://zz.bdstatic.com/linksubmit/push.js":e.src="http://push.zhanzhang.baidu.com/push.js",t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>

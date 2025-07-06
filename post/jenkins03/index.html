@@ -1,0 +1,318 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>jenkins自动发布之java项目 - YY小站</title>
+<meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=Cache-Control content="no-transform"><meta http-equiv=Cache-Control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="java项目 微服务 安装插件 Maven Integration Dockerfile FROM openjdk:8-jre-slim MAINTAINER yanyong ARG ACTIVE ENV JAVA_OPT=&amp;quot;-Xms1g -Xmx1g&amp;quot; ENV JAVA_ARG=&amp;quot;--spring.profiles.active=$ACTIVE&amp;quot; RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \ &amp;amp;&amp;amp; echo 'Asia/Shanghai' &amp;gt; /etc/timezone ADD target/*.jar /opt/app.jar CMD [&amp;quot;sh&amp;quot;,&amp;quot;-c&amp;quot;,&amp;quot;exec java $JAVA_OPT -jar /opt/app.jar $JAVA_ARG&amp;quot;] deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: megaordermiddleware-basic-gateway spec: selector: matchLabels: app: megaordermiddleware-basic-gateway replicas: 2 template: metadata: labels: app: megaordermiddleware-basic-gateway spec: containers:"><meta name=keywords content="Hugo,theme,even"><meta name=generator content="Hugo 0.127.0 with theme even"><link rel=canonical href=https://yanyong.cc/post/jenkins03/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:url" content="https://yanyong.cc/post/jenkins03/"><meta property="og:site_name" content="YY小站"><meta property="og:title" content="jenkins自动发布之java项目"><meta property="og:description" content='java项目 微服务 安装插件 Maven Integration Dockerfile FROM openjdk:8-jre-slim MAINTAINER yanyong ARG ACTIVE ENV JAVA_OPT="-Xms1g -Xmx1g" ENV JAVA_ARG="--spring.profiles.active=$ACTIVE" RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \ && echo &#39;Asia/Shanghai&#39; > /etc/timezone ADD target/*.jar /opt/app.jar CMD ["sh","-c","exec java $JAVA_OPT -jar /opt/app.jar $JAVA_ARG"] deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: megaordermiddleware-basic-gateway spec: selector: matchLabels: app: megaordermiddleware-basic-gateway replicas: 2 template: metadata: labels: app: megaordermiddleware-basic-gateway spec: containers:'><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-04-22T17:42:53+08:00"><meta property="article:modified_time" content="2022-04-22T17:42:53+08:00"><meta property="article:tag" content="Jenkins"><meta property="article:tag" content="Ci/Cd"><meta itemprop=name content="jenkins自动发布之java项目"><meta itemprop=description content='java项目 微服务 安装插件 Maven Integration Dockerfile FROM openjdk:8-jre-slim MAINTAINER yanyong ARG ACTIVE ENV JAVA_OPT="-Xms1g -Xmx1g" ENV JAVA_ARG="--spring.profiles.active=$ACTIVE" RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \ && echo &#39;Asia/Shanghai&#39; > /etc/timezone ADD target/*.jar /opt/app.jar CMD ["sh","-c","exec java $JAVA_OPT -jar /opt/app.jar $JAVA_ARG"] deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: megaordermiddleware-basic-gateway spec: selector: matchLabels: app: megaordermiddleware-basic-gateway replicas: 2 template: metadata: labels: app: megaordermiddleware-basic-gateway spec: containers:'><meta itemprop=datePublished content="2022-04-22T17:42:53+08:00"><meta itemprop=dateModified content="2022-04-22T17:42:53+08:00"><meta itemprop=wordCount content="813"><meta itemprop=keywords content="Jenkins,Ci/Cd"><meta name=twitter:card content="summary"><meta name=twitter:title content="jenkins自动发布之java项目"><meta name=twitter:description content='java项目 微服务 安装插件 Maven Integration Dockerfile FROM openjdk:8-jre-slim MAINTAINER yanyong ARG ACTIVE ENV JAVA_OPT="-Xms1g -Xmx1g" ENV JAVA_ARG="--spring.profiles.active=$ACTIVE" RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \ && echo &#39;Asia/Shanghai&#39; > /etc/timezone ADD target/*.jar /opt/app.jar CMD ["sh","-c","exec java $JAVA_OPT -jar /opt/app.jar $JAVA_ARG"] deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: megaordermiddleware-basic-gateway spec: selector: matchLabels: app: megaordermiddleware-basic-gateway replicas: 2 template: metadata: labels: app: megaordermiddleware-basic-gateway spec: containers:'><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>YY小站</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>YY小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>jenkins自动发布之java项目</h1><div class=post-meta><span class=post-time>2022-04-22</span><div class=post-category><a href=/categories/uncategorized/>Uncategorized</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#java项目>java项目</a><ul><li><a href=#微服务>微服务</a></li><li><a href=#前端vue>前端vue</a></li></ul></li></ul></nav></div></div><div class=post-content><h1 id=java项目>java项目</h1><h2 id=微服务>微服务</h2><p>安装插件</p><pre><code>Maven Integration
+</code></pre><p>Dockerfile</p><pre><code>FROM openjdk:8-jre-slim
+MAINTAINER yanyong
+ARG ACTIVE
+ENV JAVA_OPT=&quot;-Xms1g -Xmx1g&quot;
+ENV JAVA_ARG=&quot;--spring.profiles.active=$ACTIVE&quot;
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+  &amp;&amp; echo 'Asia/Shanghai' &gt; /etc/timezone
+ADD target/*.jar /opt/app.jar
+CMD [&quot;sh&quot;,&quot;-c&quot;,&quot;exec java $JAVA_OPT -jar /opt/app.jar $JAVA_ARG&quot;]
+</code></pre><p>deployment.yaml</p><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: megaordermiddleware-basic-gateway
+spec:
+  selector:
+    matchLabels:
+      app: megaordermiddleware-basic-gateway
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: megaordermiddleware-basic-gateway
+    spec:
+      containers:
+      - name: megaordermiddleware-basic-gateway
+        image: harbor.example.com/oms/megaordermiddleware-basic-gateway:1.0-$BUILD_NUMBER
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7777
+      imagePullSecrets:
+      - name: secret-harbor-user
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: megaordermiddleware-basic-gateway
+spec:
+  type: NodePort
+  selector:
+    app: megaordermiddleware-basic-gateway
+  ports:
+    - port: 7777
+      targetPort: 7777
+</code></pre><p>多环境区分，src/main/resources/bootstrap.yml</p><p>nacos配置中心增加命名空间：yanyong</p><pre><code>spring:
+  profiles: yanyong
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos.example.com
+        namespace: yanyong
+      config:
+        server-addr: nacos.example.com
+        file-extension: yml
+        namespace: yanyong
+</code></pre><p>jenkins, maven打包</p><pre><code>clean package -pl megaordermiddleware-basic/megaordermiddleware-basic-gateway -am -Dmaven.test.skip=true
+</code></pre><p>jenkins, Build脚本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/sh
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=nb>set</span> -ex
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>_image</span><span class=o>=</span><span class=s2>&#34;harbor.example.com/oms/megaordermiddleware-basic-gateway:1.0-</span><span class=nv>$BUILD_NUMBER</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>_image_latest</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>_image</span><span class=p>%-*</span><span class=si>}</span><span class=s2>&#34;</span>-latest
+</span></span><span class=line><span class=cl><span class=nv>_workspace</span><span class=o>=</span><span class=s2>&#34;megaordermiddleware-basic/megaordermiddleware-basic-gateway&#34;</span>  <span class=c1>#默认当前目录</span>
+</span></span><span class=line><span class=cl><span class=nv>_dockerfile</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>_workspace</span><span class=si>}</span><span class=s2>/Dockerfile-test&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>_harboruser</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$harboruser</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>_harborpass</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$harborpass</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>ACTIVE</span><span class=o>=</span>yanyong
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>checkimage<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>image_id</span><span class=o>=</span><span class=k>$(</span>docker images -q --filter <span class=nv>reference</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>_image</span><span class=si>}</span><span class=s2>&#34;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> -n <span class=s2>&#34;</span><span class=nv>$image_id</span><span class=s2>&#34;</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span> docker rmi -f <span class=nv>$image_id</span><span class=p>;</span> <span class=k>fi</span>  <span class=c1>#删除镜像</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>build<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    checkimage
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    docker build -f <span class=si>${</span><span class=nv>_dockerfile</span><span class=si>}</span> -t <span class=si>${</span><span class=nv>_image</span><span class=si>}</span> --build-arg <span class=nv>ACTIVE</span><span class=o>=</span><span class=nv>$ACTIVE</span> <span class=si>${</span><span class=nv>_workspace</span><span class=k>:-</span><span class=p>.</span><span class=si>}</span>  <span class=c1>#ACTIVE值传入Dockerfile</span>
+</span></span><span class=line><span class=cl>    docker tag <span class=si>${</span><span class=nv>_image</span><span class=si>}</span> <span class=si>${</span><span class=nv>_image_latest</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1>#build产生的中间镜像tag为none</span>
+</span></span><span class=line><span class=cl>    docker rmi <span class=k>$(</span>docker images -f <span class=s2>&#34;dangling=true&#34;</span> -q<span class=k>)</span> <span class=o>||</span> :  <span class=c1>#删除所有tag为none的镜像</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>push<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>repo</span><span class=o>=</span><span class=si>${</span><span class=nv>_image</span><span class=p>%%/*</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    docker login -u <span class=si>${</span><span class=nv>_harboruser</span><span class=si>}</span> -p <span class=si>${</span><span class=nv>_harborpass</span><span class=si>}</span> <span class=si>${</span><span class=nv>repo</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    docker push <span class=si>${</span><span class=nv>_image</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    docker push <span class=si>${</span><span class=nv>_image_latest</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    docker <span class=nb>logout</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    checkimage
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>main<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    build
+</span></span><span class=line><span class=cl>    push
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>main
+</span></span></code></pre></td></tr></table></div></div><p>jenkins, Post-build Actions设置</p><pre><code>#Source files
+megaordermiddleware-basic/megaordermiddleware-basic-gateway/deployment-test.yaml
+
+#Remove prefix
+megaordermiddleware-basic/megaordermiddleware-basic-gateway
+
+#Remote directory
+DEPLOY/$JOB_BASE_NAME
+
+#Exec command
+export BUILD_NUMBER=$BUILD_NUMBER
+envsubst &lt; DEPLOY/$JOB_BASE_NAME/deployment-test.yaml | kubectl apply -f -
+</code></pre><h2 id=前端vue>前端vue</h2><p>Dockerfile</p><pre><code>FROM node:14.17.3 as nodebuilder
+WORKDIR /Node
+COPY . .
+#RUN apt update &amp;&amp; apt-get -y install yarn &amp;&amp; yarn &amp;&amp; yarn build:prod
+#RUN npm install &amp;&amp; npm run build:prod
+#RUN npm install --registry=https://registry.npm.taobao.org &amp;&amp; npm run build:prod
+#RUN npm install --registry=https://mirrors.huaweicloud.com/repository/npm/ &amp;&amp; npm run build:prod
+
+RUN git config --global url.&quot;https://&quot;.insteadOf git:// \
+  &amp;&amp; cp .env.test .env.production \
+  &amp;&amp; apt update &amp;&amp; apt-get -y install yarn \
+  &amp;&amp; yarn &amp;&amp; yarn build:prod
+
+FROM nginx:alpine
+MAINTAINER yanyong
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+  &amp;&amp; echo 'Asia/Shanghai' &gt; /etc/timezone
+COPY --from=nodebuilder /Node/dist/ /usr/share/nginx/html/
+</code></pre><p>nmp install安装依赖时报错：</p><pre><code>ERR! /usr/bin/git ls-remote -h -t git://github.com/adobe-webplatform/eve.git
+</code></pre><p>解决办法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>git config --global url.&#34;https://&#34;.insteadOf git://
+</span></span></code></pre></td></tr></table></div></div><p>deployment.yaml</p><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: megaordermiddleware-management-ui-vue
+spec:
+  selector:
+    matchLabels:
+      app: megaordermiddleware-management-ui-vue
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: megaordermiddleware-management-ui-vue
+    spec:
+      containers:
+      - name: megaordermiddleware-management-ui-vue
+        image: harbor.example.com/oms/megaordermiddleware-management-ui-vue:1.0-$BUILD_NUMBER
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: secret-harbor-user
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: megaordermiddleware-management-ui-vue
+spec:
+  type: NodePort
+  selector:
+    app: megaordermiddleware-management-ui-vue
+  ports:
+    - port: 80
+      targetPort: 80
+</code></pre><p>jenkins, Build脚本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/sh
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=nb>set</span> -ex
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>_image</span><span class=o>=</span><span class=s2>&#34;harbor.example.com/oms/megaordermiddleware-management-ui-vue:1.0-</span><span class=nv>$BUILD_NUMBER</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>_image_latest</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>_image</span><span class=p>%-*</span><span class=si>}</span><span class=s2>&#34;</span>-latest
+</span></span><span class=line><span class=cl><span class=nv>_dockerfile</span><span class=o>=</span>Dockerfile-test
+</span></span><span class=line><span class=cl><span class=nv>_workspace</span><span class=o>=</span><span class=s2>&#34;&#34;</span>  <span class=c1>#默认当前目录</span>
+</span></span><span class=line><span class=cl><span class=nv>_harboruser</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$harboruser</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>_harborpass</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$harborpass</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>checkimage<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>image_id</span><span class=o>=</span><span class=k>$(</span>docker images -q --filter <span class=nv>reference</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>_image</span><span class=si>}</span><span class=s2>&#34;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> -n <span class=s2>&#34;</span><span class=nv>$image_id</span><span class=s2>&#34;</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span> docker rmi -f <span class=nv>$image_id</span><span class=p>;</span> <span class=k>fi</span>  <span class=c1>#删除镜像</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>build<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    checkimage
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    docker build -f <span class=si>${</span><span class=nv>_dockerfile</span><span class=si>}</span> -t <span class=si>${</span><span class=nv>_image</span><span class=si>}</span> <span class=si>${</span><span class=nv>_workspace</span><span class=k>:-</span><span class=p>.</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    docker tag <span class=si>${</span><span class=nv>_image</span><span class=si>}</span> <span class=si>${</span><span class=nv>_image_latest</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1>#build产生的中间镜像tag为none</span>
+</span></span><span class=line><span class=cl>    docker rmi <span class=k>$(</span>docker images -f <span class=s2>&#34;dangling=true&#34;</span> -q<span class=k>)</span> <span class=o>||</span> :  <span class=c1>#删除所有tag为none的镜像</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>push<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>repo</span><span class=o>=</span><span class=si>${</span><span class=nv>_image</span><span class=p>%%/*</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    docker login -u <span class=si>${</span><span class=nv>_harboruser</span><span class=si>}</span> -p <span class=si>${</span><span class=nv>_harborpass</span><span class=si>}</span> <span class=si>${</span><span class=nv>repo</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    docker push <span class=si>${</span><span class=nv>_image</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    docker push <span class=si>${</span><span class=nv>_image_latest</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>    docker <span class=nb>logout</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    checkimage
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>main<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    build
+</span></span><span class=line><span class=cl>    push
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>main
+</span></span></code></pre></td></tr></table></div></div><p>jenkins, Post-build Actions脚本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=k>export</span> <span class=n>BUILD_NUMBER</span><span class=o>=$</span><span class=n>BUILD_NUMBER</span>
+</span></span><span class=line><span class=cl><span class=n>envsubst</span> <span class=o>&lt;</span> <span class=n>DEPLOY</span><span class=o>/$</span><span class=n>JOB_BASE_NAME</span><span class=o>/</span><span class=n>deployment</span><span class=o>.</span><span class=n>yaml</span> <span class=o>|</span> <span class=n>kubectl</span> <span class=n>apply</span> <span class=o>-</span><span class=n>f</span> <span class=o>-</span>
+</span></span></code></pre></td></tr></table></div></div><p><a href=https://docs.docker.com/engine/reference/builder/>https://docs.docker.com/engine/reference/builder/</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2022-04-22</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/jenkins/>jenkins</a>
+<a href=/tags/ci/cd/>ci/cd</a></div><nav class=post-nav><a class=prev href=/post/rabbitmq-k8s/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">k8s部署rabbitmq</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a><a class=next href=/post/jenkins02/><span class="next-text nav-default">jenkins自动发布之go/golang项目</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=onegit20/utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:info@yanyong.cc class="iconfont icon-email" title=email></a><a href=https://stackoverflow.com/users/16859626/yanyong class="iconfont icon-stack-overflow" title=stack-overflow></a><a href=https://github.com/onegit20 class="iconfont icon-github" title=github></a></div><div class=copyright><div class=busuanzi-footer><span id=busuanzi_container_site_pv>site pv: <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> </span><span class=division>|</span>
+<span id=busuanzi_container_site_uv>site uv: <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span></span></div><span class=copyright-year>&copy;
+&nbsp;2025&nbsp;
+<span>yanyong.cc</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://testingcf.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script><script id=baidu_push>(function(){if(window.location.hostname==="localhost")return;var t,n,e=document.createElement("script");e.async=!0,n=window.location.protocol.split(":")[0],n==="https"?e.src="https://zz.bdstatic.com/linksubmit/push.js":e.src="http://push.zhanzhang.baidu.com/push.js",t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>

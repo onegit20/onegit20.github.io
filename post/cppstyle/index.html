@@ -1,0 +1,128 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>我的C++代码风格 - YY小站</title>
+<meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=Cache-Control content="no-transform"><meta http-equiv=Cache-Control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="背景 最近用C++写一个小工具，顺便总结了一个c++代码风格。不拒绝匈牙利命名，但不制造匈牙利命名！^_^ 代码风格 具体来说，只是列出了命名的约"><meta name=keywords content="Hugo,theme,even"><meta name=generator content="Hugo 0.127.0 with theme even"><link rel=canonical href=https://yanyong.cc/post/cppstyle/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:url" content="https://yanyong.cc/post/cppstyle/"><meta property="og:site_name" content="YY小站"><meta property="og:title" content="我的C++代码风格"><meta property="og:description" content="背景 最近用C++写一个小工具，顺便总结了一个c++代码风格。不拒绝匈牙利命名，但不制造匈牙利命名！^_^ 代码风格 具体来说，只是列出了命名的约"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-10-19T15:17:32+08:00"><meta property="article:modified_time" content="2022-10-19T15:17:32+08:00"><meta property="article:tag" content="C++"><meta property="article:tag" content="Cpp"><meta itemprop=name content="我的C++代码风格"><meta itemprop=description content="背景 最近用C++写一个小工具，顺便总结了一个c++代码风格。不拒绝匈牙利命名，但不制造匈牙利命名！^_^ 代码风格 具体来说，只是列出了命名的约"><meta itemprop=datePublished content="2022-10-19T15:17:32+08:00"><meta itemprop=dateModified content="2022-10-19T15:17:32+08:00"><meta itemprop=wordCount content="1154"><meta itemprop=keywords content="C++,Cpp"><meta name=twitter:card content="summary"><meta name=twitter:title content="我的C++代码风格"><meta name=twitter:description content="背景 最近用C++写一个小工具，顺便总结了一个c++代码风格。不拒绝匈牙利命名，但不制造匈牙利命名！^_^ 代码风格 具体来说，只是列出了命名的约"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>YY小站</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>YY小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>我的C++代码风格</h1><div class=post-meta><span class=post-time>2022-10-19</span><div class=post-category><a href=/categories/uncategorized/>Uncategorized</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#背景>背景</a></li><li><a href=#代码风格>代码风格</a><ul><li><a href=#通用规则>通用规则</a></li><li><a href=#类>类</a></li><li><a href=#变量>变量</a></li><li><a href=#函数>函数</a></li><li><a href=#常量>常量</a></li><li><a href=#宏>宏</a></li><li><a href=#枚举常量>枚举常量</a></li><li><a href=#例外>例外</a></li></ul></li><li><a href=#参考>参考</a></li></ul></nav></div></div><div class=post-content><h1 id=背景>背景</h1><p>最近用C++写一个小工具，顺便总结了一个c++代码风格。不拒绝匈牙利命名，但不制造匈牙利命名！^_^</p><h1 id=代码风格>代码风格</h1><p>具体来说，只是列出了命名的约定。其它参考<a href=https://google.github.io/styleguide/cppguide.html>Google C++ Style Guide</a>。</p><p>C++ Style and Technique FAQ 请参考 <a href=https://www.stroustrup.com/bs_faq2.html>Bjarne Stroustrup&rsquo;s Homepage</a></p><h2 id=通用规则>通用规则</h2><p>General Naming Rules</p><p>命名尽量见名知义，不用莫名其妙的缩写，名称能传递更多的信息，好过写再多注释。</p><p>驼峰一般只大写单词的首字母，包括缩写词，比如RPC和ID。</p><p>大驼峰，写<code>StartRpc</code>，不要写<code>StartRPC</code>。</p><p>大驼峰，写<code>UserId</code>，不要写<code>UserID</code>。</p><p>小驼峰，写<code>userId</code>，不要写<code>userID</code>。</p><p>用众所周知的变量，例如迭代变量<code>i</code>和模板参数<code>T</code>。</p><h2 id=类>类</h2><p>Type Names</p><p>大驼峰，无下划线。</p><p>类、结构体、枚举、类模板参数、类型别名。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=k>class</span> <span class=n>MyClass</span> <span class=p>{};</span>
+</span></span><span class=line><span class=cl><span class=n>struct</span> <span class=n>MyStruct</span> <span class=p>{};</span>
+</span></span><span class=line><span class=cl><span class=k>enum</span> <span class=k>class</span> <span class=n>MyEnum</span> <span class=p>{};</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>typedef hash_map&lt;UrlTableProperties *, std::string&gt; PropertiesMap;
+</span></span><span class=line><span class=cl>using PropertiesMap = hash_map&lt;UrlTableProperties *, std::string&gt;;
+</span></span></code></pre></td></tr></table></div></div><h2 id=变量>变量</h2><p>Variable Names</p><p>全小写，下划线。</p><p>一般维基中有列出的缩写，可以用，比如fqdn。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>std::string fqdn;  //Fully Qualified Domain Name
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>std::string table_name; 
+</span></span></code></pre></td></tr></table></div></div><p>类数据成员，末尾加下划线。</p><p>Google大概是想着不用写<code>this->table_name = table_name</code>这样的语句，可以直接写<code>table_name_ = table_name</code>了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>class TableInfo {
+</span></span><span class=line><span class=cl>  ...
+</span></span><span class=line><span class=cl> private:
+</span></span><span class=line><span class=cl>  std::string table_name_;
+</span></span><span class=line><span class=cl>  static Pool&lt;TableInfo&gt;* pool_;
+</span></span><span class=line><span class=cl>};
+</span></span></code></pre></td></tr></table></div></div><p>结构体数据成员，结尾不加下划线。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>struct UrlTableProperties {
+</span></span><span class=line><span class=cl>  std::string name;
+</span></span><span class=line><span class=cl>  int num_entries;
+</span></span><span class=line><span class=cl>  static Pool&lt;UrlTableProperties&gt;* pool;
+</span></span><span class=line><span class=cl>};
+</span></span></code></pre></td></tr></table></div></div><h2 id=函数>函数</h2><p>Function Names</p><p>常规函数大驼峰。</p><p>访问器和修改器（get和set函数）可以像变量一样命名，<code>void set_count(int count)</code>。小驼峰也行，保持一致就行，<code>void setCount(int count)</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>MyFunction()
+</span></span><span class=line><span class=cl>AddTableEntry()
+</span></span><span class=line><span class=cl>DeleteUrl()
+</span></span><span class=line><span class=cl>OpenFileOrDie()
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>int count();
+</span></span><span class=line><span class=cl>void set_count(int count);
+</span></span></code></pre></td></tr></table></div></div><h2 id=常量>常量</h2><p>Constant Names</p><p>变量前面加小写字母k，其它部分大驼峰。</p><p>为什么是<code>k</code>， 不是<code>c</code>，<code>constant</code>?</p><p>通常的<code>c</code>表示<code>char</code>，<code>C</code>表示<code>class</code>，所以用了<code>konstant</code>，这是个德语词，参考<a href=https://stackoverflow.com/questions/5016622/where-does-the-k-prefix-for-constants-come-from>stackoverflow</a>。</p><p>其实这也算是一种匈牙利命名，Google这么做我想是为了从命名上把常量跟宏区分开吧。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=k>const</span> <span class=ne>int</span> <span class=n>kDaysInAWeek</span> <span class=o>=</span> <span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>const</span> <span class=ne>int</span> <span class=n>kAndroid8_0_0</span> <span class=o>=</span> <span class=mi>24</span><span class=p>;</span>  <span class=o>//</span> <span class=n>Android</span> <span class=mf>8.0</span><span class=o>.</span><span class=mi>0</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=宏>宏</h2><p>Macro Names</p><p>全大写，下划线。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#define MY_NAME yanyong
+</span></span><span class=line><span class=cl>#define PI_ROUNDED 3.14
+</span></span></code></pre></td></tr></table></div></div><h2 id=枚举常量>枚举常量</h2><p>Enumerator Names</p><p>同宏或常量的命名规则，更喜欢用宏的习惯，全大写加下划线。</p><p>最后一个元素可以加逗号<code>,</code>，也可以不加逗号，最好统一加上，我想元素在格式上的一致可以更好地生成吧，详情参考<a href=https://stackoverflow.com/questions/792753/is-the-last-comma-in-c-enum-required>stackoverflow</a>，数组好像也是如此。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=k>enum</span> <span class=k>class</span> <span class=n>UrlTableError</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>kOk</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span>  <span class=o>//</span><span class=n>kOk两个k都是小写字母</span>
+</span></span><span class=line><span class=cl>  <span class=n>kOutOfMemory</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=n>kMalformedInput</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=k>enum</span> <span class=k>class</span> <span class=n>AlternateUrlTableError</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>OK</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=n>OUT_OF_MEMORY</span> <span class=o>=</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=n>MALFORMED_INPUT</span> <span class=o>=</span> <span class=mi>2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>enum class</code>和<code>enum</code>的区别，首选<code>enum class</code>。 参考<a href=https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum>stackoverflow</a>。</p><p>对枚举作用域限定，不会隐式转换。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=k>enum</span> <span class=k>class</span> <span class=n>Color1</span> <span class=p>{</span> <span class=n>RED</span><span class=p>,</span> <span class=n>GREEN</span><span class=p>,</span> <span class=n>BLUE</span><span class=p>,</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=k>enum</span> <span class=k>class</span> <span class=n>Color2</span> <span class=p>{</span> <span class=n>RED</span><span class=p>,</span> <span class=n>GREEN</span><span class=p>,</span> <span class=n>BLUE</span><span class=p>,</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=ne>int</span> <span class=n>x</span> <span class=o>=</span> <span class=n>static_cast</span><span class=o>&lt;</span><span class=ne>int</span><span class=o>&gt;</span><span class=p>(</span><span class=n>Color1</span><span class=p>::</span><span class=n>RED</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>编译通过。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=k>enum</span> <span class=ne>Color</span> <span class=p>{</span> <span class=n>RED</span><span class=p>,</span> <span class=n>GREEN</span><span class=p>,</span> <span class=n>BLUE</span><span class=p>,</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=ne>int</span> <span class=n>x</span> <span class=o>=</span> <span class=n>RED</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>编译错误。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=k>enum</span> <span class=n>Color1</span> <span class=p>{</span> <span class=n>RED</span><span class=p>,</span> <span class=n>GREEN</span><span class=p>,</span> <span class=n>BLUE</span><span class=p>,</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=k>enum</span> <span class=n>Color2</span> <span class=p>{</span> <span class=n>RED</span><span class=p>,</span> <span class=n>GREEN</span><span class=p>,</span> <span class=n>BLUE</span><span class=p>,</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=ne>int</span> <span class=n>x</span> <span class=o>=</span> <span class=n>RED</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=例外>例外</h2><p>Exceptions to Naming Rules</p><p>如果正在命名类似于现有C/C++ 实体的东西，遵循现有的命名约定方案。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>bigopen</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>	<span class=n>function</span> <span class=n>name</span><span class=p>,</span> <span class=n>follows</span> <span class=n>form</span> <span class=n>of</span> <span class=n>open</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>uint</span>
+</span></span><span class=line><span class=cl>	<span class=n>typedef</span>
+</span></span><span class=line><span class=cl><span class=n>bigpos</span>
+</span></span><span class=line><span class=cl>	<span class=n>struct</span> <span class=ow>or</span> <span class=k>class</span><span class=p>,</span> <span class=n>follows</span> <span class=n>form</span> <span class=n>of</span> <span class=n>pos</span>
+</span></span><span class=line><span class=cl><span class=n>sparse_hash_map</span>
+</span></span><span class=line><span class=cl>	<span class=n>STL</span><span class=o>-</span><span class=n>like</span> <span class=n>entity</span><span class=p>;</span> <span class=n>follows</span> <span class=n>STL</span> <span class=n>naming</span> <span class=n>conventions</span>
+</span></span><span class=line><span class=cl><span class=n>LONGLONG_MAX</span>
+</span></span><span class=line><span class=cl>	<span class=n>a</span> <span class=n>constant</span><span class=p>,</span> <span class=n>as</span> <span class=ow>in</span> <span class=n>INT_MAX</span>
+</span></span></code></pre></td></tr></table></div></div><h1 id=参考>参考</h1><p><a href=https://google.github.io/styleguide/cppguide.html>Google C++ Style Guide</a></p><p><a href=https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents/>中文版开源地址</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2022-10-19</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/c++/>c++</a>
+<a href=/tags/cpp/>cpp</a></div><nav class=post-nav><a class=prev href=/post/vcpkgstaticlink/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">vcpkg静态链接libcurl</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a><a class=next href=/post/ym-163-com-javascript/><span class="next-text nav-default">Javascript是最好的语言，[狗头保命]</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=onegit20/utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:info@yanyong.cc class="iconfont icon-email" title=email></a><a href=https://stackoverflow.com/users/16859626/yanyong class="iconfont icon-stack-overflow" title=stack-overflow></a><a href=https://github.com/onegit20 class="iconfont icon-github" title=github></a></div><div class=copyright><div class=busuanzi-footer><span id=busuanzi_container_site_pv>site pv: <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> </span><span class=division>|</span>
+<span id=busuanzi_container_site_uv>site uv: <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span></span></div><span class=copyright-year>&copy;
+&nbsp;2025&nbsp;
+<span>yanyong.cc</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://testingcf.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script><script id=baidu_push>(function(){if(window.location.hostname==="localhost")return;var t,n,e=document.createElement("script");e.async=!0,n=window.location.protocol.split(":")[0],n==="https"?e.src="https://zz.bdstatic.com/linksubmit/push.js":e.src="http://push.zhanzhang.baidu.com/push.js",t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>

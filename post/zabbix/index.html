@@ -1,0 +1,169 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>Docker容器三分钟安装Zabbix - YY小站</title>
+<meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=Cache-Control content="no-transform"><meta http-equiv=Cache-Control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="安装数据库 安装mariadb，略。参考https://yanyong.cc/post/docker-example-list/#mariad"><meta name=keywords content="Hugo,theme,even"><meta name=generator content="Hugo 0.127.0 with theme even"><link rel=canonical href=https://yanyong.cc/post/zabbix/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:url" content="https://yanyong.cc/post/zabbix/"><meta property="og:site_name" content="YY小站"><meta property="og:title" content="Docker容器三分钟安装Zabbix"><meta property="og:description" content="安装数据库 安装mariadb，略。参考https://yanyong.cc/post/docker-example-list/#mariad"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-05-19T14:11:39+08:00"><meta property="article:modified_time" content="2021-05-19T14:11:39+08:00"><meta property="article:tag" content="Zabbix"><meta itemprop=name content="Docker容器三分钟安装Zabbix"><meta itemprop=description content="安装数据库 安装mariadb，略。参考https://yanyong.cc/post/docker-example-list/#mariad"><meta itemprop=datePublished content="2021-05-19T14:11:39+08:00"><meta itemprop=dateModified content="2021-05-19T14:11:39+08:00"><meta itemprop=wordCount content="1316"><meta itemprop=keywords content="Zabbix"><meta name=twitter:card content="summary"><meta name=twitter:title content="Docker容器三分钟安装Zabbix"><meta name=twitter:description content="安装数据库 安装mariadb，略。参考https://yanyong.cc/post/docker-example-list/#mariad"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>YY小站</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>YY小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Docker容器三分钟安装Zabbix</h1><div class=post-meta><span class=post-time>2021-05-19</span><div class=post-category><a href=/categories/uncategorized/>Uncategorized</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#安装数据库>安装数据库</a></li><li><a href=#安装zabbix>安装zabbix</a></li><li><a href=#安装zabbix-agent>安装zabbix agent</a></li><li><a href=#监控zabbix-server主机>监控zabbix server主机</a></li></ul></nav></div></div><div class=post-content><h1 id=安装数据库>安装数据库</h1><p>安装mariadb，略。参考<a href=https://yanyong.cc/post/docker-example-list/#mariadb>https://yanyong.cc/post/docker-example-list/#mariadb</a></p><h1 id=安装zabbix>安装zabbix</h1><p>参考<a href=https://www.zabbix.com/documentation/current/manual/installation/containers>https://www.zabbix.com/documentation/current/manual/installation/containers</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo docker network create --subnet 172.19.0.0/16 --gateway 172.19.0.1 zabbix-net
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo docker run --name zabbix-java-gateway \
+</span></span><span class=line><span class=cl>      --network zabbix-net \
+</span></span><span class=line><span class=cl>      --ip 172.19.0.2 \
+</span></span><span class=line><span class=cl>      --restart unless-stopped \
+</span></span><span class=line><span class=cl>      -d zabbix/zabbix-java-gateway:alpine-5.0-latest
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo docker run --name zabbix-server-mysql \
+</span></span><span class=line><span class=cl>      -e DB_SERVER_HOST=&#34;172.17.0.1&#34; \
+</span></span><span class=line><span class=cl>      -e DB_SERVER_PORT=&#34;3306&#34; \
+</span></span><span class=line><span class=cl>      -e MYSQL_DATABASE=&#34;zabbix&#34; \
+</span></span><span class=line><span class=cl>      -e MYSQL_USER=&#34;zabbix&#34; \
+</span></span><span class=line><span class=cl>      -e MYSQL_PASSWORD=&#34;1234&#34; \
+</span></span><span class=line><span class=cl>      -e MYSQL_ROOT_PASSWORD=&#34;123456&#34; \
+</span></span><span class=line><span class=cl>      -e ZBX_JAVAGATEWAY_ENABLE=&#34;true&#34; \
+</span></span><span class=line><span class=cl>      -e ZBX_JAVAGATEWAY=&#34;zabbix-java-gateway&#34; \
+</span></span><span class=line><span class=cl>      -e ZBX_JAVAGATEWAYPORT=&#34;10052&#34; \
+</span></span><span class=line><span class=cl>      -e ZBX_STARTJAVAPOLLERS=&#34;5&#34; \
+</span></span><span class=line><span class=cl>      -v /data/zabbix/alertscripts:/usr/lib/zabbix/alertscripts \
+</span></span><span class=line><span class=cl>      -v /data/zabbix/externalscripts:/usr/lib/zabbix/externalscripts \
+</span></span><span class=line><span class=cl>      --network zabbix-net \
+</span></span><span class=line><span class=cl>      --ip 172.19.0.3 \
+</span></span><span class=line><span class=cl>      -p 10051:10051 \
+</span></span><span class=line><span class=cl>      -e TZ=&#39;Asia/Shanghai&#39; \
+</span></span><span class=line><span class=cl>      --restart unless-stopped \
+</span></span><span class=line><span class=cl>      -d zabbix/zabbix-server-mysql:alpine-5.0-latest
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo docker run --name zabbix-web-nginx-mysql \
+</span></span><span class=line><span class=cl>      -e ZBX_SERVER_HOST=&#34;zabbix-server-mysql&#34; \
+</span></span><span class=line><span class=cl>      -e ZBX_SERVER_PORT=&#34;10051&#34; \
+</span></span><span class=line><span class=cl>      -e DB_SERVER_HOST=&#34;172.17.0.1&#34; \
+</span></span><span class=line><span class=cl>      -e DB_SERVER_PORT=&#34;3306&#34; \
+</span></span><span class=line><span class=cl>      -e MYSQL_DATABASE=&#34;zabbix&#34; \
+</span></span><span class=line><span class=cl>      -e MYSQL_USER=&#34;zabbix&#34; \
+</span></span><span class=line><span class=cl>      -e MYSQL_PASSWORD=&#34;1234&#34; \
+</span></span><span class=line><span class=cl>      -e PHP_TZ=&#34;Asia/Shanghai&#34; \
+</span></span><span class=line><span class=cl>      --network zabbix-net \
+</span></span><span class=line><span class=cl>      --ip 172.19.0.4 \
+</span></span><span class=line><span class=cl>      -p 8080:8080 \
+</span></span><span class=line><span class=cl>      --restart unless-stopped \
+</span></span><span class=line><span class=cl>      -d zabbix/zabbix-web-nginx-mysql:alpine-5.0-latest
+</span></span></code></pre></td></tr></table></div></div><p>如果配置MYSQL_ROOT_PASSWORD则会尝试创建用户和数据库，也可以手动创建用和数据库则无需配置MYSQL_ROOT_PASSWORD</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>mysql -h 127.0.0.1 -P 3306 -u root -p&#39;123456&#39; -e &#34;create user zabbix@&#39;%&#39; identified by &#39;1234&#39;;&#34;~~
+</span></span><span class=line><span class=cl>mysql -h 127.0.0.1 -P 3306 -u root -p&#39;123456&#39; -e &#34;create database zabbix character set utf8 collate utf8_bin;&#34;
+</span></span><span class=line><span class=cl>mysql -h 127.0.0.1 -P 3306 -u root -p&#39;123456&#39; -e &#34;grant all on zabbix.* to zabbix@&#39;%&#39;;flush privileges;&#34;
+</span></span></code></pre></td></tr></table></div></div><h1 id=安装zabbix-agent>安装zabbix agent</h1><p>zabbix agent部署在被监控目标上，zabbix server主机上也要安装zabbix agent因为主机也需要被监控，不建议容器安装zabbix agent</p><p>zabbix agent版本最好与zabbix server版本一致</p><p><a href="https://www.zabbix.com/download_agents?version=5.0+LTS&amp;release=5.0.11&amp;os=Linux&amp;os_version=3.0&amp;hardware=amd64&amp;encryption=No+encryption&amp;packaging=Archive&amp;show_legacy=0%3E">zabbix agent下载地址</a></p><p>下载并解压</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>mkdir ~/zabbix &amp;&amp; cd ~/zabbix
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>wget https://cdn.zabbix.com/zabbix/binaries/stable/5.0/5.0.11/zabbix_agent-5.0.11-linux-3.0-amd64-static.tar.gz
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>tar zxf zabbix_agent-5.0.11-linux-3.0-amd64-static.tar.gz
+</span></span></code></pre></td></tr></table></div></div><p>修改并查看agent配置文件。zabbix server容器的地址为172.19.0.3，主机地址为10.20.70.113，<code>Server</code>为允许访问agent的主机，<code>ServerActive</code>配置后启用主动模式，以下示例为zabbix server上安装的agent配置文件，<strong>主动模式时<code>Hostname</code>必须与server端创建主机时的名字一致</strong>，<a href=https://www.zabbix.com/documentation/5.0/en/manual/appendix/config/zabbix_agentd>配置文件官方文档</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sed -i &#39;s/^Server=.*/Server=172.19.0.3/&#39; ~/zabbix/conf/zabbix_agentd.conf
+</span></span><span class=line><span class=cl>sed -i &#39;s/^ServerActive=.*/ServerActive=10.20.70.113:10051/&#39; ~/zabbix/conf/zabbix_agentd.conf  # 可选项
+</span></span><span class=line><span class=cl>sed &#39;/^#\|^ *$/d&#39; ~/zabbix/conf/zabbix_agentd.conf  # 显示非注释且非空行
+</span></span></code></pre></td></tr></table></div></div><pre><code>LogFile=/tmp/zabbix_agentd.log
+Server=172.19.0.3
+ServerActive=10.20.70.113:10051
+Hostname=Zabbix server
+</code></pre><p>启动zabbix agent,默认监听端口10050</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>~/zabbix/sbin/zabbix_agentd -c ~/zabbix/conf/zabbix_agentd.conf
+</span></span></code></pre></td></tr></table></div></div><p>关闭zabbix agent</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>ps -ef|awk &#39;/zabbix_agent[d] -c/{print $2}&#39;|xargs -i kill {}
+</span></span></code></pre></td></tr></table></div></div><p>可选步骤，开启防火墙</p><ul><li>agent安装在zabbix server本机时</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo iptables -A INPUT -s 172.19.0.0/16 -p tcp -m state --state NEW -m tcp --dport 10050 -j ACCEPT
+</span></span></code></pre></td></tr></table></div></div><ul><li>agent安装在其它被监控机器时</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo iptables -A INPUT -s 10.20.70.113 -p tcp -m state --state NEW -m tcp --dport 10050 -j ACCEPT
+</span></span></code></pre></td></tr></table></div></div><p>可选步骤，加入开机自启动</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1>#echo &#34;sudo -u $USER $HOME/zabbix/sbin/zabbix_agentd -c $HOME/zabbix/conf/zabbix_agentd.conf&#34; | sudo tee -a /etc/rc.local</span>
+</span></span><span class=line><span class=cl><span class=c1>#sudo chmod +x /etc/rc.local</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#2022.6.22更新</span>
+</span></span><span class=line><span class=cl><span class=c1>##Debian系统</span>
+</span></span><span class=line><span class=cl>sudo tee /etc/rc.local <span class=s>&lt;&lt; EOF
+</span></span></span><span class=line><span class=cl><span class=s>#!/bin/bash -e
+</span></span></span><span class=line><span class=cl><span class=s>sudo -u $USER $HOME/zabbix/sbin/zabbix_agentd -c $HOME/zabbix/conf/zabbix_agentd.conf
+</span></span></span><span class=line><span class=cl><span class=s>exit 0
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>sudo chmod +x /etc/rc.local
+</span></span><span class=line><span class=cl>sudo systemctl restart rc-local
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>##CentOS系统，开头也必须指定#!/bin/bash，可以不用exit 0</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;sudo -u </span><span class=nv>$USER</span><span class=s2> </span><span class=nv>$HOME</span><span class=s2>/zabbix/sbin/zabbix_agentd -c </span><span class=nv>$HOME</span><span class=s2>/zabbix/conf/zabbix_agentd.conf&#34;</span> <span class=p>|</span> sudo tee -a /etc/rc.local
+</span></span><span class=line><span class=cl>sudo chmod +x /etc/rc.local
+</span></span><span class=line><span class=cl>sudo systemctl restart rc-local
+</span></span></code></pre></td></tr></table></div></div><h1 id=监控zabbix-server主机>监控zabbix server主机</h1><p>主机IP：10.20.70.113，访问<code>http://10.20.70.113:8080</code>，nginx反向代理配置一个域名访问也可以，默认用户名密码：<code>Admin/zabbix</code></p><p><img src=https://testingcf.jsdelivr.net/gh/onegit20/githubcontent@main/images/zabbix/zabbix01.png alt=图片走丢了，请联系管理员></p><p>默认已经添加zabbix server主机(agent被动模式)，因为zabbix server是容器安装的，所以默认的127.0.0.1:10050是找不到zabbix agent的，需要改成主机地址10.20.70.113或docker网桥地址172.17.0.1</p><p><img src=https://testingcf.jsdelivr.net/gh/onegit20/githubcontent@main/images/zabbix/zabbix02.png alt=图片走丢了，请联系管理员></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2021-05-19</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/zabbix/>zabbix</a></div><nav class=post-nav><a class=prev href=/post/zabbix02/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Zabbix监控配置之自动发现和自动注册</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a><a class=next href=/post/k8s03/><span class="next-text nav-default">K8s数据持久化存储之NFS</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=onegit20/utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:info@yanyong.cc class="iconfont icon-email" title=email></a><a href=https://stackoverflow.com/users/16859626/yanyong class="iconfont icon-stack-overflow" title=stack-overflow></a><a href=https://github.com/onegit20 class="iconfont icon-github" title=github></a></div><div class=copyright><div class=busuanzi-footer><span id=busuanzi_container_site_pv>site pv: <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> </span><span class=division>|</span>
+<span id=busuanzi_container_site_uv>site uv: <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span></span></div><span class=copyright-year>&copy;
+&nbsp;2025&nbsp;
+<span>yanyong.cc</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://testingcf.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script><script id=baidu_push>(function(){if(window.location.hostname==="localhost")return;var t,n,e=document.createElement("script");e.async=!0,n=window.location.protocol.split(":")[0],n==="https"?e.src="https://zz.bdstatic.com/linksubmit/push.js":e.src="http://push.zhanzhang.baidu.com/push.js",t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>
