@@ -1,0 +1,502 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>awk分析nginx日志案例 - YY小站</title>
+<meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=Cache-Control content="no-transform"><meta http-equiv=Cache-Control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="info@yanyong.cc"><meta name=description content="需求 想知道接口调用时长的增长率，调用频次很高的接口，调用时间超过500毫秒的接口，接口请求数监控（方便知道接口被调用需求增长了） 分析 ngin"><meta name=keywords content="Hugo,theme,even"><meta name=generator content="Hugo 0.127.0 with theme even"><link rel=canonical href=https://yanyong.cc/post/analyze-nginx-log-with-awk/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:url" content="https://yanyong.cc/post/analyze-nginx-log-with-awk/"><meta property="og:site_name" content="YY小站"><meta property="og:title" content="awk分析nginx日志案例"><meta property="og:description" content="需求 想知道接口调用时长的增长率，调用频次很高的接口，调用时间超过500毫秒的接口，接口请求数监控（方便知道接口被调用需求增长了） 分析 ngin"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2025-09-10T10:32:25+08:00"><meta property="article:modified_time" content="2025-09-10T10:32:25+08:00"><meta property="article:tag" content="Awk"><meta itemprop=name content="awk分析nginx日志案例"><meta itemprop=description content="需求 想知道接口调用时长的增长率，调用频次很高的接口，调用时间超过500毫秒的接口，接口请求数监控（方便知道接口被调用需求增长了） 分析 ngin"><meta itemprop=datePublished content="2025-09-10T10:32:25+08:00"><meta itemprop=dateModified content="2025-09-10T10:32:25+08:00"><meta itemprop=wordCount content="2858"><meta itemprop=keywords content="Awk"><meta name=twitter:card content="summary"><meta name=twitter:title content="awk分析nginx日志案例"><meta name=twitter:description content="需求 想知道接口调用时长的增长率，调用频次很高的接口，调用时间超过500毫秒的接口，接口请求数监控（方便知道接口被调用需求增长了） 分析 ngin"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>YY小站</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a><a href=/search/><li class=mobile-menu-item>搜索</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>YY小站</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li><li class=menu-item><a class=menu-item-link href=/search/>搜索</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>awk分析nginx日志案例</h1><div class=post-meta><span class=post-time>2025-09-10</span><div class=post-category><a href=/categories/uncategorized/>Uncategorized</a></div><span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> times read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#需求>需求</a></li><li><a href=#分析>分析</a></li><li><a href=#执行脚本>执行脚本</a></li><li><a href=#飞书告警结果>飞书告警结果</a></li></ul></nav></div></div><div class=post-content><h1 id=需求>需求</h1><p>想知道接口调用时长的增长率，调用频次很高的接口，调用时间超过500毫秒的接口，接口请求数监控（方便知道接口被调用需求增长了）</p><h1 id=分析>分析</h1><ul><li>nginx日志格式</li></ul><p>这里有个陷阱，<code>$http_x_forwarded_for</code>可能会包含逗号<code>,</code>，用逗号做分隔符的话会有bug，省事点直接注释掉</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>log_format main
+</span></span><span class=line><span class=cl>        &#39;{&#34;@timestamp&#34;:&#34;$time_iso8601&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;host&#34;:&#34;$hostname&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;server_ip&#34;:&#34;$server_addr&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;client_ip&#34;:&#34;$remote_addr&#34;,&#39;
+</span></span><span class=line><span class=cl>#        &#39;&#34;xff&#34;:&#34;$http_x_forwarded_for&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;domain&#34;:&#34;$host&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;url&#34;:&#34;$uri&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;referer&#34;:&#34;$http_referer&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;args&#34;:&#34;$args&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;upstreamtime&#34;:&#34;$upstream_response_time&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;responsetime&#34;:&#34;$request_time&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;request_method&#34;:&#34;$request_method&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;status&#34;:&#34;$status&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;size&#34;:&#34;$body_bytes_sent&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;request_length&#34;:&#34;$request_length&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;protocol&#34;:&#34;$server_protocol&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;upstreamhost&#34;:&#34;$upstream_addr&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;file_dir&#34;:&#34;$request_filename&#34;,&#39;
+</span></span><span class=line><span class=cl>        &#39;&#34;http_user_agent&#34;:&#34;$http_user_agent&#34;&#39;
+</span></span><span class=line><span class=cl>    &#39;}&#39;;
+</span></span></code></pre></td></tr></table></div></div><ul><li>日志样本</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>{&#34;@timestamp&#34;:&#34;2025-09-10T15:26:06+08:00&#34;,&#34;host&#34;:&#34;nginx02&#34;,&#34;server_ip&#34;:&#34;10.129.240.85&#34;,&#34;client_ip&#34;:&#34;10.130.75.34&#34;,&#34;domain&#34;:&#34;ywmom-pre.sunwoda-evb.com&#34;,&#34;url&#34;:&#34;/mes/ProductionGroupInfo&#34;,&#34;referer&#34;:&#34;-&#34;,&#34;args&#34;:&#34;-&#34;,&#34;upstreamtime&#34;:&#34;0.012&#34;,&#34;responsetime&#34;:&#34;0.013&#34;,&#34;request_method&#34;:&#34;POST&#34;,&#34;status&#34;:&#34;200&#34;,&#34;size&#34;:&#34;140&#34;,&#34;request_length&#34;:&#34;2243&#34;,&#34;protocol&#34;:&#34;HTTP/1.1&#34;,&#34;upstreamhost&#34;:&#34;10.129.240.123:80&#34;,&#34;file_dir&#34;:&#34;/usr/local/nginx/html/mes/ProductionGroupInfo&#34;,&#34;http_user_agent&#34;:&#34;-&#34;}
+</span></span></code></pre></td></tr></table></div></div><ul><li>编写awk脚本<code>mom.awk</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># awk中变量是全局作用域，同名变量是同一个变量
+</span></span><span class=line><span class=cl>BEGIN {
+</span></span><span class=line><span class=cl>    FS = &#34;[,{]&#34;
+</span></span><span class=line><span class=cl>    records1 = 0
+</span></span><span class=line><span class=cl>    records2 = 0
+</span></span><span class=line><span class=cl>    records3 = 0
+</span></span><span class=line><span class=cl>    records4_twosecago_post = 0
+</span></span><span class=line><span class=cl>    records4_twosecago_pre = 0
+</span></span><span class=line><span class=cl>    records4_onwsecago_post = 0
+</span></span><span class=line><span class=cl>    records4_onesecago_pre = 0
+</span></span><span class=line><span class=cl>    currtime = getTimeSeconds()
+</span></span><span class=line><span class=cl>    twosecago = getTimeSeconds(-2)
+</span></span><span class=line><span class=cl>    onesecago = getTimeSeconds(-1)
+</span></span><span class=line><span class=cl>    btob = between_twominago_oneminago_begin = getTimeSeconds(-120)
+</span></span><span class=line><span class=cl>    btoe = between_twominago_oneminago_end = getTimeSeconds(-61)
+</span></span><span class=line><span class=cl>    bonb = between_oneminago_now_begin = getTimeSeconds(-60)
+</span></span><span class=line><span class=cl>    bone = between_oneminago_now_end = onesecago
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    exclude_domain[&#34;harbor-mom.example.com&#34;]
+</span></span><span class=line><span class=cl>    exclude_domain[&#34;logs-mom.example.com&#34;]
+</span></span><span class=line><span class=cl>    exclude_domain[&#34;oss-mom.example.com&#34;]
+</span></span><span class=line><span class=cl>    exclude_domain[&#34;ossapi-mom.example.com&#34;]
+</span></span><span class=line><span class=cl>    exclude_domain[&#34;gateway-mom.example.com&#34;]
+</span></span><span class=line><span class=cl>    exclude_domain[&#34;idm-mom.example.com&#34;]
+</span></span><span class=line><span class=cl>    exclude_domain[&#34;mom.example.com&#34;]
+</span></span><span class=line><span class=cl>    exclude_domain[&#34;paas-mom.example.com&#34;]
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # 需求1平均时长增长率告警：2分钟前到1分钟前 至 前1分钟内 同个接口平均调用时长增长率超过x%
+</span></span><span class=line><span class=cl>    x = 50
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # 需求2调用频次告警：1秒钟前同IP同接口调用超过y次(包含)
+</span></span><span class=line><span class=cl>    y = 6
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # 需求3调用时长告警：前1分钟内接口调用时长大于z秒，支持小数
+</span></span><span class=line><span class=cl>    z = 0.5
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # 需求4接口请求数告警：2秒前、1秒前
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    mompost = &#34;mom-post.example.com&#34;
+</span></span><span class=line><span class=cl>    mompre = &#34;mom-pre.example.com&#34;
+</span></span><span class=line><span class=cl>    z_post = z  # 中后工序
+</span></span><span class=line><span class=cl>    z_pre = 5   # 前工序
+</span></span><span class=line><span class=cl>    post_exclude_url[&#34;/mes/LoginCheck&#34;]
+</span></span><span class=line><span class=cl>    post_exclude_url[&#34;/mes/SaveInOutStockTime&#34;]
+</span></span><span class=line><span class=cl>    post_exclude_url[&#34;/mes/GetTime&#34;]
+</span></span><span class=line><span class=cl>    pre_exclude_url[&#34;/mes/preLoginCheck&#34;]
+</span></span><span class=line><span class=cl>    pre_exclude_url[&#34;/mes/GetTime&#34;]
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>function getTimeSeconds(offset) {
+</span></span><span class=line><span class=cl>    if (offset == &#34;&#34;) offset = 0
+</span></span><span class=line><span class=cl>    return strftime(&#34;%Y-%m-%dT%H:%M:%S&#34;, systime() + offset)
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>function sendMsg(msg) {
+</span></span><span class=line><span class=cl>    hook = &#34;https://open.feishu.cn/open-apis/bot/v2/hook/uuiduuid-uuid-uuid-uuid-uuiduuiduuid&#34;
+</span></span><span class=line><span class=cl>    data = &#34;&#39;{\&#34;msg_type\&#34;:\&#34;text\&#34;,\&#34;content\&#34;:{\&#34;text\&#34;:\&#34;&#34; msg &#34;\&#34;}}&#39;&#34;
+</span></span><span class=line><span class=cl>    command = &#34;curl -X POST -H \&#34;Content-Type: application/json\&#34; -d &#34; data &#34; &#34; hook
+</span></span><span class=line><span class=cl>    system(command)
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{
+</span></span><span class=line><span class=cl>    gsub(/&#34;/, &#34;&#34;, $0)
+</span></span><span class=line><span class=cl>    match($2, /@timestamp:(.*)\+08:00/, timestamp)
+</span></span><span class=line><span class=cl>    match($5, /client_ip:(.*)/, client_ip)
+</span></span><span class=line><span class=cl>    match($6, /domain:(.*)/, domain)
+</span></span><span class=line><span class=cl>    match($7, /url:(.*)/, url)
+</span></span><span class=line><span class=cl>    match($11, /responsetime:(.*)/, responsetime)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    if (domain[1] in exclude_domain) next
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    ts = timestamp[1]      # 请求时间
+</span></span><span class=line><span class=cl>    ip = client_ip[1]      # 客户端IP
+</span></span><span class=line><span class=cl>    api = domain[1] url[1] # 接口
+</span></span><span class=line><span class=cl>    rt = responsetime[1]   # 响应时长/调用时长
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    if (ts &gt;= btob &amp;&amp; ts &lt;= btoe) {  # 2分钟前到1分钟前
+</span></span><span class=line><span class=cl>        bto_count[api]++
+</span></span><span class=line><span class=cl>        bto_rttotal[api] += rt
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    else if (ts &gt;= bonb &amp;&amp; ts &lt;= bone) {  # 前1分钟内
+</span></span><span class=line><span class=cl>        if (domain[1] == mompost) {
+</span></span><span class=line><span class=cl>            if (url[1] in post_exclude_url) next
+</span></span><span class=line><span class=cl>            if (rt &gt; z_post) {
+</span></span><span class=line><span class=cl>                records3++
+</span></span><span class=line><span class=cl>                log3 = log3 rt &#34;秒 &#34; ts &#34; &#34; ip &#34; &#34; api &#34;\\n&#34;
+</span></span><span class=line><span class=cl>            }
+</span></span><span class=line><span class=cl>            if (ts == twosecago) {
+</span></span><span class=line><span class=cl>                records4_twosecago_post++
+</span></span><span class=line><span class=cl>            }
+</span></span><span class=line><span class=cl>            else if (ts == onesecago) {
+</span></span><span class=line><span class=cl>                records4_onesecago_post++
+</span></span><span class=line><span class=cl>            }
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>        else if (domain[1] == mompre) {
+</span></span><span class=line><span class=cl>            if (url[1] in pre_exclude_url) next
+</span></span><span class=line><span class=cl>            if (rt &gt; z_pre) {
+</span></span><span class=line><span class=cl>                records3++
+</span></span><span class=line><span class=cl>                log3 = log3 rt &#34;秒 &#34; ts &#34; &#34; ip &#34; &#34; api &#34;\\n&#34;
+</span></span><span class=line><span class=cl>            }
+</span></span><span class=line><span class=cl>            if (ts == twosecago) {
+</span></span><span class=line><span class=cl>                records4_twosecago_pre++
+</span></span><span class=line><span class=cl>            }
+</span></span><span class=line><span class=cl>            else if (ts == onesecago) {
+</span></span><span class=line><span class=cl>                records4_onesecago_pre++
+</span></span><span class=line><span class=cl>            }
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        # 注释掉第一版不区分前后工序
+</span></span><span class=line><span class=cl>        #if (rt &gt; z) {
+</span></span><span class=line><span class=cl>        #    records3++
+</span></span><span class=line><span class=cl>        #    log3 = log3 rt &#34;秒 &#34; ts &#34; &#34; ip &#34; &#34; api &#34;\\n&#34;
+</span></span><span class=line><span class=cl>        #}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        bon_count[api]++
+</span></span><span class=line><span class=cl>        bon_rttotal[api] += rt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        if (ts == onesecago) {  # 1秒钟前 onesecago = bone
+</span></span><span class=line><span class=cl>            ts_ip_api = ts &#34; &#34; ip &#34; &#34; api
+</span></span><span class=line><span class=cl>            onesecago_count[ts_ip_api]++
+</span></span><span class=line><span class=cl>            if (onesecago_count[ts_ip_api] == y) records2++
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>END {
+</span></span><span class=line><span class=cl>    # 打印当前时间(脚本执行开始时间)
+</span></span><span class=line><span class=cl>    if (records1 &gt; 0 || records2 &gt; 0 || records3 &gt; 0 || records4_twosecago_post &gt; 0 || records4_twosecago_pre &gt; 0 || records4_onesecago_post &gt; 0 || records4_onesecago_pre &gt; 0) {
+</span></span><span class=line><span class=cl>        sendMsg(&#34;当前时间(脚本执行开始时间)：&#34; currtime)
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # 需求1
+</span></span><span class=line><span class=cl>    for (i in bto_count) {
+</span></span><span class=line><span class=cl>        if (i in bon_count) {  # 取交集
+</span></span><span class=line><span class=cl>            bto_rtavg = bto_rttotal[i] / bto_count[i]
+</span></span><span class=line><span class=cl>            bon_rtavg = bon_rttotal[i] / bon_count[i]
+</span></span><span class=line><span class=cl>            if (bto_rtavg &gt; 0 &amp;&amp; bon_rtavg &gt; 0.4)
+</span></span><span class=line><span class=cl>                growth_ratio = bon_rtavg / bto_rtavg - 1
+</span></span><span class=line><span class=cl>            else
+</span></span><span class=line><span class=cl>                growth_ratio = 0
+</span></span><span class=line><span class=cl>            growth_pct = growth_ratio * 100
+</span></span><span class=line><span class=cl>            if (growth_pct &gt; x) {
+</span></span><span class=line><span class=cl>                records1++
+</span></span><span class=line><span class=cl>                log1 = log1 bto_rtavg&#34;秒(&#34;bto_count[i]&#34;次平均) &#34; bon_rtavg&#34;秒(&#34;bon_count[i]&#34;次平均) &#34; &#34;增长&#34; growth_pct &#34;% &#34; i &#34;\\n&#34;
+</span></span><span class=line><span class=cl>            }
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>    if (records1 &gt; 0) {
+</span></span><span class=line><span class=cl>        content1_1 = &#34;平均时长增长率告警： 2分钟前到1分钟前(&#34;btob&#34;到&#34;btoe&#34;) 至 前1分钟内(&#34;bonb&#34;到&#34;bone&#34;)&#34;
+</span></span><span class=line><span class=cl>        content1_2 = &#34; 同个接口平均调用时长增长率超过&#34; x &#34;%，有以下&#34; records1 &#34;条记录：&#34; &#34;\\n&#34;
+</span></span><span class=line><span class=cl>        msg1 = content1_1 content1_2 log1
+</span></span><span class=line><span class=cl>        sendMsg(msg1)
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # 需求2
+</span></span><span class=line><span class=cl>    if (records2 &gt; 0) {
+</span></span><span class=line><span class=cl>        PROCINFO[&#34;sorted_in&#34;] = &#34;@val_num_desc&#34;
+</span></span><span class=line><span class=cl>        for (j in onesecago_count){
+</span></span><span class=line><span class=cl>            if (onesecago_count[j] &gt;= y) {
+</span></span><span class=line><span class=cl>                log2 = log2 onesecago_count[j] &#34;次 &#34; j &#34;\\n&#34;
+</span></span><span class=line><span class=cl>            }
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>        content2 = &#34;调用频次告警：1秒钟前(&#34;onesecago&#34;)同IP同接口调用超过&#34; y &#34;次(包含)，有以下&#34; records2 &#34;条记录：&#34; &#34;\\n&#34;
+</span></span><span class=line><span class=cl>        msg2 = content2 log2
+</span></span><span class=line><span class=cl>        sendMsg(msg2)
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # 需求3
+</span></span><span class=line><span class=cl>    if (records3 &gt; 0) {
+</span></span><span class=line><span class=cl>        content3 = &#34;调用时长告警：前1分钟内(&#34;bonb&#34;到&#34;bone&#34;)接口调用时长大于&#34; z &#34;秒，有以下&#34; records3 &#34;条记录：&#34; &#34;\\n&#34;
+</span></span><span class=line><span class=cl>        msg3 = content3 log3
+</span></span><span class=line><span class=cl>        sendMsg(msg3)
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # 需求4
+</span></span><span class=line><span class=cl>    if (records4_twosecago_post &gt; 0 || records4_twosecago_pre &gt; 0 || records4_onesecago_post &gt; 0 || records4_onesecago_pre &gt; 0 ) {
+</span></span><span class=line><span class=cl>        content4 = &#34;接口请求数告警：\\n&#34;
+</span></span><span class=line><span class=cl>        content4_post = &#34;中后工序 2秒前(&#34;twosecago&#34; &#34;records4_twosecago_post&#34;次) 1秒前(&#34;onesecago&#34; &#34;records4_onesecago_post&#34;次)\\n&#34;
+</span></span><span class=line><span class=cl>        content4_pre = &#34;前工序 2秒前(&#34;twosecago&#34; &#34;records4_twosecago_pre&#34;次) 1秒前(&#34;onesecago&#34; &#34;records4_onesecago_pre&#34;次)&#34;
+</span></span><span class=line><span class=cl>        msg4 = content4 content4_post content4_pre
+</span></span><span class=line><span class=cl>        sendMsg(msg4)
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # 分割符
+</span></span><span class=line><span class=cl>    if (records1 &gt; 0 || records2 &gt; 0 || records3 &gt; 0 || records4_twosecago_post &gt; 0 || records4_twosecago_pre &gt; 0 || records4_onesecago_post &gt; 0 || records4_onesecago_pre &gt; 0) {
+</span></span><span class=line><span class=cl>        endtime = getTimeSeconds()
+</span></span><span class=line><span class=cl>        sendMsg(&#34;脚本执行结束时间：&#34;endtime&#34;------------------------------&#34;)
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><h1 id=执行脚本>执行脚本</h1><p>1分钟执行一次，如果接口被调用越来越多，取最后3万可能还不够，需适当调整。</p><p>建议使用方法2，方法1有个已知缺陷，当前循环与下一次循环间隔不是sleep的1分钟，而是1分钟加awk消耗的时间。</p><ul><li>方法1<code>mom-monitor.sh</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=nv>$$</span> &gt; /tmp/mom-monitor.pid
+</span></span><span class=line><span class=cl><span class=k>while</span> true<span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>    tail -30000 /var/log/nginx/access.log <span class=p>|</span> awk -f mom.awk
+</span></span><span class=line><span class=cl>    sleep 1m
+</span></span><span class=line><span class=cl><span class=k>done</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>nohup ./mom-monitor.sh &amp;&gt; /dev/null &amp;
+</span></span></code></pre></td></tr></table></div></div><ul><li>方法2</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo crontab -e
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>*</span> <span class=o>*</span> <span class=o>*</span> <span class=o>*</span> <span class=o>*</span> <span class=n>tail</span> <span class=o>-</span><span class=mi>30000</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=nb>log</span><span class=o>/</span><span class=n>nginx</span><span class=o>/</span><span class=n>access</span><span class=o>.</span><span class=n>log</span> <span class=o>|</span> <span class=n>awk</span> <span class=o>-</span><span class=n>f</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=nb>log</span><span class=o>/</span><span class=n>nginx</span><span class=o>/</span><span class=n>mom</span><span class=o>.</span><span class=n>awk</span>
+</span></span></code></pre></td></tr></table></div></div><h1 id=飞书告警结果>飞书告警结果</h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>当前时间(脚本执行开始时间)：2025-09-10T15:43:01
+</span></span><span class=line><span class=cl>平均时长增长率告警： 2分钟前到1分钟前(2025-09-10T15:41:01到2025-09-10T15:42:00) 至 前1分钟内(2025-09-10T15:42:01到2025-09-10T15:43:00) 同个接口平均调用时长增长率超过50%，有以下1条记录：
+</span></span><span class=line><span class=cl>0.201333秒(3次平均) 1.033秒(1次平均) 增长413.079% mom-post.example.com/mes/FittingBinding
+</span></span><span class=line><span class=cl>调用频次告警：1秒钟前(2025-09-10T15:43:00)同IP同接口调用超过6次(包含)，有以下7条记录：
+</span></span><span class=line><span class=cl>12次 2025-09-10T15:43:00 10.130.75.10 mom-pre.example.com/mes/ProductionGroupInfo
+</span></span><span class=line><span class=cl>10次 2025-09-10T15:43:00 10.130.14.95 mom-post.example.com/mes/OutStationCheckData
+</span></span><span class=line><span class=cl>10次 2025-09-10T15:43:00 10.130.15.81 mom-post.example.com/mes/GetSpecifications
+</span></span><span class=line><span class=cl>8次 2025-09-10T15:43:00 10.130.20.58 mom-post.example.com/mes/MaterialControl
+</span></span><span class=line><span class=cl>8次 2025-09-10T15:43:00 10.130.15.81 mom-post.example.com/mes/OutStationCheckData
+</span></span><span class=line><span class=cl>6次 2025-09-10T15:43:00 10.130.20.199 mom-post.example.com/mes/GetTestData
+</span></span><span class=line><span class=cl>6次 2025-09-10T15:43:00 10.130.14.95 mom-post.example.com/mes/FittingCheckForCell
+</span></span><span class=line><span class=cl>调用时长告警：前1分钟内(2025-09-10T15:42:01到2025-09-10T15:43:00)接口调用时长大于0.5秒，有以下6条记录：
+</span></span><span class=line><span class=cl>0.861秒 2025-09-10T15:42:01 10.130.36.71 mom-post.example.com/mes/OutStationCheckData
+</span></span><span class=line><span class=cl>0.759秒 2025-09-10T15:42:01 10.130.15.164 mom-post.example.com/mes/InStationCheck
+</span></span><span class=line><span class=cl>0.728秒 2025-09-10T15:42:01 10.130.15.164 mom-post.example.com/mes/InStationCheck
+</span></span><span class=line><span class=cl>0.835秒 2025-09-10T15:42:01 10.130.14.61 mom-post.example.com/mes/InStationCheck
+</span></span><span class=line><span class=cl>0.674秒 2025-09-10T15:42:01 10.130.21.71 mom-post.example.com/mes/InStationCheck
+</span></span><span class=line><span class=cl>0.739秒 2025-09-10T15:42:01 10.130.36.172 mom-post.example.com/mes/InStationCheck
+</span></span><span class=line><span class=cl>接口请求数告警：
+</span></span><span class=line><span class=cl>中后工序 2秒前(2025-09-10T15:42:59 90次) 1秒前(2025-09-10T15:43:00 158次)
+</span></span><span class=line><span class=cl>前工序 2秒前(2025-09-10T15:42:59 76次) 1秒前(2025-09-10T15:43:00 91次)
+</span></span><span class=line><span class=cl>脚本执行结束时间：2025-09-10T15:43:05------------------------------
+</span></span></code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>info@yanyong.cc</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2025-09-10</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/awk/>awk</a></div><nav class=post-nav><a class=next href=/post/nginx-config-example/><span class="next-text nav-default">nginx配置示例</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=onegit20/onegit20.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:info@yanyong.cc class="iconfont icon-email" title=email></a><a href=https://stackoverflow.com/users/16859626/yanyong class="iconfont icon-stack-overflow" title=stack-overflow></a><a href=https://github.com/onegit20 class="iconfont icon-github" title=github></a></div><div class=copyright><div class=busuanzi-footer><span id=busuanzi_container_site_pv>site pv: <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> </span><span class=division>|</span>
+<span id=busuanzi_container_site_uv>site uv: <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span></span></div><span class=copyright-year>&copy;
+&nbsp;2025&nbsp;
+<span>yanyong.cc</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://testingcf.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://testingcf.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script><script id=baidu_push>(function(){if(window.location.hostname==="localhost")return;var t,n,e=document.createElement("script");e.async=!0,n=window.location.protocol.split(":")[0],n==="https"?e.src="https://zz.bdstatic.com/linksubmit/push.js":e.src="http://push.zhanzhang.baidu.com/push.js",t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>
